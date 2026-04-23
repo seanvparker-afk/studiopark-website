@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Consulting &amp; Logistics — Studio Park</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #131110; --bg-lift: #1C1918; --bg-soft: #201C1A;
+    --cream: #F2EDE3; --cream-dim: #A69E91; --muted: #5A5449;
+    --accent: #D54420; --accent-hot: #E85528; --magenta: #B01858;
+    --line: rgba(242, 237, 227, 0.10); --line-soft: rgba(242, 237, 227, 0.06);
+  }
+  * { -webkit-font-smoothing: antialiased; }
+  html, body { background: var(--bg); color: var(--cream); }
+  body { font-family: 'Geist', system-ui, sans-serif; font-weight: 400; letter-spacing: -0.005em; line-height: 1.55; }
+  .display { font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-variation-settings: "opsz" 96; letter-spacing: -0.035em; line-height: 0.92; }
+  .display-md { font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 600; font-variation-settings: "opsz" 48; letter-spacing: -0.025em; line-height: 1.02; }
+  .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
+  body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.045; mix-blend-mode: overlay; background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); }
+  @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+  .rise { animation: rise 1.3s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  @keyframes widen { from { width: 0; } to { width: 100%; } }
+  .widen { animation: widen 1.6s cubic-bezier(0.7, 0, 0.3, 1) both; }
+  .img-wrap { overflow: hidden; position: relative; border-radius: 3px; }
+  .img-wrap img { transition: transform 1.6s cubic-bezier(0.2, 0.8, 0.2, 1); filter: saturate(0.92) contrast(1.02); width: 100%; height: 100%; object-fit: cover; }
+  .img-wrap:hover img { transform: scale(1.04); }
+  .nav-link { position: relative; padding: 2px 0; }
+  .nav-link::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 1px; background: var(--cream); transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  .nav-link.active { color: var(--accent); }
+  .idx { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 400; font-variation-settings: "opsz" 48; color: var(--accent); }
+  @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0.25; } }
+  .blink { animation: blink 1.8s steps(1) infinite; }
+  .btn { position: relative; overflow: hidden; transition: color 0.6s ease; border-radius: 2px; }
+  .btn::before { content: ''; position: absolute; inset: 0; background: var(--accent); transform: translateY(101%); transition: transform 0.6s cubic-bezier(0.6, 0, 0.2, 1); z-index: -1; }
+  .btn:hover::before { transform: translateY(0); }
+  .btn:hover { color: var(--cream); }
+  .caption { background: linear-gradient(to top, rgba(19,17,16,0.88), transparent 95%); }
+  .label { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cream-dim); font-weight: 400; }
+  ::selection { background: var(--accent); color: var(--bg); }
+  ::-webkit-scrollbar { width: 10px; background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--bg-lift); }
+  .logo-mark { filter: brightness(0) invert(1); opacity: 0.96; }
+  .dot-accent { color: var(--accent); }
+  .dot-magenta { color: var(--magenta); }
+
+  /* Map styles */
+  .map-wrapper { background: var(--bg-lift); border: 1px solid var(--line); border-radius: 4px; position: relative; overflow: hidden; }
+  .map-grid-bg { background-image: radial-gradient(circle, rgba(242, 237, 227, 0.06) 1px, transparent 1px); background-size: 24px 24px; }
+  @keyframes city-pulse { 0% { r: 8; opacity: 1; } 100% { r: 22; opacity: 0; } }
+  .city-pulse { animation: city-pulse 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; transform-origin: center; }
+
+  /* Capability pill */
+  .cap-cell { padding: 28px 24px; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); transition: background 0.5s ease; position: relative; }
+  .cap-cell:hover { background: var(--bg-lift); }
+  .cap-cell::before { content: '+'; position: absolute; top: 22px; right: 22px; color: var(--accent); font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; line-height: 1; opacity: 0.5; transition: opacity 0.4s ease, transform 0.4s ease; }
+  .cap-cell:hover::before { opacity: 1; transform: rotate(90deg); }
+
+  /* Tier card */
+  .tier { padding: 36px 32px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg-lift); display: flex; flex-direction: column; height: 100%; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.5s ease; }
+  .tier:hover { transform: translateY(-4px); border-color: rgba(242, 237, 227, 0.25); }
+  .tier.featured { border-color: var(--accent); background: linear-gradient(180deg, rgba(213, 68, 32, 0.08) 0%, var(--bg-lift) 40%); }
+  .tier ul li { padding: 10px 0; border-top: 1px solid var(--line); font-size: 14px; color: var(--cream-dim); display: flex; gap: 10px; align-items: flex-start; }
+  .tier ul li::before { content: '+'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+  .glow { background: radial-gradient(ellipse 60% 50% at 30% 40%, rgba(213, 68, 32, 0.10), transparent 60%), radial-gradient(ellipse 40% 40% at 80% 70%, rgba(176, 24, 88, 0.08), transparent 60%); }
+
+  /* Why-local reason */
+  .reason { padding: 32px 28px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-10 py-4 flex items-center justify-between" style="background: linear-gradient(to bottom, rgba(19,17,16,0.92), rgba(19,17,16,0)); backdrop-filter: blur(10px);">
+  <a href="studiopark-direction-v2.html" class="flex items-center gap-3">
+    <img src="studiopark-logo.png" alt="Studio Park" class="logo-mark h-8 md:h-9 w-auto" />
+  </a>
+  <ul class="hidden md:flex items-center gap-8 text-[13px]" style="color: var(--cream);">
+    <li><a href="content.html" class="nav-link">Content</a></li>
+    <li><a href="staffing.html" class="nav-link">Staffing</a></li>
+    <li><a href="consulting.html" class="nav-link active">Consulting</a></li>
+    <li><a href="contact.html" class="nav-link">Contact</a></li>
+  </ul>
+  <div class="hidden md:flex items-center gap-3 text-xs mono" style="color: var(--cream-dim);">
+    <span class="w-1.5 h-1.5 rounded-full blink" style="background: var(--accent);"></span>
+    YYC · Open for Q2 '26
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative px-6 md:px-10 pt-32 md:pt-40 pb-10 overflow-hidden">
+  <div class="flex items-start justify-between mb-14 md:mb-20">
+    <div class="rise" style="animation-delay: 0.1s;">
+      <div class="label mb-2">(04) — Service / Consulting &amp; Logistics</div>
+      <div class="label" style="color: var(--cream);">Local producers, before the trucks roll</div>
+    </div>
+    <div class="text-right rise" style="animation-delay: 0.2s;">
+      <div class="label mb-2">Ref. SP-CNS-01</div>
+      <div class="label" style="color: var(--cream);">AB · BC · SK · MB · YT · NT</div>
+    </div>
+  </div>
+
+  <h1 class="display text-[20vw] md:text-[14vw] rise" style="animation-delay: 0.3s;">We know</h1>
+  <div class="flex items-end justify-between gap-8 mt-2 md:mt-3">
+    <h1 class="display text-[20vw] md:text-[14vw] rise" style="animation-delay: 0.5s;">the west<span class="dot-accent">.</span></h1>
+    <p class="hidden md:block max-w-sm text-[15px] leading-relaxed pb-5 rise" style="color: var(--cream-dim); animation-delay: 0.7s;">
+      Permitting. Venue scouting. Municipal liaison. Run-of-show. We act as your local producers before the trucks roll in — so your load-in isn't the first time you learn what Calgary bylaws forbid.
+    </p>
+  </div>
+
+  <p class="md:hidden mt-6 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+    Permitting. Venue scouting. Municipal liaison. Run-of-show. We act as your local producers before the trucks roll in — so your load-in isn't the first time you learn what Calgary bylaws forbid.
+  </p>
+
+  <div class="h-px widen mt-14 md:mt-20" style="background: var(--line); animation-delay: 0.9s;"></div>
+</section>
+
+<!-- MAP SECTION -->
+<section class="px-6 md:px-10 py-16 md:py-24">
+  <div class="flex items-end justify-between mb-10 md:mb-14 flex-wrap gap-4">
+    <div>
+      <div class="label mb-4">§ 02 — Territorial Coverage</div>
+      <h2 class="display-md text-3xl md:text-5xl">Four provinces.<br/>Eight home-base cities.</h2>
+    </div>
+    <div class="mono text-xs flex items-center gap-3" style="color: var(--cream-dim);">
+      <span class="w-2 h-2 rounded-full" style="background: var(--accent);"></span> <span>HQ</span>
+      <span class="w-2 h-2 rounded-full ml-2" style="background: var(--cream);"></span> <span>Active roster</span>
+    </div>
+  </div>
+
+  <div class="map-wrapper aspect-[2/1] md:aspect-[2.2/1] map-grid-bg">
+    <svg viewBox="0 0 1000 500" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
+      <!-- Compass in corner -->
+      <g transform="translate(40, 50)" font-family="Geist Mono, monospace" font-size="10" fill="#A69E91" letter-spacing="2">
+        <text>W / WESTERN CANADA</text>
+        <line x1="0" y1="8" x2="180" y2="8" stroke="#A69E91" stroke-width="0.5" opacity="0.3"/>
+      </g>
+      <g transform="translate(940, 50)" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" text-anchor="end" letter-spacing="1.5">
+        <text>49°N — 60°N</text>
+        <text y="14">114°W — 140°W</text>
+      </g>
+
+      <!-- Province labels (subtle) -->
+      <g font-family="Geist Mono, monospace" font-size="11" fill="#5A5449" letter-spacing="3" opacity="0.7">
+        <text x="180" y="150">BC</text>
+        <text x="420" y="130">AB</text>
+        <text x="640" y="120">SK</text>
+        <text x="850" y="130">MB</text>
+      </g>
+
+      <!-- Connecting network lines from Calgary (hub) -->
+      <g stroke="#D54420" stroke-width="1" stroke-dasharray="2 5" opacity="0.45" fill="none">
+        <line x1="440" y1="270" x2="180" y2="260"/>
+        <line x1="440" y1="270" x2="150" y2="340"/>
+        <line x1="440" y1="270" x2="280" y2="260"/>
+        <line x1="440" y1="270" x2="450" y2="175"/>
+        <line x1="440" y1="270" x2="620" y2="170"/>
+        <line x1="440" y1="270" x2="680" y2="290"/>
+        <line x1="440" y1="270" x2="830" y2="245"/>
+      </g>
+
+      <!-- City dots -->
+      <!-- Vancouver -->
+      <g>
+        <circle cx="180" cy="260" r="5" fill="#F2EDE3"/>
+        <text x="195" y="256" font-family="Bricolage Grotesque, sans-serif" font-size="16" font-weight="600" fill="#F2EDE3">Vancouver</text>
+        <text x="195" y="272" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">BC</text>
+      </g>
+      <!-- Victoria -->
+      <g>
+        <circle cx="150" cy="340" r="4" fill="#F2EDE3"/>
+        <text x="165" y="336" font-family="Bricolage Grotesque, sans-serif" font-size="14" font-weight="600" fill="#F2EDE3">Victoria</text>
+        <text x="165" y="350" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">BC</text>
+      </g>
+      <!-- Kelowna -->
+      <g>
+        <circle cx="280" cy="260" r="4" fill="#F2EDE3"/>
+        <text x="295" y="256" font-family="Bricolage Grotesque, sans-serif" font-size="14" font-weight="600" fill="#F2EDE3">Kelowna</text>
+        <text x="295" y="270" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">BC</text>
+      </g>
+      <!-- Edmonton -->
+      <g>
+        <circle cx="450" cy="175" r="5" fill="#F2EDE3"/>
+        <text x="465" y="171" font-family="Bricolage Grotesque, sans-serif" font-size="16" font-weight="600" fill="#F2EDE3">Edmonton</text>
+        <text x="465" y="186" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">AB</text>
+      </g>
+      <!-- Calgary (HQ) -->
+      <g>
+        <circle cx="440" cy="270" r="22" fill="#D54420" opacity="0.2" class="city-pulse"/>
+        <circle cx="440" cy="270" r="9" fill="#D54420"/>
+        <text x="458" y="266" font-family="Bricolage Grotesque, sans-serif" font-size="20" font-weight="700" fill="#F2EDE3">Calgary</text>
+        <text x="458" y="284" font-family="Geist Mono, monospace" font-size="10" fill="#D54420" letter-spacing="1.5">AB · HQ</text>
+      </g>
+      <!-- Saskatoon -->
+      <g>
+        <circle cx="620" cy="170" r="4" fill="#F2EDE3"/>
+        <text x="635" y="166" font-family="Bricolage Grotesque, sans-serif" font-size="14" font-weight="600" fill="#F2EDE3">Saskatoon</text>
+        <text x="635" y="180" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">SK</text>
+      </g>
+      <!-- Regina -->
+      <g>
+        <circle cx="680" cy="290" r="4" fill="#F2EDE3"/>
+        <text x="695" y="286" font-family="Bricolage Grotesque, sans-serif" font-size="14" font-weight="600" fill="#F2EDE3">Regina</text>
+        <text x="695" y="300" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">SK</text>
+      </g>
+      <!-- Winnipeg -->
+      <g>
+        <circle cx="830" cy="245" r="5" fill="#F2EDE3"/>
+        <text x="845" y="241" font-family="Bricolage Grotesque, sans-serif" font-size="16" font-weight="600" fill="#F2EDE3">Winnipeg</text>
+        <text x="845" y="256" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">MB</text>
+      </g>
+
+      <!-- Yukon/NWT subtle markers (project basis) -->
+      <g opacity="0.5">
+        <circle cx="250" cy="80" r="3" fill="#A69E91"/>
+        <text x="262" y="76" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1">Whitehorse · YT</text>
+        <circle cx="380" cy="60" r="3" fill="#A69E91"/>
+        <text x="392" y="56" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1">Yellowknife · NT</text>
+      </g>
+    </svg>
+  </div>
+
+  <p class="mt-6 text-[14px]" style="color: var(--cream-dim);">
+    Hub in Calgary. Local contacts, venue relationships, and bylaw familiarity in every listed city. Project-basis coverage extends north into Yukon and NWT.
+  </p>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="px-6 md:px-10 py-24 md:py-36 border-t" style="border-color: var(--line);">
+  <div class="grid grid-cols-12 gap-6 mb-14 md:mb-16">
+    <div class="col-span-12 md:col-span-4">
+      <div class="label mb-4">§ 03 — What We Handle</div>
+    </div>
+    <div class="col-span-12 md:col-span-8">
+      <h2 class="display-md text-4xl md:text-6xl">
+        The work that<br/><span style="color: var(--cream-dim);">actually moves the activation.</span>
+      </h2>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-4 border-t border-l" style="border-color: var(--line);">
+    <div class="cap-cell">
+      <div class="label mb-4">01</div>
+      <h3 class="display-md text-lg mb-2">Permits &amp; permissions</h3>
+      <p class="text-[13px] leading-relaxed" style="color: var(--cream-dim);">Municipal, provincial, and venue-specific permits. Street closures, noise variances, alcohol, signage.</p>
+    </div>
+    <div class="cap-cell">
+      <div class="label mb-4">02</div>
+      <h3 class="display-md text-lg mb-2">Venue scouting</h3>
+      <p class="text-[13px] leading-relaxed" style="color: var(--cream-dim);">On-the-ground walkthroughs. We know which rooms oversell and which caterers actually show up.</p>
+    </div>
+    <div class="cap-cell">
+      <div class="label mb-4">03</div>
+      <h3 class="display-md text-lg mb-2">Municipal liaison</h3>
+      <p class="text-[13px] leading-relaxed" style="color: var(--cream-dim);">Direct relationships at City Hall, Stampede, Tourism Calgary, Destination YVR and beyond.</p>
+    </div>
+    <div class="cap-cell">
+      <div class="label mb-4">04</div>
+      <h3 class="display-md text-lg mb-2">Run-of-show</h3>
+      <p class="text-[13px] leading-relaxed" style="color: var(--cream-dim);">Minute-by-minute build, live, and strike schedules. The doc your field team actually uses.</p>
+    </div>
+    <div class="cap-cell">
+      <div class="label mb-4">05</div>
+      <h3 class="display-md text-lg mb-2">Logistics &amp; routing</h3>
+      <p class="text-[13px] leading-relaxed" style="color: var(--cream-dim);">Truck routing, loading docks, storage, freight, equipment rental coordination.</p>
+    </div>
+    <div class="cap-cell">
+      <div class="label mb-4">06</div>
+      <h3 class="display-md text-lg mb-2">Vendor sourcing</h3>
+      <p class="text-[13px] leading-relaxed" style="color: var(--cream-dim);">Fabricators, caterers, AV rental, security, cleaning. Pre-vetted, rate-tested, deadline-tested.</p>
+    </div>
+    <div class="cap-cell">
+      <div class="label mb-4">07</div>
+      <h3 class="display-md text-lg mb-2">Load-in / load-out</h3>
+      <p class="text-[13px] leading-relaxed" style="color: var(--cream-dim);">The choreography of getting in, set up, torn down, and out — on time, inside budget.</p>
+    </div>
+    <div class="cap-cell">
+      <div class="label mb-4">08</div>
+      <h3 class="display-md text-lg mb-2">Risk &amp; contingency</h3>
+      <p class="text-[13px] leading-relaxed" style="color: var(--cream-dim);">Weather plans, backup venues, insurance coordination, emergency protocols.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENT MODELS -->
+<section class="px-6 md:px-10 py-24 md:py-36" style="background: var(--bg-lift);">
+  <div class="grid grid-cols-12 gap-6 mb-14 md:mb-16">
+    <div class="col-span-12 md:col-span-4">
+      <div class="label mb-4">§ 04 — Engagement Models</div>
+    </div>
+    <div class="col-span-12 md:col-span-8">
+      <h2 class="display-md text-4xl md:text-6xl">
+        Three ways to work with us.
+      </h2>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="tier">
+      <div class="flex items-baseline justify-between mb-6">
+        <span class="label">Tier 01</span>
+        <span class="idx text-3xl">A</span>
+      </div>
+      <h3 class="display-md text-2xl mb-3">Project Consultation</h3>
+      <p class="text-[14px] leading-relaxed mb-5" style="color: var(--cream-dim);">
+        One-off support for a single activation. You bring the brief, we bring the local playbook.
+      </p>
+      <div class="mono text-xs mb-6" style="color: var(--cream-dim);">From $3,500 · 2–4 week engagement</div>
+      <ul class="flex-1">
+        <li>Permit &amp; venue research</li>
+        <li>Run-of-show draft</li>
+        <li>Vendor introductions</li>
+        <li>Single markets / one activation</li>
+      </ul>
+    </div>
+
+    <div class="tier featured">
+      <div class="flex items-baseline justify-between mb-6">
+        <span class="label" style="color: var(--accent);">Tier 02 · Most common</span>
+        <span class="idx text-3xl">B</span>
+      </div>
+      <h3 class="display-md text-2xl mb-3">Seasonal Retainer</h3>
+      <p class="text-[14px] leading-relaxed mb-5" style="color: var(--cream-dim);">
+        Dedicated support through a campaign season. Calgary Stampede. Grey Cup. Summer festival circuit. Ski season.
+      </p>
+      <div class="mono text-xs mb-6" style="color: var(--accent);">From $8,500/mo · 3–6 month term</div>
+      <ul class="flex-1">
+        <li>Everything in Tier A</li>
+        <li>Multi-activation, multi-market</li>
+        <li>Ongoing venue &amp; vendor liaison</li>
+        <li>Priority turnaround on requests</li>
+        <li>Weekly sync with agency team</li>
+      </ul>
+    </div>
+
+    <div class="tier">
+      <div class="flex items-baseline justify-between mb-6">
+        <span class="label">Tier 03</span>
+        <span class="idx text-3xl">C</span>
+      </div>
+      <h3 class="display-md text-2xl mb-3">Full Pre-Production</h3>
+      <p class="text-[14px] leading-relaxed mb-5" style="color: var(--cream-dim);">
+        End-to-end, for when you want to send a brief and receive a ready-to-execute production plan.
+      </p>
+      <div class="mono text-xs mb-6" style="color: var(--cream-dim);">Custom · Scoped per brief</div>
+      <ul class="flex-1">
+        <li>Everything in Tier B</li>
+        <li>Full production planning</li>
+        <li>Budget management</li>
+        <li>On-site production oversight</li>
+        <li>Content &amp; staffing bundled</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="text-[13px] mt-10 text-center" style="color: var(--cream-dim);">
+    Pricing is indicative. Every engagement is scoped against your specific brief, markets, and timeline.
+  </p>
+</section>
+
+<!-- WHY LOCAL MATTERS -->
+<section class="px-6 md:px-10 py-24 md:py-36">
+  <div class="grid grid-cols-12 gap-6 md:gap-10 mb-14 md:mb-16">
+    <div class="col-span-12 md:col-span-4">
+      <div class="label mb-4">§ 05 — Why Local Wins</div>
+    </div>
+    <div class="col-span-12 md:col-span-8">
+      <h2 class="display-md text-4xl md:text-6xl">
+        The math on<br/><span style="color: var(--cream-dim);">a local partner.</span>
+      </h2>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 md:gap-x-20">
+    <div>
+      <div class="reason">
+        <span class="idx text-5xl">01</span>
+        <h4 class="display-md text-xl mt-4 mb-3">Bylaws aren't universal</h4>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          What flies in Toronto gets denied in Calgary. Sampling rules, alcohol permits, outdoor signage, sound ordinances — every municipality writes its own book. We read them for breakfast.
+        </p>
+      </div>
+      <div class="reason">
+        <span class="idx text-5xl" style="color: var(--magenta);">02</span>
+        <h4 class="display-md text-xl mt-4 mb-3">Venues aren't objective</h4>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          The sales deck from a venue is not the same as the truth from the load-in crew. We know who oversells capacity, who skimps on power, and who comes through when the weather turns.
+        </p>
+      </div>
+      <div class="reason">
+        <span class="idx text-5xl">03</span>
+        <h4 class="display-md text-xl mt-4 mb-3">Culture varies by postal code</h4>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          What plays at Stampede doesn't play at VIFF. What resonates in Saskatoon lands differently in Kitsilano. We help you frame the activation so it doesn't feel parachuted in.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div class="reason">
+        <span class="idx text-5xl" style="color: var(--magenta);">04</span>
+        <h4 class="display-md text-xl mt-4 mb-3">Travel risk disappears</h4>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          No weather-delayed flights. No rental truck shortages. No hotel blocks eating 15% of the budget. Your producers are already here.
+        </p>
+      </div>
+      <div class="reason">
+        <span class="idx text-5xl">05</span>
+        <h4 class="display-md text-xl mt-4 mb-3">Budget moves to the floor</h4>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          Dollars that would have bought flights, per diems, and hotel nights get redirected to the activation itself. Your client sees more build, better talent, better content.
+        </p>
+      </div>
+      <div class="reason">
+        <span class="idx text-5xl" style="color: var(--magenta);">06</span>
+        <h4 class="display-md text-xl mt-4 mb-3">Carbon footprint shrinks</h4>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          Fewer flights, less freight, more local vendors. Sustainability metrics your client wants to report — earned, not greenwashed.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CROSS-SELL -->
+<section class="px-6 md:px-10 py-16 md:py-20 border-t" style="border-color: var(--line); background: var(--bg-lift);">
+  <div class="label mb-6">§ 06 — Also from Studio Park</div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <a href="content.html" class="group flex items-center justify-between p-6 border rounded-sm transition-colors duration-500 hover:border-cream" style="border-color: var(--line); color: var(--cream);">
+      <div>
+        <div class="label mb-2">Service 02</div>
+        <div class="display-md text-2xl">Content Production →</div>
+      </div>
+      <span class="idx text-4xl">01</span>
+    </a>
+    <a href="staffing.html" class="group flex items-center justify-between p-6 border rounded-sm transition-colors duration-500 hover:border-cream" style="border-color: var(--line); color: var(--cream);">
+      <div>
+        <div class="label mb-2">Service 03</div>
+        <div class="display-md text-2xl">Talent &amp; Staffing →</div>
+      </div>
+      <span class="idx text-4xl">02</span>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="px-6 md:px-10 py-28 md:py-40 relative overflow-hidden">
+  <div class="glow absolute inset-0"></div>
+  <div class="relative">
+    <div class="label mb-6" style="color: var(--accent);">§ 07 — Before You Book Flights</div>
+    <h2 class="display text-[12vw] md:text-[9vw]">Call us first<span class="dot-accent">.</span></h2>
+    <p class="mt-8 max-w-xl text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+      Before you charter a venue from a deck, before you book hotel blocks, before the client sees a budget — get a 30-minute consultation with someone who actually lives here.
+    </p>
+    <div class="mt-10 flex flex-col md:flex-row items-start md:items-center gap-6">
+      <a href="contact.html" class="btn inline-flex items-center gap-3 text-lg display-md px-8 py-4 border" style="border-color: var(--cream); color: var(--cream);">
+        Book a 30-min call
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <span class="label">Free · Usually within 48h</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="px-6 md:px-10 pt-20 pb-10 border-t" style="border-color: var(--line);">
+  <div class="grid grid-cols-12 gap-6 mb-16">
+    <div class="col-span-12 md:col-span-5">
+      <img src="studiopark-logo.png" alt="Studio Park" class="logo-mark h-9 w-auto mb-6" />
+      <p class="text-[14px] max-w-xs leading-relaxed" style="color: var(--cream-dim);">
+        Western Canada's premier experiential production partner. Calgary-based, nationally trusted.
+      </p>
+    </div>
+    <div class="col-span-6 md:col-span-2">
+      <div class="label mb-5">Services</div>
+      <ul class="space-y-3 text-sm">
+        <li><a href="content.html" class="nav-link">Content</a></li>
+        <li><a href="staffing.html" class="nav-link">Staffing</a></li>
+        <li><a href="consulting.html" class="nav-link">Consulting</a></li>
+      </ul>
+    </div>
+    <div class="col-span-6 md:col-span-2">
+      <div class="label mb-5">Connect</div>
+      <ul class="space-y-3 text-sm">
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="mailto:hello@studiopark.ca" class="nav-link">Email</a></li>
+        <li><a href="#" class="nav-link">Instagram</a></li>
+      </ul>
+    </div>
+    <div class="col-span-12 md:col-span-3">
+      <div class="label mb-5">Visit</div>
+      <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+        1933 10 Ave SW, #301<br/>Calgary, AB T3C 0K3<br/>Canada
+      </p>
+    </div>
+  </div>
+  <div class="h-px mb-8" style="background: var(--line);"></div>
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs mono" style="color: var(--cream-dim);">
+    <div>© 2026 Studio Park Experiential Inc. All rights reserved.</div>
+    <div class="flex items-center gap-5 flex-wrap">
+      <span>51.0447° N · 114.0719° W</span>
+      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full blink" style="background: var(--accent);"></span>Open for Q2 '26 bookings</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

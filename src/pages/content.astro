@@ -1,0 +1,354 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Content Production — Studio Park"
+  description="Same-day edits, event stills, hero video, behind-the-scenes. Broadcast-quality content that respects your client's brand guidelines and the campaign's timeline."
+>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-10 py-4 flex items-center justify-between" style="background: linear-gradient(to bottom, rgba(19,17,16,0.92), rgba(19,17,16,0)); backdrop-filter: blur(10px);">
+    <a href="/" class="flex items-center gap-3">
+      <img src="/studiopark-logo.png" alt="Studio Park" class="logo-mark h-8 md:h-9 w-auto" />
+    </a>
+    <ul class="hidden md:flex items-center gap-8 text-[13px]" style="color: var(--cream);">
+      <li><a href="/content" class="nav-link active">Content</a></li>
+      <li><a href="/staffing" class="nav-link">Staffing</a></li>
+      <li><a href="/consulting" class="nav-link">Consulting</a></li>
+      <li><a href="/contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="hidden md:flex items-center gap-3 text-xs mono" style="color: var(--cream-dim);">
+      <span class="w-1.5 h-1.5 rounded-full blink" style="background: var(--accent);"></span>
+      YYC · Open for Q2 '26
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="relative px-6 md:px-10 pt-32 md:pt-40 pb-10 overflow-hidden">
+    <div class="flex items-start justify-between mb-14 md:mb-20">
+      <div class="rise" style="animation-delay: 0.1s;">
+        <div class="label mb-2">(02) — Service / Content Production</div>
+        <div class="label" style="color: var(--cream);">Capture, Edit, Deliver</div>
+      </div>
+      <div class="text-right rise" style="animation-delay: 0.2s;">
+        <div class="label mb-2">Ref. SP-CON-01</div>
+        <div class="label" style="color: var(--cream);">Same-day → 7-day turnaround</div>
+      </div>
+    </div>
+
+    <h1 class="display text-[15vw] md:text-[10vw] rise" style="animation-delay: 0.3s;">Content that</h1>
+    <h1 class="display text-[15vw] md:text-[10vw] rise mt-2 md:mt-3" style="animation-delay: 0.5s; color: var(--cream-dim);">carries the</h1>
+    <div class="flex items-end justify-between gap-8 mt-2 md:mt-3">
+      <h1 class="display text-[15vw] md:text-[10vw] rise" style="animation-delay: 0.7s;">case study<span class="dot-accent">.</span></h1>
+      <p class="hidden md:block max-w-sm text-[15px] leading-relaxed pb-5 rise" style="color: var(--cream-dim); animation-delay: 0.9s;">
+        Same-day edits. Event stills. Hero video. Behind-the-scenes. We capture what you'll actually use — built to the specs your client approves, delivered on the timeline the campaign needs.
+      </p>
+    </div>
+
+    <p class="md:hidden mt-6 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+      Same-day edits. Event stills. Hero video. Behind-the-scenes. We capture what you'll actually use — built to the specs your client approves, delivered on the timeline the campaign needs.
+    </p>
+
+    <div class="h-px widen mt-14 md:mt-20" style="background: var(--line); animation-delay: 1.1s;"></div>
+
+    <!-- Hero diptych: process + output -->
+    <div class="grid grid-cols-12 gap-4 md:gap-5 mt-10 md:mt-12 rise" style="animation-delay: 1.2s;">
+      <div class="col-span-12 md:col-span-5 img-wrap aspect-[4/5]">
+        <img src="https://static.wixstatic.com/media/506540_b0ad361f89fd45618b685ee43f0e8dc3~mv2.jpg/v1/fit/w_900,h_1125,q_90,enc_avif,quality_auto/file.jpg" alt="On-set production" />
+        <div class="caption absolute bottom-0 left-0 right-0 p-5">
+          <div class="label mb-1" style="color: var(--cream);">Behind the camera</div>
+          <div class="display-md text-lg">On-set, in the moment</div>
+        </div>
+      </div>
+      <div class="col-span-12 md:col-span-7 img-wrap aspect-[16/11]">
+        <img src="https://static.wixstatic.com/media/506540_9435882fc07f409b944dff376764c76d~mv2.jpg/v1/fit/w_1400,h_960,q_90,enc_avif,quality_auto/file.jpg" alt="Final output" />
+        <div class="caption absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between">
+          <div>
+            <div class="label mb-1" style="color: var(--cream);">The output</div>
+            <div class="display-md text-lg">Broadcast-quality, brand-safe</div>
+          </div>
+          <div class="mono text-xs" style="color: var(--cream-dim);">01/12</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THREE PILLARS -->
+  <section class="px-6 md:px-10 py-20 md:py-28 border-y" style="border-color: var(--line);">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
+      <div>
+        <div class="idx text-6xl mb-4">Fast</div>
+        <h3 class="display-md text-xl mb-3">Same-day turnarounds</h3>
+        <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+          On-site edit stations when the campaign needs content live tonight. Priority cuts delivered before the event strikes.
+        </p>
+      </div>
+      <div>
+        <div class="idx text-6xl mb-4" style="color: var(--magenta);">Safe</div>
+        <h3 class="display-md text-xl mb-3">Brand-guideline compliant</h3>
+        <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+          We work to your client's style guide before we press record. Logo placement, colour, tone, talent approvals — built into our check-ins.
+        </p>
+      </div>
+      <div>
+        <div class="idx text-6xl mb-4">Sharp</div>
+        <h3 class="display-md text-xl mb-3">Broadcast-quality craft</h3>
+        <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+          Cinema cameras, proper audio, considered lighting, thoughtful cuts. Content that earns its spot in the case study deck.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES MATRIX -->
+  <section class="px-6 md:px-10 py-24 md:py-36">
+    <div class="grid grid-cols-12 gap-6 mb-14 md:mb-20">
+      <div class="col-span-12 md:col-span-4">
+        <div class="label mb-4">§ 02 — Deliverables</div>
+      </div>
+      <div class="col-span-12 md:col-span-8">
+        <h2 class="display-md text-4xl md:text-6xl">
+          What you leave with.<br/>
+          <span style="color: var(--cream-dim);">Every format the brief needs.</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 border-t border-l" style="border-color: var(--line);">
+      <div class="deliv">
+        <span class="deliv-num">01 / 08</span>
+        <h3 class="display-md text-xl mb-3 mt-4">Same-day edits</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          60–90s cuts delivered the night of the activation. Perfect for agency recaps and client same-day reports.
+        </p>
+      </div>
+      <div class="deliv">
+        <span class="deliv-num">02 / 08</span>
+        <h3 class="display-md text-xl mb-3 mt-4">Event highlight reels</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          Polished 60–90 second cuts, colour-graded and sound-designed. Case-study ready within 48 hours.
+        </p>
+      </div>
+      <div class="deliv">
+        <span class="deliv-num">03 / 08</span>
+        <h3 class="display-md text-xl mb-3 mt-4">Hero video</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          2–3 minute narrative cuts with interviews, B-roll, and brand story. For recap decks and paid placement.
+        </p>
+      </div>
+      <div class="deliv">
+        <span class="deliv-num">04 / 08</span>
+        <h3 class="display-md text-xl mb-3 mt-4">Social cuts</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          Vertical 9:16, square, and 16:9 formats. 15s / 30s / 60s lengths, captioned and platform-ready.
+        </p>
+      </div>
+      <div class="deliv">
+        <span class="deliv-num">05 / 08</span>
+        <h3 class="display-md text-xl mb-3 mt-4">Event photography</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          200–500 edited stills per activation. Hero shots, crowd, talent, details, branded moments.
+        </p>
+      </div>
+      <div class="deliv">
+        <span class="deliv-num">06 / 08</span>
+        <h3 class="display-md text-xl mb-3 mt-4">Behind-the-scenes</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          The unpolished, authentic story. Great for organic social, internal morale, and proving the work.
+        </p>
+      </div>
+      <div class="deliv">
+        <span class="deliv-num">07 / 08</span>
+        <h3 class="display-md text-xl mb-3 mt-4">Interviews &amp; testimonials</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          Set up, shot, and edited. Great for case studies, recruitment decks, and client pitch materials.
+        </p>
+      </div>
+      <div class="deliv">
+        <span class="deliv-num">08 / 08</span>
+        <h3 class="display-md text-xl mb-3 mt-4">Case study package</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          A curated bundle of stills, video, and BTS built specifically for your client's recap presentation.
+        </p>
+      </div>
+      <div class="deliv flex items-end" style="background: var(--bg-lift);">
+        <div>
+          <span class="deliv-num" style="color: var(--accent);">+</span>
+          <h3 class="display-md text-xl mb-3 mt-4">Custom spec</h3>
+          <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+            Brief doesn't fit a box? Tell us what you need and we'll scope it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILMSTRIP -->
+  <section class="py-20 md:py-28 border-y" style="border-color: var(--line);">
+    <div class="px-6 md:px-10 flex items-end justify-between mb-10 md:mb-14 flex-wrap gap-4">
+      <div>
+        <div class="label mb-4">§ 03 — Selected Captures</div>
+        <h2 class="display-md text-3xl md:text-5xl">
+          Recent work, in strip.
+        </h2>
+      </div>
+      <div class="mono text-xs flex items-center gap-3" style="color: var(--cream-dim);">
+        <span>← Scroll →</span>
+        <span class="h-px w-8" style="background: var(--line);"></span>
+        <span>12 frames</span>
+      </div>
+    </div>
+
+    <div class="filmstrip px-6 md:px-10">
+      <div class="filmstrip-track">
+        <div class="filmstrip-item img-wrap aspect-[4/5]"><img src="https://static.wixstatic.com/media/506540_f339de76671e4dd3b9183c26d007cc0d~mv2.jpg/v1/fit/w_800,h_1000,q_90,enc_avif,quality_auto/file.jpg" alt="" /></div>
+        <div class="filmstrip-item img-wrap aspect-[4/5]"><img src="https://static.wixstatic.com/media/506540_8f409386c79241a09b85b753d035c24e~mv2.jpg/v1/fit/w_800,h_1000,q_90,enc_avif,quality_auto/file.jpg" alt="" /></div>
+        <div class="filmstrip-item img-wrap aspect-[4/5]"><img src="https://static.wixstatic.com/media/81231b_f938854487ab41fba46ca7431ee726e2~mv2.jpg/v1/fit/w_800,h_1000,q_90,enc_avif,quality_auto/file.jpg" alt="" /></div>
+        <div class="filmstrip-item img-wrap aspect-[4/5]"><img src="https://static.wixstatic.com/media/506540_9435882fc07f409b944dff376764c76d~mv2.jpg/v1/fit/w_800,h_1000,q_90,enc_avif,quality_auto/file.jpg" alt="" /></div>
+        <div class="filmstrip-item img-wrap aspect-[4/5]"><img src="https://static.wixstatic.com/media/506540_534ae00c1b6648c89122601963445564~mv2.jpg/v1/fit/w_800,h_1000,q_90,enc_avif,quality_auto/file.jpg" alt="" /></div>
+        <div class="filmstrip-item img-wrap aspect-[4/5]"><img src="https://static.wixstatic.com/media/81231b_4d6aec1924194d60bac83b753d944cf3~mv2.jpg/v1/fit/w_800,h_1000,q_90,enc_avif,quality_auto/file.jpg" alt="" /></div>
+        <div class="filmstrip-item img-wrap aspect-[4/5]"><img src="https://static.wixstatic.com/media/81231b_881d6ead66844407be897c40020f253a~mv2.jpg/v1/fit/w_800,h_1000,q_90,enc_avif,quality_auto/file.jpg" alt="" /></div>
+        <div class="filmstrip-item img-wrap aspect-[4/5]"><img src="https://static.wixstatic.com/media/506540_f6e16f054d944fc89c561bd789c3749c~mv2.jpg/v1/fit/w_800,h_1000,q_90,enc_avif,quality_auto/file.jpg" alt="" /></div>
+        <div class="filmstrip-item img-wrap aspect-[4/5]"><img src="https://static.wixstatic.com/media/506540_af9f6f7bfa9e49feaad0324b5643d6bf~mv2.jpg/v1/fit/w_800,h_1000,q_90,enc_avif,quality_auto/file.jpg" alt="" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECS -->
+  <section class="px-6 md:px-10 py-24 md:py-36">
+    <div class="grid grid-cols-12 gap-6 mb-14 md:mb-20">
+      <div class="col-span-12 md:col-span-4">
+        <div class="label mb-4">§ 04 — Operational Specs</div>
+      </div>
+      <div class="col-span-12 md:col-span-8">
+        <h2 class="display-md text-4xl md:text-6xl">
+          Fine print that actually matters.
+        </h2>
+      </div>
+    </div>
+
+    <div>
+      <div class="spec-row">
+        <div class="label">Crews</div>
+        <div class="display-md text-lg">1–8 per activation</div>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          Solo shooter for small footprint, full crew with DOP, second camera, gimbal op, audio, and dedicated editor for large-scale activations. Scaled to the brief.
+        </p>
+      </div>
+      <div class="spec-row">
+        <div class="label">Equipment</div>
+        <div class="display-md text-lg">Broadcast-grade</div>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          Cinema cameras (Sony FX6 / FX3 / Canon C70), drone (FAA/TC compliant), wireless audio, lighting, stabilization — insured and certified operators.
+        </p>
+      </div>
+      <div class="spec-row">
+        <div class="label">Turnaround</div>
+        <div class="display-md text-lg">Same-day → 7 days</div>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          Same-day: 60–90s social cut. 48h: event highlight reel, first edited stills. 5–7 days: hero video with colour, sound design, and approved cuts.
+        </p>
+      </div>
+      <div class="spec-row">
+        <div class="label">Brand Safety</div>
+        <div class="display-md text-lg">Guideline-first</div>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          Style guide ingested before day one. Shot-list approval, rough cut review, and final sign-off baked into the workflow — no surprises at delivery.
+        </p>
+      </div>
+      <div class="spec-row" style="border-bottom: 1px solid var(--line);">
+        <div class="label">Licensing</div>
+        <div class="display-md text-lg">Fully cleared</div>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          All talent, music, and location usage cleared for your client's intended use — organic social, paid media, case studies, awards submissions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSS-SELL -->
+  <section class="px-6 md:px-10 py-16 md:py-20 border-t" style="border-color: var(--line); background: var(--bg-lift);">
+    <div class="label mb-6">§ 05 — Also from Studio Park</div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <a href="/staffing" class="group flex items-center justify-between p-6 border rounded-sm transition-colors duration-500 hover:border-cream" style="border-color: var(--line); color: var(--cream);">
+        <div>
+          <div class="label mb-2">Service 03</div>
+          <div class="display-md text-2xl">Talent &amp; Staffing →</div>
+        </div>
+        <span class="idx text-4xl">02</span>
+      </a>
+      <a href="/consulting" class="group flex items-center justify-between p-6 border rounded-sm transition-colors duration-500 hover:border-cream" style="border-color: var(--line); color: var(--cream);">
+        <div>
+          <div class="label mb-2">Service 04</div>
+          <div class="display-md text-2xl">Consulting &amp; Logistics →</div>
+        </div>
+        <span class="idx text-4xl">03</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-6 md:px-10 py-28 md:py-40 relative overflow-hidden">
+    <div class="glow absolute inset-0"></div>
+    <div class="relative">
+      <div class="label mb-6" style="color: var(--accent);">§ 06 — Start a Project</div>
+      <h2 class="display text-[12vw] md:text-[9vw]">
+        Have a brief<span class="dot-accent">?</span>
+      </h2>
+      <p class="mt-8 max-w-xl text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+        Tell us the campaign, the markets, the dates, and what content the recap deck needs. We'll come back with a scoped proposal within a business day.
+      </p>
+      <div class="mt-10 flex flex-col md:flex-row items-start md:items-center gap-6">
+        <a href="/contact" class="btn inline-flex items-center gap-3 text-lg display-md px-8 py-4 border" style="border-color: var(--cream); color: var(--cream);">
+          Send us the brief
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <span class="label">or email hello@studiopark.ca</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="px-6 md:px-10 pt-20 pb-10 border-t" style="border-color: var(--line);">
+    <div class="grid grid-cols-12 gap-6 mb-16">
+      <div class="col-span-12 md:col-span-5">
+        <img src="/studiopark-logo.png" alt="Studio Park" class="logo-mark h-9 w-auto mb-6" />
+        <p class="text-[14px] max-w-xs leading-relaxed" style="color: var(--cream-dim);">
+          Western Canada's premier experiential production partner. Calgary-based, nationally trusted.
+        </p>
+      </div>
+      <div class="col-span-6 md:col-span-2">
+        <div class="label mb-5">Services</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/content" class="nav-link">Content</a></li>
+          <li><a href="/staffing" class="nav-link">Staffing</a></li>
+          <li><a href="/consulting" class="nav-link">Consulting</a></li>
+        </ul>
+      </div>
+      <div class="col-span-6 md:col-span-2">
+        <div class="label mb-5">Connect</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/contact" class="nav-link">Contact</a></li>
+          <li><a href="mailto:hello@studiopark.ca" class="nav-link">Email</a></li>
+          <li><a href="#" class="nav-link">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="col-span-12 md:col-span-3">
+        <div class="label mb-5">Visit</div>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          1933 10 Ave SW, #301<br/>Calgary, AB T3C 0K3<br/>Canada
+        </p>
+      </div>
+    </div>
+    <div class="h-px mb-8" style="background: var(--line);"></div>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs mono" style="color: var(--cream-dim);">
+      <div>© 2026 Studio Park Experiential Inc. All rights reserved.</div>
+      <div class="flex items-center gap-5 flex-wrap">
+        <span>51.0447° N · 114.0719° W</span>
+        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full blink" style="background: var(--accent);"></span>Open for Q2 '26 bookings</span>
+      </div>
+    </div>
+  </footer>
+
+</BaseLayout>

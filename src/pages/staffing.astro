@@ -1,0 +1,407 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Talent & Staffing — Studio Park"
+  description="Vetted brand ambassadors across Western Canada. Payroll, training, uniforms, and scheduling handled end-to-end."
+>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-10 py-4 flex items-center justify-between" style="background: linear-gradient(to bottom, rgba(19,17,16,0.92), rgba(19,17,16,0)); backdrop-filter: blur(10px);">
+    <a href="/" class="flex items-center gap-3">
+      <img src="/studiopark-logo.png" alt="Studio Park" class="logo-mark h-8 md:h-9 w-auto" />
+    </a>
+    <ul class="hidden md:flex items-center gap-8 text-[13px]" style="color: var(--cream);">
+      <li><a href="/content" class="nav-link">Content</a></li>
+      <li><a href="/staffing" class="nav-link active">Staffing</a></li>
+      <li><a href="/consulting" class="nav-link">Consulting</a></li>
+      <li><a href="/contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="hidden md:flex items-center gap-3 text-xs mono" style="color: var(--cream-dim);">
+      <span class="w-1.5 h-1.5 rounded-full blink" style="background: var(--accent);"></span>
+      YYC · Open for Q2 '26
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="relative px-6 md:px-10 pt-32 md:pt-40 pb-10 overflow-hidden">
+    <div class="flex items-start justify-between mb-14 md:mb-20">
+      <div class="rise" style="animation-delay: 0.1s;">
+        <div class="label mb-2">(03) — Service / Talent &amp; Staffing</div>
+        <div class="label" style="color: var(--cream);">Vetted across Western Canada</div>
+      </div>
+      <div class="text-right rise" style="animation-delay: 0.2s;">
+        <div class="label mb-2">Ref. SP-STF-01</div>
+        <div class="label" style="color: var(--cream);">Payroll &amp; training handled</div>
+      </div>
+    </div>
+
+    <h1 class="display text-[18vw] md:text-[12vw] rise" style="animation-delay: 0.3s;">Trained<span class="dot-accent">,</span></h1>
+    <h1 class="display text-[18vw] md:text-[12vw] rise mt-2 md:mt-3" style="animation-delay: 0.5s; color: var(--cream-dim);">not just</h1>
+    <div class="flex items-end justify-between gap-8 mt-2 md:mt-3">
+      <h1 class="display text-[18vw] md:text-[12vw] rise" style="animation-delay: 0.7s;">staffed<span class="dot-accent">.</span></h1>
+      <p class="hidden md:block max-w-sm text-[15px] leading-relaxed pb-5 rise" style="color: var(--cream-dim); animation-delay: 0.9s;">
+        Your creative idea lives or dies by the people handing samples to strangers. We provide vetted, charismatic, reliable field teams — with the payroll, training, and uniforms handled on our side of the ledger.
+      </p>
+    </div>
+
+    <p class="md:hidden mt-6 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+      Your creative idea lives or dies by the people handing samples to strangers. We provide vetted, charismatic, reliable field teams — with the payroll, training, and uniforms handled on our side of the ledger.
+    </p>
+
+    <div class="h-px widen mt-14 md:mt-20" style="background: var(--line); animation-delay: 1.1s;"></div>
+  </section>
+
+  <!-- STATS -->
+  <section class="border-y" style="border-color: var(--line); background: var(--bg-lift);">
+    <div class="grid grid-cols-1 md:grid-cols-4">
+      <div class="stat">
+        <div class="label mb-4">Ambassadors</div>
+        <div class="big-stat text-6xl md:text-7xl"><span class="dot-accent">200</span>+</div>
+        <p class="text-[13px] mt-3" style="color: var(--cream-dim);">Vetted and trained across Western Canada</p>
+      </div>
+      <div class="stat">
+        <div class="label mb-4">Markets</div>
+        <div class="big-stat text-6xl md:text-7xl"><span class="dot-magenta">08</span></div>
+        <p class="text-[13px] mt-3" style="color: var(--cream-dim);">Cities with active local roster coverage</p>
+      </div>
+      <div class="stat">
+        <div class="label mb-4">2024 Staffed</div>
+        <div class="big-stat text-6xl md:text-7xl"><span class="dot-accent">50</span>+</div>
+        <p class="text-[13px] mt-3" style="color: var(--cream-dim);">Activations fully staffed in 2024</p>
+      </div>
+      <div class="stat">
+        <div class="label mb-4">Brand Rating</div>
+        <div class="big-stat text-6xl md:text-7xl">4.8<span class="dot-accent">/</span>5</div>
+        <p class="text-[13px] mt-3" style="color: var(--cream-dim);">Average satisfaction score from agency partners</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTRAIT GRID + POSITIONING -->
+  <section class="px-6 md:px-10 py-24 md:py-36">
+    <div class="grid grid-cols-12 gap-6 md:gap-10 items-start">
+      <div class="col-span-12 md:col-span-5 md:sticky md:top-28">
+        <div class="label mb-4">§ 02 — What Makes Our Staff Different</div>
+        <h2 class="display-md text-3xl md:text-5xl mb-6">
+          Hired for personality.<br/>Trained for the brief.
+        </h2>
+        <p class="text-[15px] leading-relaxed mb-5" style="color: var(--cream-dim);">
+          Every ambassador is interviewed in person, reference-checked, and rated on previous activations. We maintain an active roster — not a Craigslist spreadsheet — and we cut people who don't meet the bar.
+        </p>
+        <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+          Before they ever meet your consumer, they've been briefed on the brand voice, the talking points, and the escalation protocol. They arrive in uniform. They arrive on time. They leave the site cleaner than they found it.
+        </p>
+      </div>
+
+      <div class="col-span-12 md:col-span-7 grid grid-cols-2 gap-4 md:gap-5">
+        <div class="img-wrap aspect-[3/4]">
+          <img src="https://static.wixstatic.com/media/81231b_881d6ead66844407be897c40020f253a~mv2.jpg/v1/fit/w_800,h_1067,q_90,enc_avif,quality_auto/file.jpg" alt="Talent" />
+          <div class="caption absolute bottom-0 left-0 right-0 p-3"><div class="label">Brand Ambassador</div></div>
+        </div>
+        <div class="img-wrap aspect-[3/4] mt-8">
+          <img src="https://static.wixstatic.com/media/506540_af9f6f7bfa9e49feaad0324b5643d6bf~mv2.jpg/v1/fit/w_800,h_1067,q_90,enc_avif,quality_auto/file.jpg" alt="Talent" />
+          <div class="caption absolute bottom-0 left-0 right-0 p-3"><div class="label">Event Captain</div></div>
+        </div>
+        <div class="img-wrap aspect-[3/4]">
+          <img src="https://static.wixstatic.com/media/506540_f339de76671e4dd3b9183c26d007cc0d~mv2.jpg/v1/fit/w_800,h_1067,q_90,enc_avif,quality_auto/file.jpg" alt="Talent" />
+          <div class="caption absolute bottom-0 left-0 right-0 p-3"><div class="label">Sampling Crew</div></div>
+        </div>
+        <div class="img-wrap aspect-[3/4] mt-8">
+          <img src="https://static.wixstatic.com/media/506540_8f409386c79241a09b85b753d035c24e~mv2.jpg/v1/fit/w_800,h_1067,q_90,enc_avif,quality_auto/file.jpg" alt="Talent" />
+          <div class="caption absolute bottom-0 left-0 right-0 p-3"><div class="label">Festival Staff</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROSTER TYPES -->
+  <section class="px-6 md:px-10 py-24 md:py-36 border-y" style="border-color: var(--line); background: var(--bg-lift);">
+    <div class="grid grid-cols-12 gap-6 mb-14 md:mb-16">
+      <div class="col-span-12 md:col-span-4">
+        <div class="label mb-4">§ 03 — The Roster</div>
+      </div>
+      <div class="col-span-12 md:col-span-8">
+        <h2 class="display-md text-4xl md:text-6xl">
+          Six roles. One standard.
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+      <div class="roster-card">
+        <div class="flex items-baseline justify-between mb-6">
+          <span class="idx text-3xl">01</span>
+          <span class="label">Frontline</span>
+        </div>
+        <h3 class="display-md text-2xl mb-3">Brand Ambassadors</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          The face of your activation. Product pitching, sampling, guest engagement, lead capture. Warm, on-brand, unshakeable under pressure.
+        </p>
+      </div>
+      <div class="roster-card">
+        <div class="flex items-baseline justify-between mb-6">
+          <span class="idx text-3xl" style="color: var(--magenta);">02</span>
+          <span class="label">Leadership</span>
+        </div>
+        <h3 class="display-md text-2xl mb-3">Event Captains</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          Your on-site producer. Runs the crew, manages time, handles agency comms, and makes the judgment calls your brief didn't cover.
+        </p>
+      </div>
+      <div class="roster-card">
+        <div class="flex items-baseline justify-between mb-6">
+          <span class="idx text-3xl">03</span>
+          <span class="label">Sampling</span>
+        </div>
+        <h3 class="display-md text-2xl mb-3">Sampling &amp; Demo</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          Product-trained specialists for food, beverage, CPG, and tech demos. Food-handling certified where it matters.
+        </p>
+      </div>
+      <div class="roster-card">
+        <div class="flex items-baseline justify-between mb-6">
+          <span class="idx text-3xl" style="color: var(--magenta);">04</span>
+          <span class="label">Festival</span>
+        </div>
+        <h3 class="display-md text-2xl mb-3">Festival &amp; Concert Crews</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          High-energy environments, long days, big crowds. Crews built for Stampede, concerts, and multi-day activations.
+        </p>
+      </div>
+      <div class="roster-card">
+        <div class="flex items-baseline justify-between mb-6">
+          <span class="idx text-3xl">05</span>
+          <span class="label">Language</span>
+        </div>
+        <h3 class="display-md text-2xl mb-3">Bilingual Talent</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          French, Mandarin, Cantonese, Punjabi, Tagalog, Spanish. Western Canada isn't one audience — your talent shouldn't be either.
+        </p>
+      </div>
+      <div class="roster-card">
+        <div class="flex items-baseline justify-between mb-6">
+          <span class="idx text-3xl" style="color: var(--magenta);">06</span>
+          <span class="label">Specialty</span>
+        </div>
+        <h3 class="display-md text-2xl mb-3">Specialty Talent</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          Bartenders, stylists, mixologists, on-camera talent, sign-language interpreters. If the brief is unusual, we have a call sheet.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE HANDLE -->
+  <section class="px-6 md:px-10 py-24 md:py-36">
+    <div class="grid grid-cols-12 gap-6 md:gap-10">
+      <div class="col-span-12 md:col-span-5">
+        <div class="label mb-4">§ 04 — Handled By Us</div>
+        <h2 class="display-md text-3xl md:text-5xl mb-6">
+          Everything that isn't the activation itself.
+        </h2>
+        <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+          You shouldn't have to chase timesheets, mail uniforms, or explain the brand to twenty new faces. That's the whole job we take off your plate.
+        </p>
+      </div>
+
+      <div class="col-span-12 md:col-span-7">
+        <div class="handled-row">
+          <span class="check">+</span>
+          <div>
+            <h4 class="display-md text-lg mb-1">Sourcing &amp; vetting</h4>
+            <p class="text-[13px]" style="color: var(--cream-dim);">Interviews, references, background checks, brand-fit assessment</p>
+          </div>
+        </div>
+        <div class="handled-row">
+          <span class="check">+</span>
+          <div>
+            <h4 class="display-md text-lg mb-1">Payroll &amp; tax</h4>
+            <p class="text-[13px]" style="color: var(--cream-dim);">T4s, tax remittance, WCB coverage, statutory compliance</p>
+          </div>
+        </div>
+        <div class="handled-row">
+          <span class="check">+</span>
+          <div>
+            <h4 class="display-md text-lg mb-1">Training to brand</h4>
+            <p class="text-[13px]" style="color: var(--cream-dim);">Pre-activation briefings, talking points, escalation protocol, mystery-shop audits</p>
+          </div>
+        </div>
+        <div class="handled-row">
+          <span class="check">+</span>
+          <div>
+            <h4 class="display-md text-lg mb-1">Uniforms &amp; kit</h4>
+            <p class="text-[13px]" style="color: var(--cream-dim);">Wardrobe sourcing, printing, fitting, distribution, cleaning between activations</p>
+          </div>
+        </div>
+        <div class="handled-row">
+          <span class="check">+</span>
+          <div>
+            <h4 class="display-md text-lg mb-1">Call sheets &amp; scheduling</h4>
+            <p class="text-[13px]" style="color: var(--cream-dim);">Daily rosters, shift swaps, no-show backfill, check-in tracking</p>
+          </div>
+        </div>
+        <div class="handled-row" style="border-bottom: 1px solid var(--line);">
+          <span class="check">+</span>
+          <div>
+            <h4 class="display-md text-lg mb-1">On-site management</h4>
+            <p class="text-[13px]" style="color: var(--cream-dim);">Event captains lead from the ground — one point of contact, zero triangulation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKETS -->
+  <section class="px-6 md:px-10 py-24 md:py-36 border-y" style="border-color: var(--line);">
+    <div class="grid grid-cols-12 gap-6 mb-10 md:mb-14">
+      <div class="col-span-12 md:col-span-4">
+        <div class="label mb-4">§ 05 — Markets Covered</div>
+      </div>
+      <div class="col-span-12 md:col-span-8">
+        <h2 class="display-md text-4xl md:text-6xl">
+          Eight cities. One roster.
+        </h2>
+      </div>
+    </div>
+
+    <div>
+      <div class="market-row">
+        <div class="idx text-3xl">01</div>
+        <div class="display-md text-xl md:text-2xl">Calgary <span class="mono text-xs ml-2" style="color: var(--cream-dim);">YYC · HQ</span></div>
+        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Full roster · Same-day response</div>
+        <div class="mono text-xs" style="color: var(--cream-dim);">AB</div>
+      </div>
+      <div class="market-row">
+        <div class="idx text-3xl" style="color: var(--magenta);">02</div>
+        <div class="display-md text-xl md:text-2xl">Edmonton</div>
+        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Full roster · 48h response</div>
+        <div class="mono text-xs" style="color: var(--cream-dim);">AB</div>
+      </div>
+      <div class="market-row">
+        <div class="idx text-3xl">03</div>
+        <div class="display-md text-xl md:text-2xl">Vancouver</div>
+        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Full roster · 48h response</div>
+        <div class="mono text-xs" style="color: var(--cream-dim);">BC</div>
+      </div>
+      <div class="market-row">
+        <div class="idx text-3xl" style="color: var(--magenta);">04</div>
+        <div class="display-md text-xl md:text-2xl">Victoria</div>
+        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Project roster · 5-day lead</div>
+        <div class="mono text-xs" style="color: var(--cream-dim);">BC</div>
+      </div>
+      <div class="market-row">
+        <div class="idx text-3xl">05</div>
+        <div class="display-md text-xl md:text-2xl">Saskatoon</div>
+        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Project roster · 5-day lead</div>
+        <div class="mono text-xs" style="color: var(--cream-dim);">SK</div>
+      </div>
+      <div class="market-row">
+        <div class="idx text-3xl" style="color: var(--magenta);">06</div>
+        <div class="display-md text-xl md:text-2xl">Regina</div>
+        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Project roster · 5-day lead</div>
+        <div class="mono text-xs" style="color: var(--cream-dim);">SK</div>
+      </div>
+      <div class="market-row">
+        <div class="idx text-3xl">07</div>
+        <div class="display-md text-xl md:text-2xl">Winnipeg</div>
+        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Project roster · 5-day lead</div>
+        <div class="mono text-xs" style="color: var(--cream-dim);">MB</div>
+      </div>
+      <div class="market-row">
+        <div class="idx text-3xl" style="color: var(--magenta);">08</div>
+        <div class="display-md text-xl md:text-2xl">Kelowna</div>
+        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Project roster · 5-day lead</div>
+        <div class="mono text-xs" style="color: var(--cream-dim);">BC</div>
+      </div>
+    </div>
+
+    <p class="text-[13px] mt-8" style="color: var(--cream-dim);">
+      Need coverage outside this list? We've staffed activations in Yellowknife, Whitehorse, and the Rockies. Ask us.
+    </p>
+  </section>
+
+  <!-- CROSS-SELL -->
+  <section class="px-6 md:px-10 py-16 md:py-20" style="background: var(--bg-lift);">
+    <div class="label mb-6">§ 06 — Also from Studio Park</div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <a href="/content" class="group flex items-center justify-between p-6 border rounded-sm transition-colors duration-500 hover:border-cream" style="border-color: var(--line); color: var(--cream);">
+        <div>
+          <div class="label mb-2">Service 02</div>
+          <div class="display-md text-2xl">Content Production →</div>
+        </div>
+        <span class="idx text-4xl">01</span>
+      </a>
+      <a href="/consulting" class="group flex items-center justify-between p-6 border rounded-sm transition-colors duration-500 hover:border-cream" style="border-color: var(--line); color: var(--cream);">
+        <div>
+          <div class="label mb-2">Service 04</div>
+          <div class="display-md text-2xl">Consulting &amp; Logistics →</div>
+        </div>
+        <span class="idx text-4xl">03</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-6 md:px-10 py-28 md:py-40 relative overflow-hidden border-t" style="border-color: var(--line);">
+    <div class="glow absolute inset-0"></div>
+    <div class="relative">
+      <div class="label mb-6" style="color: var(--accent);">§ 07 — Brief Us</div>
+      <h2 class="display text-[12vw] md:text-[9vw]">Need crews<span class="dot-accent">?</span></h2>
+      <p class="mt-8 max-w-xl text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+        Send us the dates, the markets, the role count, and the brief. We'll come back with a scoped roster and quote within a business day.
+      </p>
+      <div class="mt-10 flex flex-col md:flex-row items-start md:items-center gap-6">
+        <a href="/contact" class="btn inline-flex items-center gap-3 text-lg display-md px-8 py-4 border" style="border-color: var(--cream); color: var(--cream);">
+          Request a roster
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <span class="label">or email hello@studiopark.ca</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="px-6 md:px-10 pt-20 pb-10 border-t" style="border-color: var(--line);">
+    <div class="grid grid-cols-12 gap-6 mb-16">
+      <div class="col-span-12 md:col-span-5">
+        <img src="/studiopark-logo.png" alt="Studio Park" class="logo-mark h-9 w-auto mb-6" />
+        <p class="text-[14px] max-w-xs leading-relaxed" style="color: var(--cream-dim);">
+          Western Canada's premier experiential production partner. Calgary-based, nationally trusted.
+        </p>
+      </div>
+      <div class="col-span-6 md:col-span-2">
+        <div class="label mb-5">Services</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/content" class="nav-link">Content</a></li>
+          <li><a href="/staffing" class="nav-link">Staffing</a></li>
+          <li><a href="/consulting" class="nav-link">Consulting</a></li>
+        </ul>
+      </div>
+      <div class="col-span-6 md:col-span-2">
+        <div class="label mb-5">Connect</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/contact" class="nav-link">Contact</a></li>
+          <li><a href="mailto:hello@studiopark.ca" class="nav-link">Email</a></li>
+          <li><a href="#" class="nav-link">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="col-span-12 md:col-span-3">
+        <div class="label mb-5">Visit</div>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          1933 10 Ave SW, #301<br/>Calgary, AB T3C 0K3<br/>Canada
+        </p>
+      </div>
+    </div>
+    <div class="h-px mb-8" style="background: var(--line);"></div>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs mono" style="color: var(--cream-dim);">
+      <div>© 2026 Studio Park Experiential Inc. All rights reserved.</div>
+      <div class="flex items-center gap-5 flex-wrap">
+        <span>51.0447° N · 114.0719° W</span>
+        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full blink" style="background: var(--accent);"></span>Open for Q2 '26 bookings</span>
+      </div>
+    </div>
+  </footer>
+
+</BaseLayout>

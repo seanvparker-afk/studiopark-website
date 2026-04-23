@@ -1,0 +1,377 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact — Studio Park"
+  description="Send us the brief. Typical reply within one business day. Calgary, Alberta — open for Q2 2026 bookings."
+>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-10 py-4 flex items-center justify-between" style="background: linear-gradient(to bottom, rgba(19,17,16,0.92), rgba(19,17,16,0)); backdrop-filter: blur(10px);">
+    <a href="/" class="flex items-center gap-3">
+      <img src="/studiopark-logo.png" alt="Studio Park" class="logo-mark h-8 md:h-9 w-auto" />
+    </a>
+    <ul class="hidden md:flex items-center gap-8 text-[13px]" style="color: var(--cream);">
+      <li><a href="/content" class="nav-link">Content</a></li>
+      <li><a href="/staffing" class="nav-link">Staffing</a></li>
+      <li><a href="/consulting" class="nav-link">Consulting</a></li>
+      <li><a href="/contact" class="nav-link active">Contact</a></li>
+    </ul>
+    <div class="hidden md:flex items-center gap-3 text-xs mono" style="color: var(--cream-dim);">
+      <span class="w-1.5 h-1.5 rounded-full blink" style="background: var(--accent);"></span>
+      YYC · Open for Q2 '26
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="relative px-6 md:px-10 pt-32 md:pt-40 pb-10 overflow-hidden">
+    <div class="flex items-start justify-between mb-14 md:mb-20">
+      <div class="rise" style="animation-delay: 0.1s;">
+        <div class="label mb-2">(05) — Contact / Start a Project</div>
+        <div class="label" style="color: var(--cream);">Typical reply within 24 hours</div>
+      </div>
+      <div class="text-right rise" style="animation-delay: 0.2s;">
+        <div class="label mb-2">Calgary, AB</div>
+        <div class="label" style="color: var(--cream);">MT · UTC−7</div>
+      </div>
+    </div>
+
+    <h1 class="display text-[18vw] md:text-[13vw] rise" style="animation-delay: 0.3s;">Tell us</h1>
+    <div class="flex items-end justify-between gap-8 mt-2 md:mt-3">
+      <h1 class="display text-[18vw] md:text-[13vw] rise" style="animation-delay: 0.5s;">the brief<span class="dot-accent">.</span></h1>
+      <p class="hidden md:block max-w-sm text-[15px] leading-relaxed pb-5 rise" style="color: var(--cream-dim); animation-delay: 0.7s;">
+        Send us the activation, the markets, the dates, and the problem you're trying to solve. We'll come back within a business day with questions, a quick scope, or a calendar invite.
+      </p>
+    </div>
+
+    <p class="md:hidden mt-6 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+      Send us the activation, the markets, the dates, and the problem you're trying to solve. We'll come back within a business day.
+    </p>
+
+    <div class="h-px widen mt-14 md:mt-20" style="background: var(--line); animation-delay: 0.9s;"></div>
+  </section>
+
+  <!-- FORM + CONTACT INFO -->
+  <section class="px-6 md:px-10 pb-24 md:pb-32">
+    <div class="grid grid-cols-12 gap-10 md:gap-16">
+
+      <!-- LEFT: Contact info -->
+      <div class="col-span-12 md:col-span-4">
+        <div class="label mb-6">§ 01 — Direct Lines</div>
+
+        <div class="contact-card">
+          <div class="label mb-2" style="color: var(--cream);">Email</div>
+          <a href="mailto:hello@studiopark.ca" class="display-md text-xl md:text-2xl hover:text-[var(--accent)] transition-colors">hello@studiopark.ca</a>
+        </div>
+
+        <div class="contact-card">
+          <div class="label mb-2" style="color: var(--cream);">Phone</div>
+          <a href="tel:+15875551234" class="display-md text-xl md:text-2xl hover:text-[var(--accent)] transition-colors">+1 (587) 555-1234</a>
+          <p class="text-[13px] mt-2" style="color: var(--cream-dim);">Mon–Fri · 9am–6pm MT</p>
+        </div>
+
+        <div class="contact-card">
+          <div class="label mb-2" style="color: var(--cream);">Studio</div>
+          <p class="display-md text-xl md:text-2xl leading-tight">1933 10 Ave SW<br/>Suite #301<br/>Calgary, AB T3C 0K3</p>
+          <p class="text-[13px] mt-3" style="color: var(--cream-dim);">Visits by appointment. Parking on 10 Ave &amp; 19 St.</p>
+        </div>
+
+        <div class="contact-card">
+          <div class="label mb-2" style="color: var(--cream);">Social</div>
+          <ul class="space-y-2 text-[15px]">
+            <li><a href="#" class="nav-link">Instagram → @studiopark.ca</a></li>
+            <li><a href="#" class="nav-link">LinkedIn → Studio Park Experiential</a></li>
+            <li><a href="#" class="nav-link">Vimeo → studiopark</a></li>
+          </ul>
+        </div>
+
+        <div class="contact-card">
+          <div class="label mb-3" style="color: var(--cream);">Availability</div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-2 h-2 rounded-full blink" style="background: var(--accent);"></span>
+            <span class="display-md text-lg">Open for Q2 2026 bookings</span>
+          </div>
+          <p class="text-[13px]" style="color: var(--cream-dim);">Q1 is fully booked. Rush briefs considered case-by-case.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="col-span-12 md:col-span-8">
+        <div class="label mb-6">§ 02 — Project Inquiry</div>
+
+        <form class="space-y-10" onsubmit="event.preventDefault(); alert('Form would submit here in production.');">
+
+          <!-- Row: Name + Company -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="field">
+              <label class="field-label" for="name">Your Name *</label>
+              <input class="input" type="text" id="name" required placeholder="First and last" />
+            </div>
+            <div class="field">
+              <label class="field-label" for="company">Agency / Company *</label>
+              <input class="input" type="text" id="company" required placeholder="Who you're working with" />
+            </div>
+          </div>
+
+          <!-- Row: Email + Role -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="field">
+              <label class="field-label" for="email">Email *</label>
+              <input class="input" type="email" id="email" required placeholder="you@agency.com" />
+            </div>
+            <div class="field">
+              <label class="field-label" for="role">Your Role</label>
+              <input class="input" type="text" id="role" placeholder="Producer, Strategist, AD..." />
+            </div>
+          </div>
+
+          <!-- Services interested in -->
+          <div class="field">
+            <label class="field-label">Services You're Exploring <span style="color: var(--muted);">(select all)</span></label>
+            <div class="flex flex-wrap gap-3 mt-2">
+              <label class="chk-pill"><input type="checkbox" name="service" value="content" /><span>Content Production</span></label>
+              <label class="chk-pill"><input type="checkbox" name="service" value="staffing" /><span>Talent &amp; Staffing</span></label>
+              <label class="chk-pill"><input type="checkbox" name="service" value="consulting" /><span>Consulting &amp; Logistics</span></label>
+              <label class="chk-pill"><input type="checkbox" name="service" value="all" /><span>Full Production</span></label>
+              <label class="chk-pill"><input type="checkbox" name="service" value="other" /><span>Something else</span></label>
+            </div>
+          </div>
+
+          <!-- Markets -->
+          <div class="field">
+            <label class="field-label">Markets <span style="color: var(--muted);">(select all)</span></label>
+            <div class="flex flex-wrap gap-3 mt-2">
+              <label class="chk-pill"><input type="checkbox" name="market" value="yyc" /><span>Calgary</span></label>
+              <label class="chk-pill"><input type="checkbox" name="market" value="yeg" /><span>Edmonton</span></label>
+              <label class="chk-pill"><input type="checkbox" name="market" value="yvr" /><span>Vancouver</span></label>
+              <label class="chk-pill"><input type="checkbox" name="market" value="yyj" /><span>Victoria</span></label>
+              <label class="chk-pill"><input type="checkbox" name="market" value="ylw" /><span>Kelowna</span></label>
+              <label class="chk-pill"><input type="checkbox" name="market" value="yxe" /><span>Saskatoon</span></label>
+              <label class="chk-pill"><input type="checkbox" name="market" value="yqr" /><span>Regina</span></label>
+              <label class="chk-pill"><input type="checkbox" name="market" value="ywg" /><span>Winnipeg</span></label>
+              <label class="chk-pill"><input type="checkbox" name="market" value="tbd" /><span>Still scoping</span></label>
+            </div>
+          </div>
+
+          <!-- Timeline + Budget -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="field">
+              <label class="field-label" for="timeline">Timeline</label>
+              <select class="select" id="timeline">
+                <option>Select a window</option>
+                <option>ASAP — within 2 weeks</option>
+                <option>This quarter</option>
+                <option>Next quarter</option>
+                <option>6+ months out</option>
+                <option>Still scoping</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field-label" for="budget">Budget Range</label>
+              <select class="select" id="budget">
+                <option>Select a range</option>
+                <option>Under $10K</option>
+                <option>$10K – $25K</option>
+                <option>$25K – $75K</option>
+                <option>$75K – $200K</option>
+                <option>$200K+</option>
+                <option>Not scoped yet</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="field">
+            <label class="field-label" for="message">Tell us about the activation *</label>
+            <textarea class="textarea" id="message" required placeholder="The campaign, the client, the problem we're helping solve. Links to briefs or decks welcome."></textarea>
+          </div>
+
+          <!-- Submit -->
+          <div class="flex flex-col md:flex-row items-start md:items-center gap-6 pt-4">
+            <button type="submit" class="btn display-md inline-flex items-center justify-center gap-3 px-8 py-4 text-lg border" style="border-color: var(--cream); color: var(--cream);">
+              Send inquiry
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+            <span class="label">We'll reply within one business day</span>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STUDIO LOCATION -->
+  <section class="relative overflow-hidden border-y" style="border-color: var(--line);">
+    <div class="grid grid-cols-12">
+      <div class="col-span-12 md:col-span-5 p-6 md:p-12 flex flex-col justify-center">
+        <div class="label mb-4">§ 03 — The Studio</div>
+        <h2 class="display-md text-3xl md:text-5xl mb-6">1933 10 Ave SW.</h2>
+        <p class="text-[15px] leading-relaxed mb-6" style="color: var(--cream-dim);">
+          Our Calgary HQ sits in Inglewood's west edge, five minutes from downtown, ten from the Stampede grounds, twenty from YYC. It's where we prep, edit, and send teams out across the west.
+        </p>
+        <ul class="space-y-3 text-[14px]" style="color: var(--cream-dim);">
+          <li class="flex gap-3"><span class="dot-accent">→</span> 5 min to downtown Calgary</li>
+          <li class="flex gap-3"><span class="dot-accent">→</span> 10 min to Stampede Park</li>
+          <li class="flex gap-3"><span class="dot-accent">→</span> 20 min to YYC International</li>
+          <li class="flex gap-3"><span class="dot-accent">→</span> On-site edit &amp; kit room</li>
+        </ul>
+        <div class="mt-8">
+          <a href="https://www.google.com/maps/search/1933+10+Ave+SW+Calgary" target="_blank" rel="noopener" class="btn display-md inline-flex items-center justify-center gap-2 px-6 py-3 text-sm border" style="border-color: var(--cream); color: var(--cream);">
+            Open in Maps
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Stylized "map" tile -->
+      <div class="col-span-12 md:col-span-7 relative aspect-[4/3] md:aspect-auto" style="background: var(--bg-lift); background-image: radial-gradient(circle, rgba(242,237,227,0.05) 1px, transparent 1px); background-size: 18px 18px;">
+        <svg viewBox="0 0 600 450" class="w-full h-full" preserveAspectRatio="xMidYMid slice">
+          <!-- Street grid -->
+          <g stroke="#F2EDE3" stroke-width="0.5" opacity="0.12">
+            <line x1="0" y1="90" x2="600" y2="90"/>
+            <line x1="0" y1="180" x2="600" y2="180"/>
+            <line x1="0" y1="270" x2="600" y2="270"/>
+            <line x1="0" y1="360" x2="600" y2="360"/>
+            <line x1="100" y1="0" x2="100" y2="450"/>
+            <line x1="220" y1="0" x2="220" y2="450"/>
+            <line x1="340" y1="0" x2="340" y2="450"/>
+            <line x1="460" y1="0" x2="460" y2="450"/>
+          </g>
+
+          <!-- Main diagonal street (10 Ave) -->
+          <g stroke="#F2EDE3" stroke-width="1" opacity="0.25">
+            <line x1="0" y1="240" x2="600" y2="210"/>
+          </g>
+          <text x="20" y="232" font-family="Geist Mono, monospace" font-size="10" fill="#A69E91" letter-spacing="1.5">10 AVE SW</text>
+
+          <!-- River suggestion -->
+          <path d="M 0 370 Q 150 350 300 360 T 600 350" stroke="#B01858" stroke-width="2" fill="none" opacity="0.35"/>
+          <text x="470" y="345" font-family="Geist Mono, monospace" font-size="10" fill="#B01858" opacity="0.6" letter-spacing="1">BOW RIVER</text>
+
+          <!-- Location pin -->
+          <g transform="translate(300, 218)">
+            <circle r="40" fill="#D54420" opacity="0.15"/>
+            <circle r="24" fill="#D54420" opacity="0.25"/>
+            <circle r="10" fill="#D54420"/>
+            <circle r="4" fill="#F2EDE3"/>
+          </g>
+          <g transform="translate(300, 218)">
+            <line x1="0" y1="-14" x2="0" y2="-40" stroke="#D54420" stroke-width="1"/>
+            <text x="8" y="-44" font-family="Bricolage Grotesque, sans-serif" font-size="16" font-weight="700" fill="#F2EDE3">Studio Park</text>
+            <text x="8" y="-28" font-family="Geist Mono, monospace" font-size="10" fill="#D54420" letter-spacing="1.5">HQ · 51.0447°N</text>
+          </g>
+
+          <!-- Corner label -->
+          <g transform="translate(570, 30)" text-anchor="end">
+            <text font-family="Geist Mono, monospace" font-size="10" fill="#A69E91" letter-spacing="1.5">INGLEWOOD · CALGARY, AB</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="px-6 md:px-10 py-24 md:py-32">
+    <div class="grid grid-cols-12 gap-6 mb-10 md:mb-14">
+      <div class="col-span-12 md:col-span-4">
+        <div class="label mb-4">§ 04 — Before You Ask</div>
+      </div>
+      <div class="col-span-12 md:col-span-8">
+        <h2 class="display-md text-3xl md:text-5xl">
+          Frequently answered.
+        </h2>
+      </div>
+    </div>
+
+    <div>
+      <div class="faq-item grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div class="md:col-span-4"><h4 class="display-md text-lg">How quickly do you reply?</h4></div>
+        <div class="md:col-span-8 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+          Within one business day for all inquiries. Rush briefs flagged as urgent usually get a same-day response, timezone permitting.
+        </div>
+      </div>
+      <div class="faq-item grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div class="md:col-span-4"><h4 class="display-md text-lg">Do you work outside Western Canada?</h4></div>
+        <div class="md:col-span-8 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+          Our focus is AB, BC, SK, MB, YT, and NT. We'll consider activations outside that footprint when they're extensions of existing western campaigns — ask us.
+        </div>
+      </div>
+      <div class="faq-item grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div class="md:col-span-4"><h4 class="display-md text-lg">What's your minimum engagement?</h4></div>
+        <div class="md:col-span-8 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+          No hard floor. We've done single-day sampling activations and six-month campaign retainers. If there's a real brief, there's a way to scope it.
+        </div>
+      </div>
+      <div class="faq-item grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div class="md:col-span-4"><h4 class="display-md text-lg">Can you handle rush timelines?</h4></div>
+        <div class="md:col-span-8 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+          Often, yes. We keep a standing roster and vendor list precisely so agencies don't have to start from zero. Send the brief — we'll tell you honestly if we can deliver.
+        </div>
+      </div>
+      <div class="faq-item grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div class="md:col-span-4"><h4 class="display-md text-lg">Do you sign NDAs?</h4></div>
+        <div class="md:col-span-8 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+          Yes. Mutual NDAs are standard practice for us. If you have a client template, send it over — we'll review and sign within a day.
+        </div>
+      </div>
+      <div class="faq-item grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div class="md:col-span-4"><h4 class="display-md text-lg">Are you vendor-approved with major agencies?</h4></div>
+        <div class="md:col-span-8 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+          We're onboarded as a preferred vendor with several national agency networks and CPG brand teams. References available on request.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="px-6 md:px-10 pt-20 pb-10 border-t" style="border-color: var(--line);">
+    <div class="grid grid-cols-12 gap-6 mb-16">
+      <div class="col-span-12 md:col-span-5">
+        <img src="/studiopark-logo.png" alt="Studio Park" class="logo-mark h-9 w-auto mb-6" />
+        <p class="text-[14px] max-w-xs leading-relaxed" style="color: var(--cream-dim);">
+          Western Canada's premier experiential production partner. Calgary-based, nationally trusted.
+        </p>
+      </div>
+      <div class="col-span-6 md:col-span-2">
+        <div class="label mb-5">Services</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/content" class="nav-link">Content</a></li>
+          <li><a href="/staffing" class="nav-link">Staffing</a></li>
+          <li><a href="/consulting" class="nav-link">Consulting</a></li>
+        </ul>
+      </div>
+      <div class="col-span-6 md:col-span-2">
+        <div class="label mb-5">Connect</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/contact" class="nav-link">Contact</a></li>
+          <li><a href="mailto:hello@studiopark.ca" class="nav-link">Email</a></li>
+          <li><a href="#" class="nav-link">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="col-span-12 md:col-span-3">
+        <div class="label mb-5">Visit</div>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          1933 10 Ave SW, #301<br/>Calgary, AB T3C 0K3<br/>Canada
+        </p>
+      </div>
+    </div>
+    <div class="h-px mb-8" style="background: var(--line);"></div>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs mono" style="color: var(--cream-dim);">
+      <div>© 2026 Studio Park Experiential Inc. All rights reserved.</div>
+      <div class="flex items-center gap-5 flex-wrap">
+        <span>51.0447° N · 114.0719° W</span>
+        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full blink" style="background: var(--accent);"></span>Open for Q2 '26 bookings</span>
+      </div>
+    </div>
+  </footer>
+
+  <script is:inline>
+    document.querySelectorAll('.chk-pill input').forEach((input) => {
+      input.addEventListener('change', (e) => {
+        e.target.closest('.chk-pill').classList.toggle('active', e.target.checked);
+      });
+    });
+  </script>
+
+</BaseLayout>
