@@ -1,0 +1,299 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('work');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry, all: entries },
+  }));
+}
+
+type Props = {
+  entry: CollectionEntry<'work'>;
+  all: CollectionEntry<'work'>[];
+};
+
+const { entry, all } = Astro.props as Props;
+const { Content } = await render(entry);
+const data = entry.data;
+
+const related = all
+  .filter((e) => e.id !== entry.id)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+// Tailwind-safe aspect class map — literals so JIT picks them up.
+const aspectClass = (a: string): string => {
+  switch (a) {
+    case '4/5': return 'aspect-[4/5]';
+    case '16/11': return 'aspect-[16/11]';
+    case '1/1': return 'aspect-square';
+    case '3/4': return 'aspect-[3/4]';
+    case '16/9': return 'aspect-video';
+    default: return 'aspect-[4/5]';
+  }
+};
+---
+
+<BaseLayout
+  title={`${data.title} — Studio Park`}
+  description={data.brief}
+>
+  <!-- ===================== NAV ===================== -->
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-10 py-4 flex items-center justify-between"
+       style="background: linear-gradient(to bottom, rgba(19,17,16,0.92), rgba(19,17,16,0)); backdrop-filter: blur(10px);">
+    <a href="/" class="flex items-center gap-3">
+      <img src="/studiopark-logo.png" alt="Studio Park" class="logo-mark h-8 md:h-9 w-auto" />
+    </a>
+    <ul class="hidden md:flex items-center gap-8 text-[13px]" style="color: var(--cream);">
+      <li><a href="/work" class="nav-link active">Work</a></li>
+      <li><a href="/content" class="nav-link">Content</a></li>
+      <li><a href="/staffing" class="nav-link">Staffing</a></li>
+      <li><a href="/consulting" class="nav-link">Consulting</a></li>
+      <li><a href="/contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="hidden md:flex items-center gap-3 text-xs mono" style="color: var(--cream-dim);">
+      <span class="w-1.5 h-1.5 rounded-full blink" style="background: var(--accent);"></span>
+      YYC · Open for Q2 '26
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="relative">
+    <div class="relative aspect-[4/5] md:aspect-[16/9] overflow-hidden">
+      <img
+        src={data.heroImage}
+        alt={data.heroAlt}
+        class="absolute inset-0 w-full h-full object-cover"
+        style="filter: saturate(0.92) contrast(1.02) brightness(0.78);"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(19,17,16,0.55) 0%, rgba(19,17,16,0.15) 30%, rgba(19,17,16,0.85) 100%);"></div>
+
+      <!-- Top meta -->
+      <div class="absolute top-24 md:top-32 left-6 md:left-10 right-6 md:right-10 flex items-start justify-between">
+        <div class="rise" style="animation-delay: 0.2s;">
+          <div class="label mb-2" style="color: var(--cream);">Case / {data.caseNumber}</div>
+          <a href="/work" class="label nav-link" style="color: var(--cream-dim);">← Back to work</a>
+        </div>
+        <div class="text-right rise" style="animation-delay: 0.3s;">
+          <div class="label mb-2" style="color: var(--cream);">{data.year}</div>
+          <div class="label" style="color: var(--cream-dim);">{data.locations.join(' · ')}</div>
+        </div>
+      </div>
+
+      <!-- Title overlay -->
+      <div class="absolute bottom-10 md:bottom-16 left-6 md:left-10 right-6 md:right-10">
+        <h1 class="display text-[14vw] md:text-[9vw] rise" style="animation-delay: 0.4s;">
+          {data.title}<span class="dot-accent">.</span>
+        </h1>
+        {data.subEvents && (
+          <div class="mt-4 md:mt-6 flex flex-wrap gap-x-4 gap-y-2 rise" style="animation-delay: 0.6s;">
+            {data.subEvents.map((e, i) => (
+              <>
+                {i > 0 && <span class="mono text-sm" style="color: var(--accent);">/</span>}
+                <span class="display-md text-base md:text-xl" style="color: var(--cream);">{e}</span>
+              </>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== META STRIP ===================== -->
+  <section class="px-6 md:px-10 py-10 md:py-14 border-b" style="border-color: var(--line); background: var(--bg-lift);">
+    <div class="grid grid-cols-12 gap-6 md:gap-10">
+      <div class="col-span-6 md:col-span-3">
+        <div class="label mb-2">Client</div>
+        <div class="display-md text-lg">{data.client}</div>
+      </div>
+      <div class="col-span-6 md:col-span-3">
+        <div class="label mb-2">Location</div>
+        <div class="display-md text-lg">{data.locations.join(', ')}</div>
+      </div>
+      <div class="col-span-6 md:col-span-2">
+        <div class="label mb-2">Year</div>
+        <div class="display-md text-lg">{data.year}</div>
+      </div>
+      <div class="col-span-12 md:col-span-4">
+        <div class="label mb-3">Services</div>
+        <div class="flex flex-wrap gap-2">
+          {data.services.map((s) => (
+            <span
+              class="text-xs md:text-sm px-3 py-1.5 border rounded-full"
+              style="border-color: var(--line); color: var(--cream);"
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BRIEF + NARRATIVE ===================== -->
+  <section class="px-6 md:px-10 py-20 md:py-32">
+    <div class="grid grid-cols-12 gap-6 md:gap-10">
+      <div class="col-span-12 md:col-span-4">
+        <div class="label mb-5">§ 01 — The Brief</div>
+        <p class="pullquote text-2xl md:text-3xl">{data.tagline}</p>
+      </div>
+      <div class="col-span-12 md:col-span-7 md:col-start-6">
+        <p class="text-lg md:text-xl leading-relaxed mb-10" style="color: var(--cream);">
+          {data.brief}
+        </p>
+        <div class="prose-narrative text-[15px] md:text-base leading-relaxed space-y-6" style="color: var(--cream-dim);">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {data.stats && data.stats.length > 0 && (
+    <!-- ===================== STATS ===================== -->
+    <section class="px-6 md:px-10 py-16 md:py-20 border-y" style="border-color: var(--line); background: var(--bg-lift);">
+      <div class="grid grid-cols-1 md:grid-cols-3">
+        {data.stats.map((stat) => (
+          <div class="stat text-center md:text-left">
+            <div class="big-stat text-5xl md:text-7xl mb-3" style="color: var(--cream);">
+              {stat.value}
+            </div>
+            <div class="label">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- ===================== GALLERY ===================== -->
+  {data.gallery.length > 0 && (
+    <section class="px-6 md:px-10 py-20 md:py-32">
+      <div class="flex items-end justify-between mb-10 md:mb-14 flex-wrap gap-4">
+        <div>
+          <div class="label mb-3">§ 02 — On Site</div>
+          <h2 class="display-md text-3xl md:text-5xl">Selected frames.</h2>
+        </div>
+        <div class="mono text-xs" style="color: var(--cream-dim);">
+          {data.gallery.length.toString().padStart(2, '0')} captures
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {data.gallery.map((img) => (
+          <figure class={`img-wrap ${aspectClass(img.aspect)}`}>
+            <img src={img.src} alt={img.alt} />
+          </figure>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- ===================== RELATED ===================== -->
+  {related.length > 0 && (
+    <section class="px-6 md:px-10 py-20 md:py-28 border-t" style="border-color: var(--line);">
+      <div class="flex items-end justify-between mb-10 md:mb-14 flex-wrap gap-4">
+        <div>
+          <div class="label mb-3">§ 03 — Related Work</div>
+          <h2 class="display-md text-3xl md:text-5xl">More from the road.</h2>
+        </div>
+        <a href="/work" class="nav-link text-sm">All work →</a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {related.map((r) => (
+          <a href={`/work/${r.id}`} class="group block">
+            <div class="img-wrap aspect-[4/5] mb-5">
+              <img src={r.data.thumbImage ?? r.data.heroImage} alt={r.data.heroAlt} />
+            </div>
+            <div class="flex items-baseline justify-between mb-2">
+              <span class="label">Case / {r.data.caseNumber}</span>
+              <span class="mono text-xs" style="color: var(--cream-dim);">{r.data.year}</span>
+            </div>
+            <h3 class="display-md text-xl md:text-2xl mb-2">{r.data.title}</h3>
+            <div class="label" style="color: var(--cream-dim);">
+              {r.data.locations.join(' · ')}
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- ===================== CTA ===================== -->
+  <section class="px-6 md:px-10 py-28 md:py-40 relative overflow-hidden border-t" style="border-color: var(--line);">
+    <div class="glow absolute inset-0"></div>
+    <div class="relative">
+      <div class="label mb-6" style="color: var(--accent);">§ 04 — Start a Project</div>
+      <h2 class="display text-[13vw] md:text-[10vw]">
+        Let's talk<span class="dot-accent">.</span>
+      </h2>
+      <p class="mt-10 max-w-xl text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+        Planning something like this? Send the brief — dates, markets, what the recap deck needs. We reply within a business day.
+      </p>
+      <div class="mt-12 flex flex-col md:flex-row items-start md:items-center gap-6">
+        <a href="/contact" class="btn inline-flex items-center gap-3 text-lg display-md px-8 py-4 border" style="border-color: var(--cream); color: var(--cream);">
+          Send us the brief
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M5 12h14M13 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <span class="label">or email hello@studiopark.ca</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="px-6 md:px-10 pt-20 pb-10 border-t" style="border-color: var(--line);">
+    <div class="grid grid-cols-12 gap-6 mb-16">
+      <div class="col-span-12 md:col-span-5">
+        <img src="/studiopark-logo.png" alt="Studio Park" class="logo-mark h-9 w-auto mb-6" />
+        <p class="text-[14px] max-w-xs leading-relaxed" style="color: var(--cream-dim);">
+          Western Canada's premier experiential production partner. Calgary-based, nationally trusted.
+        </p>
+      </div>
+      <div class="col-span-6 md:col-span-2">
+        <div class="label mb-5">Services</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/work" class="nav-link">Work</a></li>
+          <li><a href="/content" class="nav-link">Content</a></li>
+          <li><a href="/staffing" class="nav-link">Staffing</a></li>
+          <li><a href="/consulting" class="nav-link">Consulting</a></li>
+        </ul>
+      </div>
+      <div class="col-span-6 md:col-span-2">
+        <div class="label mb-5">Connect</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/contact" class="nav-link">Contact</a></li>
+          <li><a href="mailto:hello@studiopark.ca" class="nav-link">Email</a></li>
+          <li><a href="#" class="nav-link">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="col-span-12 md:col-span-3">
+        <div class="label mb-5">Visit</div>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          1933 10 Ave SW, #301<br/>Calgary, AB T3C 0K3<br/>Canada
+        </p>
+      </div>
+    </div>
+    <div class="h-px mb-8" style="background: var(--line);"></div>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs mono" style="color: var(--cream-dim);">
+      <div>© 2026 Studio Park Experiential Inc. All rights reserved.</div>
+      <div class="flex items-center gap-5 flex-wrap">
+        <span>51.0447° N · 114.0719° W</span>
+        <span class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full blink" style="background: var(--accent);"></span>
+          Open for Q2 '26 bookings
+        </span>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .prose-narrative p {
+    margin-bottom: 1.25rem;
+  }
+  .prose-narrative p:last-child {
+    margin-bottom: 0;
+  }
+</style>
