@@ -42,12 +42,12 @@ const aspectClass = (a: string): string => {
   description={data.brief}
 >
   <!-- ===================== NAV ===================== -->
-  <nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-10 py-4 flex items-center justify-between"
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-10 py-3 flex items-center justify-between"
        style="background: linear-gradient(to bottom, rgba(19,17,16,0.92), rgba(19,17,16,0)); backdrop-filter: blur(10px);">
     <a href="/" class="flex items-center gap-3">
-      <img src="/studiopark-logo.png" alt="Studio Park" class="logo-mark h-8 md:h-9 w-auto" />
+      <img src="/studiopark-logo.png" alt="Studio Park" class="logo-mark h-22 md:h-28 w-auto" />
     </a>
-    <ul class="hidden md:flex items-center gap-8 text-[13px]" style="color: var(--cream);">
+    <ul class="hidden md:flex items-center gap-8 text-[15px]" style="color: var(--cream);">
       <li><a href="/work" class="nav-link active">Work</a></li>
       <li><a href="/content" class="nav-link">Content</a></li>
       <li><a href="/staffing" class="nav-link">Staffing</a></li>
@@ -72,7 +72,7 @@ const aspectClass = (a: string): string => {
       <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(19,17,16,0.55) 0%, rgba(19,17,16,0.15) 30%, rgba(19,17,16,0.85) 100%);"></div>
 
       <!-- Top meta -->
-      <div class="absolute top-24 md:top-32 left-6 md:left-10 right-6 md:right-10 flex items-start justify-between">
+      <div class="absolute top-32 md:top-40 left-6 md:left-10 right-6 md:right-10 flex items-start justify-between">
         <div class="rise" style="animation-delay: 0.2s;">
           <div class="label mb-2" style="color: var(--cream);">Case / {data.caseNumber}</div>
           <a href="/work" class="label nav-link" style="color: var(--cream-dim);">← Back to work</a>
@@ -246,7 +246,7 @@ const aspectClass = (a: string): string => {
   <footer class="px-6 md:px-10 pt-20 pb-10 border-t" style="border-color: var(--line);">
     <div class="grid grid-cols-12 gap-6 mb-16">
       <div class="col-span-12 md:col-span-5">
-        <img src="/studiopark-logo.png" alt="Studio Park" class="logo-mark h-9 w-auto mb-6" />
+        <img src="/studiopark-logo.png" alt="Studio Park" class="logo-mark h-20 w-auto mb-6" />
         <p class="text-[14px] max-w-xs leading-relaxed" style="color: var(--cream-dim);">
           Western Canada's premier experiential production partner. Calgary-based, nationally trusted.
         </p>
