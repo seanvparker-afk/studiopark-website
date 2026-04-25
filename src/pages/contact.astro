@@ -1,5 +1,62 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import calgary from '../data/calgary-downtown.json';
+
+// Studio location map — projects real OSM downtown Calgary geometry through
+// a plain equirectangular projection at neighborhood scale.
+const VBW = 1000;
+const VBH = 600;
+const BBOX = { west: -114.100, east: -114.020, south: 51.030, north: 51.060 };
+
+function project(lon: number, lat: number): [number, number] {
+  return [
+    ((lon - BBOX.west) / (BBOX.east - BBOX.west)) * VBW,
+    ((BBOX.north - lat) / (BBOX.north - BBOX.south)) * VBH,
+  ];
+}
+
+function toPath(geom: [number, number][], close = false): string {
+  const pts = geom.map(([lon, lat]) => project(lon, lat));
+  return 'M' + pts.map((p) => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join('L') + (close ? 'Z' : '');
+}
+
+type Feature = { tier: string; geom: [number, number][]; id: number; name?: string; label?: string };
+const features = (calgary.features as Feature[]).map((f) => ({
+  ...f,
+  d: toPath(f.geom, f.tier === 'stampede_park' || f.tier === 'princes_island'),
+}));
+
+const byTier = (tier: string) => features.filter((f) => f.tier === tier);
+
+// One labeled <textPath> per major street name — pick the longest segment.
+const labelMap = new Map<string, Feature & { d: string }>();
+for (const f of features) {
+  if (!f.label) continue;
+  const cur = labelMap.get(f.label);
+  if (!cur || f.geom.length > cur.geom.length) labelMap.set(f.label, f);
+}
+const labelStreets = [...labelMap.entries()].map(([label, f]) => ({
+  label,
+  d: f.d,
+  pathId: 'street-' + label.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+  isStudio: label === '10 AVE SW',
+}));
+
+// Studio HQ: 1933 10 Ave SW, Calgary
+const STUDIO_LL: [number, number] = [-114.0820, 51.0447];
+const [studioX, studioY] = project(STUDIO_LL[0], STUDIO_LL[1]);
+
+// Hand-positioned neighborhood labels — context, not from OSM.
+const NEIGHBORHOODS = [
+  { label: 'EAU CLAIRE', lon: -114.067, lat: 51.0535 },
+  { label: 'DOWNTOWN', lon: -114.067, lat: 51.0475 },
+  { label: 'EAST VILLAGE', lon: -114.045, lat: 51.0455 },
+  { label: 'BELTLINE', lon: -114.075, lat: 51.0405 },
+  { label: 'INGLEWOOD', lon: -114.030, lat: 51.0395 },
+].map((n) => {
+  const [x, y] = project(n.lon, n.lat);
+  return { label: n.label, x, y };
+});
 ---
 
 <BaseLayout
@@ -215,6 +272,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <li class="flex gap-3"><span class="dot-accent">→</span> 5 min to downtown Calgary</li>
           <li class="flex gap-3"><span class="dot-accent">→</span> 10 min to Stampede Park</li>
           <li class="flex gap-3"><span class="dot-accent">→</span> 20 min to YYC International</li>
+          <li class="flex gap-3"><span class="dot-accent">→</span> Walk to 17 Ave SW restaurants</li>
           <li class="flex gap-3"><span class="dot-accent">→</span> On-site edit &amp; kit room</li>
         </ul>
         <div class="mt-8">
@@ -225,47 +283,113 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </div>
 
-      <!-- Stylized "map" tile -->
-      <div class="col-span-12 md:col-span-7 relative aspect-[4/3] md:aspect-auto" style="background: var(--bg-lift); background-image: radial-gradient(circle, rgba(242,237,227,0.05) 1px, transparent 1px); background-size: 18px 18px;">
-        <svg viewBox="0 0 600 450" class="w-full h-full" preserveAspectRatio="xMidYMid slice">
-          <!-- Street grid -->
-          <g stroke="#F2EDE3" stroke-width="0.5" opacity="0.12">
-            <line x1="0" y1="90" x2="600" y2="90"/>
-            <line x1="0" y1="180" x2="600" y2="180"/>
-            <line x1="0" y1="270" x2="600" y2="270"/>
-            <line x1="0" y1="360" x2="600" y2="360"/>
-            <line x1="100" y1="0" x2="100" y2="450"/>
-            <line x1="220" y1="0" x2="220" y2="450"/>
-            <line x1="340" y1="0" x2="340" y2="450"/>
-            <line x1="460" y1="0" x2="460" y2="450"/>
+      <!-- Real-geography map tile (OSM-projected) -->
+      <div class="col-span-12 md:col-span-7 relative aspect-[5/3] md:aspect-[16/9]" style="background: var(--bg-lift); background-image: radial-gradient(circle, rgba(242,237,227,0.05) 1px, transparent 1px); background-size: 18px 18px;">
+        <svg viewBox={`0 0 ${VBW} ${VBH}`} class="w-full h-full" preserveAspectRatio="xMidYMid slice">
+
+          <!-- Park fills (drawn first, behind everything) -->
+          {byTier('stampede_park').map((f) => (
+            <path d={f.d} fill="rgba(213, 68, 32, 0.04)" stroke="rgba(213, 68, 32, 0.25)" stroke-width="0.5"/>
+          ))}
+          {byTier('princes_island').map((f) => (
+            <path d={f.d} fill="rgba(242, 237, 227, 0.05)" stroke="rgba(242, 237, 227, 0.20)" stroke-width="0.5"/>
+          ))}
+
+          <!-- Minor streets — context grid -->
+          <g fill="none" stroke="#F2EDE3" stroke-width="0.5" opacity="0.10" stroke-linecap="round">
+            {byTier('street_minor').map((f) => <path d={f.d}/>)}
           </g>
 
-          <!-- Main diagonal street (10 Ave) -->
-          <g stroke="#F2EDE3" stroke-width="1" opacity="0.25">
-            <line x1="0" y1="240" x2="600" y2="210"/>
+          <!-- Primary streets (unnamed) — slightly more visible -->
+          <g fill="none" stroke="#F2EDE3" stroke-width="0.7" opacity="0.20" stroke-linecap="round">
+            {byTier('street_primary').map((f) => <path d={f.d}/>)}
           </g>
-          <text x="20" y="232" font-family="Geist Mono, monospace" font-size="10" fill="#A69E91" letter-spacing="1.5">10 AVE SW</text>
 
-          <!-- River suggestion -->
-          <path d="M 0 370 Q 150 350 300 360 T 600 350" stroke="#B01858" stroke-width="2" fill="none" opacity="0.35"/>
-          <text x="470" y="345" font-family="Geist Mono, monospace" font-size="10" fill="#B01858" opacity="0.6" letter-spacing="1">BOW RIVER</text>
+          <!-- Major named streets — the recognizable ones -->
+          <g fill="none" stroke="#F2EDE3" stroke-width="1" opacity="0.35" stroke-linecap="round">
+            {byTier('street_major').map((f) => <path d={f.d}/>)}
+          </g>
 
-          <!-- Location pin -->
-          <g transform="translate(300, 218)">
+          <!-- 10 Avenue SW — the studio's street, accent treatment -->
+          <g fill="none" stroke="#D54420" stroke-width="1.5" opacity="0.6" stroke-linecap="round">
+            {byTier('street_studio').map((f) => <path d={f.d}/>)}
+          </g>
+
+          <!-- Elbow River -->
+          {byTier('elbow_river').map((f) => (
+            <path d={f.d} fill="none" stroke="#B01858" stroke-width="1.5" opacity="0.25" stroke-linejoin="round" stroke-linecap="round"/>
+          ))}
+
+          <!-- Bow River (hero element) -->
+          {byTier('bow_river').map((f) => (
+            <path d={f.d} fill="none" stroke="#B01858" stroke-width="2" opacity="0.45" stroke-linejoin="round" stroke-linecap="round"/>
+          ))}
+
+          <!-- CTrain (LRT) — dotted -->
+          <g fill="none" stroke="#F2EDE3" stroke-width="0.6" opacity="0.35" stroke-dasharray="1 3" stroke-linecap="round">
+            {byTier('ctrain').map((f) => <path d={f.d}/>)}
+          </g>
+
+          <!-- Hidden paths used as text-path targets for street labels -->
+          <defs>
+            {labelStreets.map((s) => <path id={s.pathId} d={s.d} fill="none"/>)}
+          </defs>
+
+          <!-- Street labels along axis -->
+          {labelStreets.map((s) => (
+            <text
+              font-family="Geist Mono, monospace"
+              font-size={s.isStudio ? 9 : 8}
+              fill={s.isStudio ? '#D54420' : '#A69E91'}
+              opacity={s.isStudio ? 0.85 : 0.55}
+              letter-spacing="2"
+            >
+              <textPath href={`#${s.pathId}`} startOffset="50%" text-anchor="middle">{s.label}</textPath>
+            </text>
+          ))}
+
+          <!-- Neighborhood labels -->
+          {NEIGHBORHOODS.map((n) => (
+            <text
+              x={n.x}
+              y={n.y}
+              font-family="Geist Mono, monospace"
+              font-size="9"
+              fill="#A69E91"
+              opacity="0.30"
+              letter-spacing="3"
+              text-anchor="middle"
+            >
+              {n.label}
+            </text>
+          ))}
+
+          <!-- Bow River label (sits along the river) -->
+          {byTier('bow_river')[0] && (
+            <text font-family="Geist Mono, monospace" font-size="9" fill="#B01858" opacity="0.65" letter-spacing="2">
+              <textPath href="#river-bow" startOffset="22%">BOW RIVER</textPath>
+            </text>
+          )}
+          <defs>
+            {byTier('bow_river').map((f) => <path id="river-bow" d={f.d} fill="none"/>)}
+          </defs>
+
+          <!-- Studio Park location pin (preserved treatment) -->
+          <g transform={`translate(${studioX}, ${studioY})`}>
             <circle r="40" fill="#D54420" opacity="0.15"/>
             <circle r="24" fill="#D54420" opacity="0.25"/>
             <circle r="10" fill="#D54420"/>
             <circle r="4" fill="#F2EDE3"/>
           </g>
-          <g transform="translate(300, 218)">
+          <g transform={`translate(${studioX}, ${studioY})`}>
             <line x1="0" y1="-14" x2="0" y2="-40" stroke="#D54420" stroke-width="1"/>
             <text x="8" y="-44" font-family="Bricolage Grotesque, sans-serif" font-size="16" font-weight="700" fill="#F2EDE3">Studio Park</text>
             <text x="8" y="-28" font-family="Geist Mono, monospace" font-size="10" fill="#D54420" letter-spacing="1.5">HQ · 51.0447°N</text>
           </g>
 
           <!-- Corner label -->
-          <g transform="translate(570, 30)" text-anchor="end">
-            <text font-family="Geist Mono, monospace" font-size="10" fill="#A69E91" letter-spacing="1.5">INGLEWOOD · CALGARY, AB</text>
+          <g transform={`translate(${VBW - 30}, 30)`} text-anchor="end">
+            <text font-family="Geist Mono, monospace" font-size="10" fill="#A69E91" letter-spacing="1.5">DOWNTOWN CALGARY · AB</text>
           </g>
         </svg>
       </div>

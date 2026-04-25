@@ -1,5 +1,145 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { geoConicConformal, geoPath, type GeoPermissibleObjects } from 'd3-geo';
+import simplify from '@turf/simplify';
+import rawFc from '../data/canada-provinces.json';
+
+// Build-time geographic projection. d3-geo runs in Node only — paths are
+// inlined as strings into the rendered HTML; nothing ships to the browser.
+
+// Natural Earth 50m is dense — Nunavut alone is ~108KB unsimplified due to
+// thousands of Arctic island vertices. Simplify uniformly at tolerance 0.05°
+// (~5km) before projection. Tested: total HTML drops from ~205KB to ~75KB
+// with no visible change at the rendered scale.
+const fc = simplify(structuredClone(rawFc) as any, { tolerance: 0.05, highQuality: false });
+
+const CORE = ['British Columbia', 'Alberta', 'Saskatchewan', 'Manitoba'];
+const SHORT: Record<string, string> = {
+  'British Columbia': 'BC', 'Alberta': 'AB', 'Saskatchewan': 'SK', 'Manitoba': 'MB',
+  'Yukon': 'YT', 'Northwest Territories': 'NT', 'Nunavut': 'NU', 'Ontario': 'ON',
+};
+
+// Lambert Conformal Conic, parallels per spec, central meridian -95°W.
+// Fit to the four core provinces only — periphery (YT/NT/NU/ON) extends
+// past the viewBox and is clipped naturally by the wrapper's overflow:hidden.
+const coreFC = { type: 'FeatureCollection' as const, features: fc.features.filter((f) => CORE.includes(f.properties.name)) };
+const projection = geoConicConformal()
+  .parallels([49, 77])
+  .rotate([95, 0])
+  .fitExtent([[60, 180], [940, 530]], coreFC as GeoPermissibleObjects);
+const path = geoPath(projection);
+
+// Manual label nudges for shapes whose centroid lands somewhere awkward
+// (BC: pulled toward coast by mainland mass; NT/NU: huge irregular shapes).
+const LABEL_NUDGE: Record<string, [number, number]> = {
+  'British Columbia': [10, -10],
+  'Northwest Territories': [-30, 0],
+  'Nunavut': [-20, 30],
+};
+
+const provinces = fc.features.map((f) => {
+  const [cx, cy] = path.centroid(f);
+  const [dx, dy] = LABEL_NUDGE[f.properties.name] ?? [0, 0];
+  return {
+    name: f.properties.name,
+    short: SHORT[f.properties.name],
+    d: path(f) ?? '',
+    isCore: CORE.includes(f.properties.name),
+    labelX: cx + dx,
+    labelY: cy + dy,
+  };
+});
+
+const parallel49 = path({ type: 'LineString', coordinates: [[-141, 49], [-89, 49]] }) ?? '';
+
+// Cities: real lat/lon, projected through the same projection.
+// Label offsets are hand-tuned per city to prevent collisions along the
+// Trans-Canada corridor where dots cluster (Vancouver/Victoria, Kelowna/Calgary,
+// Calgary/Edmonton, Saskatoon/Regina). Offsets are relative to the dot center.
+type Anchor = 'start' | 'middle' | 'end';
+type CityDef = {
+  id: string;
+  name: string;
+  region: string;
+  lat: number;
+  lon: number;
+  coverage: string;
+  fontSize: number;
+  dotR: number;
+  hitR: number;
+  pulseR: number;
+  // Label group (name + region subtitle, stacked 16px apart)
+  labelDx: number;
+  nameDy: number;
+  regionDy: number;
+  labelAnchor: Anchor;
+  // Hover card
+  cardDx: number;
+  cardDy: number;
+};
+
+// Calgary HQ: SE label with extra clearance to clear the always-on pulse ring.
+const CALGARY: CityDef = {
+  id: 'calgary', name: 'Calgary', region: 'AB · HQ',
+  lat: 51.0447, lon: -114.0719,
+  coverage: 'Full roster · Same-day response',
+  fontSize: 20, dotR: 9, hitR: 22, pulseR: 22,
+  labelDx: 22, nameDy: 27, regionDy: 45, labelAnchor: 'start',
+  cardDx: 0, cardDy: 0,
+};
+
+const OPS: CityDef[] = [
+  { id: 'vancouver', name: 'Vancouver', region: 'BC',
+    lat: 49.2827, lon: -123.1207,
+    coverage: 'Full roster · 48h response',
+    fontSize: 16, dotR: 5, hitR: 24, pulseR: 22,
+    labelDx: -10, nameDy: -23, regionDy: -7, labelAnchor: 'end',
+    cardDx: -187, cardDy: 22 },
+  { id: 'victoria', name: 'Victoria', region: 'BC',
+    lat: 48.4284, lon: -123.3656,
+    coverage: 'Project roster · 5-day lead',
+    fontSize: 14, dotR: 4, hitR: 22, pulseR: 20,
+    labelDx: -10, nameDy: 19, regionDy: 35, labelAnchor: 'end',
+    cardDx: -187, cardDy: 22 },
+  { id: 'kelowna', name: 'Kelowna', region: 'BC',
+    lat: 49.8880, lon: -119.4960,
+    coverage: 'Project roster · 5-day lead',
+    fontSize: 14, dotR: 4, hitR: 22, pulseR: 20,
+    labelDx: 0, nameDy: -23, regionDy: -7, labelAnchor: 'middle',
+    cardDx: 15, cardDy: 35 },
+  { id: 'edmonton', name: 'Edmonton', region: 'AB',
+    lat: 53.5461, lon: -113.4938,
+    coverage: 'Full roster · 48h response',
+    fontSize: 16, dotR: 5, hitR: 24, pulseR: 22,
+    labelDx: 10, nameDy: -23, regionDy: -7, labelAnchor: 'start',
+    cardDx: 15, cardDy: -54 },
+  { id: 'saskatoon', name: 'Saskatoon', region: 'SK',
+    lat: 52.1332, lon: -106.6700,
+    coverage: 'Project roster · 5-day lead',
+    fontSize: 14, dotR: 4, hitR: 22, pulseR: 20,
+    labelDx: 10, nameDy: -23, regionDy: -7, labelAnchor: 'start',
+    cardDx: 15, cardDy: 22 },
+  { id: 'regina', name: 'Regina', region: 'SK',
+    lat: 50.4452, lon: -104.6189,
+    coverage: 'Project roster · 5-day lead',
+    fontSize: 14, dotR: 4, hitR: 22, pulseR: 20,
+    labelDx: 10, nameDy: 19, regionDy: 35, labelAnchor: 'start',
+    cardDx: 15, cardDy: 22 },
+  { id: 'winnipeg', name: 'Winnipeg', region: 'MB',
+    lat: 49.8954, lon: -97.1385,
+    coverage: 'Project roster · 5-day lead',
+    fontSize: 16, dotR: 5, hitR: 24, pulseR: 22,
+    labelDx: 10, nameDy: -23, regionDy: -7, labelAnchor: 'start',
+    cardDx: -187, cardDy: -54 },
+];
+
+function project(c: CityDef) {
+  const [x, y] = projection([c.lon, c.lat]) as [number, number];
+  return { ...c, x, y };
+}
+
+const calgary = project(CALGARY);
+const cities = OPS.map(project);
 ---
 
 <BaseLayout
@@ -66,9 +206,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
 
-    <div class="map-wrapper aspect-[2/1] md:aspect-[2.2/1] map-grid-bg">
-      <svg viewBox="0 0 1000 500" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
-        <!-- Compass in corner -->
+    <div class="map-wrapper aspect-[5/3] md:aspect-[1.7/1] map-grid-bg">
+      <svg viewBox="0 0 1000 600" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
+        <!-- Compass corner labels -->
         <g transform="translate(40, 50)" font-family="Geist Mono, monospace" font-size="10" fill="#A69E91" letter-spacing="2">
           <text>W / WESTERN CANADA</text>
           <line x1="0" y1="8" x2="180" y2="8" stroke="#A69E91" stroke-width="0.5" opacity="0.3"/>
@@ -78,83 +218,67 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <text y="14">114°W — 140°W</text>
         </g>
 
-        <!-- Province labels (subtle) -->
-        <g font-family="Geist Mono, monospace" font-size="11" fill="#5A5449" letter-spacing="3" opacity="0.7">
-          <text x="180" y="150">BC</text>
-          <text x="420" y="130">AB</text>
-          <text x="640" y="120">SK</text>
-          <text x="850" y="130">MB</text>
+        <!-- ===== Geography — projected from real GeoJSON (Natural Earth 50m) ===== -->
+        <!-- Periphery: YT, NT, NU, ON — context only -->
+        <g fill="none" stroke="#F2EDE3" stroke-width="0.7" opacity="0.12" stroke-linejoin="round">
+          {provinces.filter((p) => !p.isCore).map((p) => <path d={p.d} />)}
+        </g>
+        <!-- Core: BC, AB, SK, MB — where we operate -->
+        <g fill="rgba(242,237,227,0.018)" stroke="#F2EDE3" stroke-width="1" opacity="0.22" stroke-linejoin="round">
+          {provinces.filter((p) => p.isCore).map((p) => <path d={p.d} />)}
         </g>
 
-        <!-- Connecting network lines from Calgary (hub) -->
+        <!-- 49°N parallel (real projected curve) -->
+        <g>
+          <path d={parallel49} fill="none" stroke="#A69E91" stroke-width="0.5" stroke-dasharray="6 6" opacity="0.4"/>
+          <text x="80" y="580" font-family="Geist Mono, monospace" font-size="8" fill="#5A5449" letter-spacing="2">49°N — US BORDER</text>
+        </g>
+
+        <!-- Province labels at projected centroids -->
+        {provinces.map((p) => (
+          <text
+            x={p.labelX}
+            y={p.labelY}
+            font-family="Geist Mono, monospace"
+            font-size="11"
+            fill="#5A5449"
+            letter-spacing="3"
+            text-anchor="middle"
+            opacity={p.isCore ? 0.85 : 0.5}
+          >
+            {p.short}
+          </text>
+        ))}
+
+        <!-- ===== Base decorative network (always visible, dashed) ===== -->
         <g stroke="#D54420" stroke-width="1" stroke-dasharray="2 5" opacity="0.45" fill="none">
-          <line x1="440" y1="270" x2="180" y2="260"/>
-          <line x1="440" y1="270" x2="150" y2="340"/>
-          <line x1="440" y1="270" x2="280" y2="260"/>
-          <line x1="440" y1="270" x2="450" y2="175"/>
-          <line x1="440" y1="270" x2="620" y2="170"/>
-          <line x1="440" y1="270" x2="680" y2="290"/>
-          <line x1="440" y1="270" x2="830" y2="245"/>
+          {cities.map((c) => <line x1={calgary.x} y1={calgary.y} x2={c.x} y2={c.y} />)}
         </g>
 
-        <!-- City dots -->
-        <!-- Vancouver -->
+        <!-- ===== Calgary (HQ — always pulsing, no hover) ===== -->
         <g>
-          <circle cx="180" cy="260" r="5" fill="#F2EDE3"/>
-          <text x="195" y="256" font-family="Bricolage Grotesque, sans-serif" font-size="16" font-weight="600" fill="#F2EDE3">Vancouver</text>
-          <text x="195" y="272" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">BC</text>
-        </g>
-        <!-- Victoria -->
-        <g>
-          <circle cx="150" cy="340" r="4" fill="#F2EDE3"/>
-          <text x="165" y="336" font-family="Bricolage Grotesque, sans-serif" font-size="14" font-weight="600" fill="#F2EDE3">Victoria</text>
-          <text x="165" y="350" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">BC</text>
-        </g>
-        <!-- Kelowna -->
-        <g>
-          <circle cx="280" cy="260" r="4" fill="#F2EDE3"/>
-          <text x="295" y="256" font-family="Bricolage Grotesque, sans-serif" font-size="14" font-weight="600" fill="#F2EDE3">Kelowna</text>
-          <text x="295" y="270" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">BC</text>
-        </g>
-        <!-- Edmonton -->
-        <g>
-          <circle cx="450" cy="175" r="5" fill="#F2EDE3"/>
-          <text x="465" y="171" font-family="Bricolage Grotesque, sans-serif" font-size="16" font-weight="600" fill="#F2EDE3">Edmonton</text>
-          <text x="465" y="186" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">AB</text>
-        </g>
-        <!-- Calgary (HQ) -->
-        <g>
-          <circle cx="440" cy="270" r="22" fill="#D54420" opacity="0.2" class="city-pulse"/>
-          <circle cx="440" cy="270" r="9" fill="#D54420"/>
-          <text x="458" y="266" font-family="Bricolage Grotesque, sans-serif" font-size="20" font-weight="700" fill="#F2EDE3">Calgary</text>
-          <text x="458" y="284" font-family="Geist Mono, monospace" font-size="10" fill="#D54420" letter-spacing="1.5">AB · HQ</text>
-        </g>
-        <!-- Saskatoon -->
-        <g>
-          <circle cx="620" cy="170" r="4" fill="#F2EDE3"/>
-          <text x="635" y="166" font-family="Bricolage Grotesque, sans-serif" font-size="14" font-weight="600" fill="#F2EDE3">Saskatoon</text>
-          <text x="635" y="180" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">SK</text>
-        </g>
-        <!-- Regina -->
-        <g>
-          <circle cx="680" cy="290" r="4" fill="#F2EDE3"/>
-          <text x="695" y="286" font-family="Bricolage Grotesque, sans-serif" font-size="14" font-weight="600" fill="#F2EDE3">Regina</text>
-          <text x="695" y="300" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">SK</text>
-        </g>
-        <!-- Winnipeg -->
-        <g>
-          <circle cx="830" cy="245" r="5" fill="#F2EDE3"/>
-          <text x="845" y="241" font-family="Bricolage Grotesque, sans-serif" font-size="16" font-weight="600" fill="#F2EDE3">Winnipeg</text>
-          <text x="845" y="256" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">MB</text>
+          <circle cx={calgary.x} cy={calgary.y} r={calgary.pulseR} fill="#D54420" opacity="0.2" class="city-pulse"/>
+          <circle cx={calgary.x} cy={calgary.y} r={calgary.dotR} fill="#D54420"/>
+          <text x={calgary.x + calgary.labelDx} y={calgary.y + calgary.nameDy} text-anchor={calgary.labelAnchor} font-family="Bricolage Grotesque, sans-serif" font-size={calgary.fontSize} font-weight="700" fill="#F2EDE3">{calgary.name}</text>
+          <text x={calgary.x + calgary.labelDx} y={calgary.y + calgary.regionDy} text-anchor={calgary.labelAnchor} font-family="Geist Mono, monospace" font-size="10" fill="#D54420" letter-spacing="1.5">{calgary.region}</text>
         </g>
 
-        <!-- Yukon/NWT subtle markers (project basis) -->
-        <g opacity="0.5">
-          <circle cx="250" cy="80" r="3" fill="#A69E91"/>
-          <text x="262" y="76" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1">Whitehorse · YT</text>
-          <circle cx="380" cy="60" r="3" fill="#A69E91"/>
-          <text x="392" y="56" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1">Yellowknife · NT</text>
-        </g>
+        <!-- ===== Interactive city nodes ===== -->
+        {cities.map((c) => (
+          <g class="city-node">
+            <line class="route-trace" x1={calgary.x} y1={calgary.y} x2={c.x} y2={c.y}/>
+            <circle class="pulse-hover" cx={c.x} cy={c.y} r={c.pulseR}/>
+            <circle class="city-dot" cx={c.x} cy={c.y} r={c.dotR} fill="#F2EDE3"/>
+            <text x={c.x + c.labelDx} y={c.y + c.nameDy} text-anchor={c.labelAnchor} font-family="Bricolage Grotesque, sans-serif" font-size={c.fontSize} font-weight="600" fill="#F2EDE3">{c.name}</text>
+            <text x={c.x + c.labelDx} y={c.y + c.regionDy} text-anchor={c.labelAnchor} font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="1.5">{c.region}</text>
+            <circle class="city-hit" cx={c.x} cy={c.y} r={c.hitR} fill="transparent"/>
+            <g class="city-card" transform={`translate(${c.x + c.cardDx}, ${c.y + c.cardDy})`}>
+              <rect width="172" height="44" rx="3" fill="#1C1918" stroke="#D54420" stroke-width="0.5" opacity="0.96"/>
+              <text x="12" y="20" font-family="Bricolage Grotesque, sans-serif" font-size="13" font-weight="600" fill="#F2EDE3">{c.name} · {c.region}</text>
+              <text x="12" y="35" font-family="Geist Mono, monospace" font-size="9" fill="#A69E91" letter-spacing="0.5">{c.coverage}</text>
+            </g>
+          </g>
+        ))}
       </svg>
     </div>
 
@@ -443,4 +567,68 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </footer>
 
+
+<style>
+  /* Map — hover interactions */
+  .city-node { cursor: pointer; }
+
+  .city-node .route-trace {
+    stroke: var(--accent);
+    stroke-width: 1.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .city-node:hover .route-trace {
+    opacity: 1;
+    animation: trace-line 0.7s cubic-bezier(0.6, 0, 0.3, 1) forwards;
+  }
+  @keyframes trace-line {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .city-node .pulse-hover {
+    fill: var(--accent);
+    opacity: 0;
+  }
+  .city-node:hover .pulse-hover {
+    opacity: 1;
+    animation: city-pulse 2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  }
+
+  .city-node .city-dot {
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .city-node:hover .city-dot { transform: scale(1.3); }
+
+  .city-node .city-card {
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    pointer-events: none;
+  }
+  .city-node:hover .city-card {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .city-node .city-dot,
+    .city-node .city-card,
+    .city-node .route-trace,
+    .city-node .pulse-hover {
+      transition: none !important;
+      animation: none !important;
+    }
+    .city-node:hover .route-trace { opacity: 1; stroke-dashoffset: 0; }
+    .city-node:hover .city-card  { opacity: 1; transform: none; }
+    .city-node:hover .city-dot   { transform: scale(1.2); }
+    .city-node:hover .pulse-hover { display: none; }
+  }
+</style>
 </BaseLayout>
