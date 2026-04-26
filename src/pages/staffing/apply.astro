@@ -1,0 +1,569 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Apply to the Roster — Studio Park"
+  description="Studio Park staffs activations across Western Canada. Hired for personality, trained for the brief, paid through proper payroll. Apply to the talent roster."
+>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-10 py-3 flex items-center justify-between" style="background: linear-gradient(to bottom, rgba(19,17,16,0.92), rgba(19,17,16,0)); backdrop-filter: blur(10px);">
+    <a href="/" class="flex items-center gap-3">
+      <img src="/studiopark-logo.png" alt="Studio Park" class="logo-mark h-22 md:h-28 w-auto" />
+    </a>
+    <ul class="hidden md:flex items-center gap-8 text-[15px]" style="color: var(--cream);">
+      <li><a href="/work" class="nav-link">Work</a></li>
+      <li><a href="/content" class="nav-link">Content</a></li>
+      <li><a href="/staffing" class="nav-link active">Staffing</a></li>
+      <li><a href="/consulting" class="nav-link">Consulting</a></li>
+      <li><a href="/contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="hidden md:flex items-center gap-3 text-xs mono" style="color: var(--cream-dim);">
+      <span class="w-1.5 h-1.5 rounded-full blink" style="background: var(--accent);"></span>
+      YYC · Open for Q2 '26
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="px-6 pt-36 md:pt-48 pb-16 md:pb-24">
+    <div class="max-w-3xl mx-auto">
+      <div class="flex items-start justify-between mb-10 md:mb-14">
+        <div class="rise" style="animation-delay: 0.1s;">
+          <div class="label mb-2">(03) — Apply / Talent Roster</div>
+          <a href="/staffing" class="label nav-link" style="color: var(--cream-dim);">← Back to Staffing</a>
+        </div>
+        <div class="text-right rise" style="animation-delay: 0.2s;">
+          <div class="label mb-2">Ref. SP-APP-01</div>
+          <div class="label" style="color: var(--cream);">Western Canada</div>
+        </div>
+      </div>
+
+      <h1 class="display text-6xl md:text-8xl rise" style="animation-delay: 0.3s;">
+        Join the roster<span class="dot-accent">.</span>
+      </h1>
+      <p class="mt-8 md:mt-10 text-base md:text-lg leading-relaxed max-w-xl rise" style="color: var(--cream-dim); animation-delay: 0.5s;">
+        Studio Park staffs activations across Western Canada. We hire for personality, train for the brief, and pay through proper payroll. If that sounds like the kind of work you want to do, tell us about yourself.
+      </p>
+
+      <div class="h-px widen mt-12 md:mt-16" style="background: var(--line); animation-delay: 0.7s;"></div>
+    </div>
+  </section>
+
+  <!-- WHAT WE LOOK FOR -->
+  <section class="px-6 pb-16 md:pb-24">
+    <div class="max-w-3xl mx-auto">
+      <div class="label mb-10 md:mb-12">§ 02 — What We Look For</div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
+        <div>
+          <div class="idx text-3xl mb-4">01</div>
+          <h3 class="display-md text-2xl mb-3">Reliable</h3>
+          <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+            Show up on time, in uniform, ready to work. The roster runs on trust.
+          </p>
+        </div>
+        <div>
+          <div class="idx text-3xl mb-4" style="color: var(--magenta);">02</div>
+          <h3 class="display-md text-2xl mb-3">Charismatic</h3>
+          <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+            Strangers become customers because of you. The brand voice lands when you're delivering it.
+          </p>
+        </div>
+        <div>
+          <div class="idx text-3xl mb-4">03</div>
+          <h3 class="display-md text-2xl mb-3">Adaptable</h3>
+          <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+            When the brief changes, you roll with it. Live activations rarely go to plan.
+          </p>
+        </div>
+        <div>
+          <div class="idx text-3xl mb-4" style="color: var(--magenta);">04</div>
+          <h3 class="display-md text-2xl mb-3">Brand-curious</h3>
+          <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+            You read the briefing notes before the activation. You ask the questions that make the work better.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATION FORM -->
+  <section class="px-6 pb-24 md:pb-32 border-t" style="border-color: var(--line);">
+    <div class="max-w-3xl mx-auto pt-16 md:pt-24">
+      <div class="label mb-10 md:mb-12">§ 03 — Application</div>
+
+      <form
+        id="apply-form"
+        action="https://formspree.io/f/xvzdngqk"
+        method="POST"
+        novalidate
+      >
+        <!-- Honeypot + Formspree config -->
+        <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <input type="hidden" name="_subject" value="New roster application from studiopark.ca" />
+        <input type="hidden" name="_replyto" value="" />
+
+        <!-- Error message (hidden by default) -->
+        <div id="form-error" hidden role="alert">
+          Something went wrong. Email us directly at <a href="mailto:hello@studiopark.ca" class="nav-link" style="color: var(--cream);">hello@studiopark.ca</a>.
+        </div>
+
+        <div class="space-y-16">
+
+          <!-- 01 — BASICS -->
+          <div>
+            <div class="label mb-8" style="color: var(--cream);">01 — Basics</div>
+            <div class="space-y-8">
+              <div class="field">
+                <label class="field-label" for="fullName">Full Name *</label>
+                <input class="input" type="text" id="fullName" name="fullName" required placeholder="First and last" />
+                <span class="field-error" data-error-for="fullName"></span>
+              </div>
+              <div class="field">
+                <label class="field-label" for="email">Email *</label>
+                <input class="input" type="email" id="email" name="email" required placeholder="you@example.com" />
+                <span class="field-error" data-error-for="email"></span>
+              </div>
+              <div class="field">
+                <label class="field-label" for="phone">Phone *</label>
+                <input class="input" type="tel" id="phone" name="phone" required placeholder="403.555.0142" />
+                <span class="field-error" data-error-for="phone"></span>
+              </div>
+              <div class="field">
+                <label class="field-label" for="city">City / Nearest Market *</label>
+                <select class="select" id="city" name="city" required>
+                  <option value="">Select your market</option>
+                  <option value="Calgary">Calgary</option>
+                  <option value="Edmonton">Edmonton</option>
+                  <option value="Vancouver">Vancouver</option>
+                  <option value="Victoria">Victoria</option>
+                  <option value="Kelowna">Kelowna</option>
+                  <option value="Saskatoon">Saskatoon</option>
+                  <option value="Regina">Regina</option>
+                  <option value="Winnipeg">Winnipeg</option>
+                  <option value="Other">Other</option>
+                </select>
+                <span class="field-error" data-error-for="city"></span>
+              </div>
+              <div id="city-other-wrapper" class="field" hidden>
+                <label class="field-label" for="cityOther">Specify your market</label>
+                <input class="input" type="text" id="cityOther" name="cityOther" placeholder="City, province" />
+              </div>
+              <div class="field">
+                <label class="age-confirm flex items-start gap-3 cursor-pointer">
+                  <input type="checkbox" id="ageConfirm" name="ageConfirm" value="yes" required class="mt-1.5" />
+                  <span class="text-[15px] leading-relaxed" style="color: var(--cream);">
+                    I am 18 years of age or older. *
+                    <span class="block text-[13px] mt-1" style="color: var(--cream-dim);">Required for activations involving alcohol or late hours.</span>
+                  </span>
+                </label>
+                <span class="field-error" data-error-for="ageConfirm"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 02 — ROLES & EXPERIENCE -->
+          <div>
+            <div class="label mb-8" style="color: var(--cream);">02 — Roles &amp; Experience</div>
+            <div class="space-y-8">
+              <div class="field">
+                <label class="field-label">Roles you're interested in <span style="color: var(--muted);">(select all)</span></label>
+                <div class="flex flex-wrap gap-3 mt-2">
+                  <label class="chk-pill"><input type="checkbox" name="roles" value="Brand Ambassador" /><span>Brand Ambassador</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="roles" value="Event Captain" /><span>Event Captain</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="roles" value="Sampling/Demo" /><span>Sampling / Demo</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="roles" value="Festival/Concert Crew" /><span>Festival / Concert Crew</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="roles" value="Bilingual Talent" /><span>Bilingual Talent</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="roles" value="Specialty Talent" /><span>Specialty Talent</span></label>
+                </div>
+              </div>
+              <div class="field">
+                <label class="field-label" for="experienceLevel">Activation experience level *</label>
+                <select class="select" id="experienceLevel" name="experienceLevel" required>
+                  <option value="">Select a level</option>
+                  <option>None — new to this</option>
+                  <option>1–3 events</option>
+                  <option>4–10 events</option>
+                  <option>10+ events</option>
+                </select>
+                <span class="field-error" data-error-for="experienceLevel"></span>
+              </div>
+              <div class="field">
+                <label class="field-label" for="experienceDescription">Brief description of relevant experience</label>
+                <textarea class="textarea" id="experienceDescription" name="experienceDescription" placeholder="Tell us about your most memorable activation, brand activation experience, sampling work, hosting, hospitality, etc."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- 03 — DIFFERENTIATORS -->
+          <div>
+            <div class="label mb-8" style="color: var(--cream);">03 — Differentiators</div>
+            <div class="space-y-8">
+              <div class="field">
+                <label class="field-label">Languages spoken <span style="color: var(--muted);">(select all)</span></label>
+                <div class="flex flex-wrap gap-3 mt-2">
+                  <label class="chk-pill"><input type="checkbox" name="languages" value="English" /><span>English</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="languages" value="French" /><span>French</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="languages" value="Mandarin" /><span>Mandarin</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="languages" value="Cantonese" /><span>Cantonese</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="languages" value="Punjabi" /><span>Punjabi</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="languages" value="Tagalog" /><span>Tagalog</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="languages" value="Spanish" /><span>Spanish</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="languages" value="Other" /><span>Other</span></label>
+                </div>
+              </div>
+              <div class="field">
+                <label class="field-label" for="skills">Specialty skills</label>
+                <input class="input" type="text" id="skills" name="skills" placeholder="Bartending, on-camera, food-handling certified, photography, mixology, sign language interpretation, etc." />
+              </div>
+              <div class="field">
+                <label class="field-label">Reliable transportation *</label>
+                <div class="flex flex-wrap gap-3 mt-2">
+                  <label class="chk-pill"><input type="radio" name="transportation" value="Yes — own vehicle" /><span>Yes — own vehicle</span></label>
+                  <label class="chk-pill"><input type="radio" name="transportation" value="Yes — but limited" /><span>Yes — but limited</span></label>
+                  <label class="chk-pill"><input type="radio" name="transportation" value="Public transit only" /><span>Public transit only</span></label>
+                </div>
+                <span class="field-error" data-error-for="transportation"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 04 — AVAILABILITY -->
+          <div>
+            <div class="label mb-8" style="color: var(--cream);">04 — Availability</div>
+            <div class="space-y-8">
+              <div class="field">
+                <label class="field-label">Typical availability <span style="color: var(--muted);">(select all that apply) *</span></label>
+                <div class="flex flex-wrap gap-3 mt-2">
+                  <label class="chk-pill"><input type="checkbox" name="availability" value="Weekdays" /><span>Weekdays</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="availability" value="Weekends" /><span>Weekends</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="availability" value="Evenings" /><span>Evenings</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="availability" value="Long days / Festivals" /><span>Long days / Festivals</span></label>
+                  <label class="chk-pill"><input type="checkbox" name="availability" value="Multi-day commitments" /><span>Multi-day commitments</span></label>
+                </div>
+                <span class="field-error" data-error-for="availability"></span>
+              </div>
+              <div class="field">
+                <label class="field-label">Travel within Western Canada *</label>
+                <div class="flex flex-wrap gap-3 mt-2">
+                  <label class="chk-pill"><input type="radio" name="travel" value="Yes — happy to travel" /><span>Yes — happy to travel</span></label>
+                  <label class="chk-pill"><input type="radio" name="travel" value="Sometimes — depends on the gig" /><span>Sometimes — depends on the gig</span></label>
+                  <label class="chk-pill"><input type="radio" name="travel" value="No — my market only" /><span>No — my market only</span></label>
+                </div>
+                <span class="field-error" data-error-for="travel"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 05 — OPTIONAL -->
+          <div>
+            <div class="label mb-8" style="color: var(--cream);">05 — Optional</div>
+            <div class="space-y-8">
+              <div class="field">
+                <label class="field-label" for="portfolio">Portfolio / Instagram / LinkedIn</label>
+                <input class="input" type="text" id="portfolio" name="portfolio" placeholder="@yourhandle or full URL" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="hearAbout">How did you hear about Studio Park?</label>
+                <select class="select" id="hearAbout" name="hearAbout">
+                  <option value="">Select an option</option>
+                  <option>Word of mouth</option>
+                  <option>Instagram</option>
+                  <option>LinkedIn</option>
+                  <option>Existing Studio Park staff</option>
+                  <option>Past activation</option>
+                  <option>Industry contact</option>
+                  <option>Search engine</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="flex flex-col items-start gap-4 pt-4">
+            <button type="submit" class="btn display-md inline-flex items-center justify-center gap-3 px-8 py-4 text-lg border" style="border-color: var(--cream); color: var(--cream);">
+              <span class="btn-label">Submit application</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+            <span class="label">We review every application personally. You'll hear back within 5 business days.</span>
+          </div>
+
+        </div>
+      </form>
+
+      <!-- Success state (replaces form on successful submit) -->
+      <div id="form-thanks" hidden>
+        <div class="label mb-6" style="color: var(--accent);">§ — Application received</div>
+        <h2 class="display-md text-3xl md:text-5xl mb-6">Thanks — we've got it.</h2>
+        <p class="text-[15px] md:text-base leading-relaxed mb-10" style="color: var(--cream-dim);">
+          The Studio Park team reviews every application personally. We'll be in touch within 5 business days. In the meantime, follow along on Instagram <a href="#" class="nav-link" style="color: var(--cream);">@studiopark.ca</a> to see what we're up to.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/staffing" class="btn display-md inline-flex items-center gap-2 px-6 py-3 text-sm border" style="border-color: var(--cream); color: var(--cream);">
+            ← Back to Staffing
+          </a>
+          <a href="/" class="btn display-md inline-flex items-center gap-2 px-6 py-3 text-sm border" style="border-color: var(--cream); color: var(--cream);">
+            Back to home
+          </a>
+        </div>
+      </div>
+
+      <!-- Screen-reader status announcements -->
+      <div id="form-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="px-6 md:px-10 pt-20 pb-10 border-t" style="border-color: var(--line);">
+    <div class="grid grid-cols-12 gap-6 mb-16">
+      <div class="col-span-12 md:col-span-5">
+        <img src="/studiopark-logo.png" alt="Studio Park" class="logo-mark h-20 w-auto mb-6" />
+        <p class="text-[14px] max-w-xs leading-relaxed" style="color: var(--cream-dim);">
+          Western Canada's premier experiential production partner. Calgary-based, nationally trusted.
+        </p>
+      </div>
+      <div class="col-span-6 md:col-span-2">
+        <div class="label mb-5">Services</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/work" class="nav-link">Work</a></li>
+          <li><a href="/content" class="nav-link">Content</a></li>
+          <li><a href="/staffing" class="nav-link">Staffing</a></li>
+          <li><a href="/consulting" class="nav-link">Consulting</a></li>
+        </ul>
+      </div>
+      <div class="col-span-6 md:col-span-2">
+        <div class="label mb-5">Connect</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/contact" class="nav-link">Contact</a></li>
+          <li><a href="mailto:hello@studiopark.ca" class="nav-link">Email</a></li>
+          <li><a href="#" class="nav-link">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="col-span-12 md:col-span-3">
+        <div class="label mb-5">Visit</div>
+        <p class="text-[14px] leading-relaxed" style="color: var(--cream-dim);">
+          1933 10 Ave SW, #301<br/>Calgary, AB T3C 0K3<br/>Canada
+        </p>
+      </div>
+    </div>
+    <div class="h-px mb-8" style="background: var(--line);"></div>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs mono" style="color: var(--cream-dim);">
+      <div>© 2026 Studio Park Experiential Inc. All rights reserved.</div>
+      <div class="flex items-center gap-5 flex-wrap">
+        <span>51.0447° N · 114.0719° W</span>
+        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full blink" style="background: var(--accent);"></span>Open for Q2 '26 bookings</span>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .honeypot {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .field-error {
+      display: block;
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--cream-dim);
+      margin-top: 8px;
+      min-height: 1em;
+      letter-spacing: 0.02em;
+    }
+    .field-error[data-show="true"] {
+      color: var(--accent);
+    }
+    #form-error {
+      padding: 16px 20px;
+      border: 1px solid var(--accent);
+      color: var(--cream);
+      font-size: 14px;
+      border-radius: 4px;
+      background: rgba(213, 68, 32, 0.06);
+      margin-bottom: 32px;
+    }
+    .age-confirm input[type="checkbox"] {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+  </style>
+
+  <script is:inline>
+    // Checkbox + radio pill active state (extends contact-form pattern to handle radios)
+    document.querySelectorAll('.chk-pill input').forEach((input) => {
+      input.addEventListener('change', (e) => {
+        const target = e.target;
+        if (target.type === 'radio') {
+          // Sync all pills sharing this radio's name
+          document.querySelectorAll('.chk-pill input[name="' + target.name + '"]').forEach((other) => {
+            other.closest('.chk-pill').classList.toggle('active', other.checked);
+          });
+        } else {
+          target.closest('.chk-pill').classList.toggle('active', target.checked);
+        }
+      });
+    });
+
+    // City "Other" conditional reveal
+    (function () {
+      const citySelect = document.getElementById('city');
+      const cityOtherWrapper = document.getElementById('city-other-wrapper');
+      if (!citySelect || !cityOtherWrapper) return;
+      citySelect.addEventListener('change', () => {
+        cityOtherWrapper.hidden = citySelect.value !== 'Other';
+      });
+    })();
+
+    // Form submission — Formspree via fetch, no redirect
+    (function () {
+      const form = document.getElementById('apply-form');
+      if (!form) return;
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const submitLabel = submitBtn.querySelector('.btn-label');
+      const errorBox = document.getElementById('form-error');
+      const thanks = document.getElementById('form-thanks');
+      const status = document.getElementById('form-status');
+
+      const requiredText = [
+        { name: 'fullName', message: 'Please enter your full name.' },
+        { name: 'email', message: 'Please enter your email.' },
+        { name: 'phone', message: 'Please enter your phone number.' },
+        { name: 'city', message: 'Please select your nearest market.' },
+        { name: 'experienceLevel', message: 'Please select an experience level.' },
+      ];
+
+      const requiredRadios = [
+        { name: 'transportation', message: 'Please choose a transportation option.' },
+        { name: 'travel', message: 'Please choose a travel option.' },
+      ];
+
+      function clearErrors() {
+        errorBox.hidden = true;
+        form.querySelectorAll('.field-error').forEach((el) => {
+          el.textContent = '';
+          el.removeAttribute('data-show');
+        });
+      }
+
+      function showFieldError(fieldName, message) {
+        const slot = form.querySelector('[data-error-for="' + fieldName + '"]');
+        if (slot) {
+          slot.textContent = message;
+          slot.setAttribute('data-show', 'true');
+        }
+      }
+
+      function validate() {
+        let firstInvalid = null;
+
+        // Required text/select fields
+        for (const { name, message } of requiredText) {
+          const el = form.elements[name];
+          if (!el || !el.value.trim()) {
+            showFieldError(name, message);
+            if (!firstInvalid) firstInvalid = el;
+          }
+        }
+
+        // Email format
+        const email = form.elements.email;
+        if (email && email.value.trim() && !email.checkValidity()) {
+          showFieldError('email', 'That email address doesn’t look right.');
+          if (!firstInvalid) firstInvalid = email;
+        }
+
+        // Age confirmation
+        const ageConfirm = form.elements.ageConfirm;
+        if (ageConfirm && !ageConfirm.checked) {
+          showFieldError('ageConfirm', 'Please confirm you are 18 or older.');
+          if (!firstInvalid) firstInvalid = ageConfirm;
+        }
+
+        // Required radio groups
+        for (const { name, message } of requiredRadios) {
+          const checked = form.querySelector('input[name="' + name + '"]:checked');
+          if (!checked) {
+            showFieldError(name, message);
+            if (!firstInvalid) {
+              const first = form.querySelector('input[name="' + name + '"]');
+              if (first) firstInvalid = first;
+            }
+          }
+        }
+
+        // Required multi-select: availability (≥1)
+        const availability = form.querySelectorAll('input[name="availability"]:checked');
+        if (availability.length === 0) {
+          showFieldError('availability', 'Please select at least one availability option.');
+          if (!firstInvalid) {
+            const first = form.querySelector('input[name="availability"]');
+            if (first) firstInvalid = first;
+          }
+        }
+
+        if (firstInvalid && typeof firstInvalid.focus === 'function') {
+          firstInvalid.focus();
+        }
+        return !firstInvalid;
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearErrors();
+
+        if (!validate()) {
+          status.textContent = 'Please complete the highlighted fields.';
+          return;
+        }
+
+        // Sync _replyto from email
+        form.elements._replyto.value = form.elements.email.value.trim();
+
+        submitBtn.disabled = true;
+        submitLabel.textContent = 'Sending...';
+        status.textContent = 'Sending your application.';
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            headers: { Accept: 'application/json' },
+            body: new FormData(form),
+          });
+          if (!res.ok) throw new Error('submit-failed');
+          form.hidden = true;
+          thanks.hidden = false;
+          status.textContent = 'Application received. Thanks for applying.';
+          thanks.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch (err) {
+          errorBox.hidden = false;
+          submitBtn.disabled = false;
+          submitLabel.textContent = 'Submit application';
+          status.textContent = 'Something went wrong sending your application.';
+          errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    })();
+  </script>
+
+</BaseLayout>
