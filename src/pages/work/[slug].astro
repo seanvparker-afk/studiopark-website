@@ -401,13 +401,6 @@ const aspectClass = (a: string): string => {
   .video-hero:hover .video-hero-scrim {
     background: linear-gradient(180deg, rgba(19,17,16,0.40) 0%, rgba(19,17,16,0.08) 30%, rgba(19,17,16,0.75) 100%);
   }
-  .video-hero-iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
 </style>
 
 <script is:inline>
@@ -419,24 +412,32 @@ const aspectClass = (a: string): string => {
 
     let played = false;
     const play = (e) => {
-      // Don't intercept clicks on the back-to-work link or any other link/button
-      // outside of the play button itself.
+      // Don't intercept clicks on the back-to-work link or other anchors.
       if (e && e.target.closest('a')) return;
       if (played) return;
       played = true;
 
+      // Inline positioning: Astro scopes <style> rules with data-astro-cid-* at
+      // build time, but JS-created elements don't get those attributes — so a
+      // class-based rule would never match. Inline styles bypass scoping.
       const iframe = document.createElement('iframe');
       iframe.src = 'https://player.vimeo.com/video/' + videoId + '?autoplay=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479';
       iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
       iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
       iframe.setAttribute('title', videoTitle);
       iframe.setAttribute('frameborder', '0');
-      iframe.className = 'video-hero-iframe';
+      iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
+
+      // Insert iframe BEFORE the still so it sits behind in stacking order;
+      // the still then fades on top, revealing the playing iframe underneath.
+      hero.insertBefore(iframe, still);
 
       still.style.opacity = '0';
+      still.style.pointerEvents = 'none';
+      hero.style.cursor = 'default';
+
       setTimeout(() => {
-        still.replaceWith(iframe);
-        hero.style.cursor = 'default';
+        still.style.visibility = 'hidden';
       }, 300);
     };
 
