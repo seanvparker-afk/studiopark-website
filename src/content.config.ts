@@ -28,8 +28,9 @@ const work = defineCollection({
       )
       .default([]),
     stats: z
-      .array(z.object({ value: z.string(), label: z.string() }))
+      .array(z.object({ value: z.string(), label: z.string().optional() }))
       .optional(),
+    videoId: z.string().optional(),
   }),
 });
 

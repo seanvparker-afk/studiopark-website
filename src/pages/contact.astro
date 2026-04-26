@@ -158,17 +158,35 @@ const NEIGHBORHOODS = [
       <div class="col-span-12 md:col-span-8">
         <div class="label mb-6">§ 02 — Project Inquiry</div>
 
-        <form class="space-y-10" onsubmit="event.preventDefault(); alert('Form would submit here in production.');">
+        <form
+          id="inquiry-form"
+          class="space-y-10"
+          action="https://formspree.io/f/xnjlrgpk"
+          method="POST"
+          novalidate
+        >
+
+          <!-- Honeypot (visually hidden — bots fill, humans don't) -->
+          <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="hidden" name="_subject" value="New inquiry from studiopark.ca" />
+          <input type="hidden" name="_replyto" value="" />
+
+          <!-- Error message (hidden by default) -->
+          <div id="form-error" hidden role="alert">
+            Something went wrong. Email us directly at <a href="mailto:hello@studiopark.ca" class="nav-link" style="color: var(--cream);">hello@studiopark.ca</a>.
+          </div>
 
           <!-- Row: Name + Company -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="field">
               <label class="field-label" for="name">Your Name *</label>
-              <input class="input" type="text" id="name" required placeholder="First and last" />
+              <input class="input" type="text" id="name" name="name" required placeholder="First and last" />
+              <span class="field-error" data-error-for="name"></span>
             </div>
             <div class="field">
               <label class="field-label" for="company">Agency / Company *</label>
-              <input class="input" type="text" id="company" required placeholder="Who you're working with" />
+              <input class="input" type="text" id="company" name="company" required placeholder="Who you're working with" />
+              <span class="field-error" data-error-for="company"></span>
             </div>
           </div>
 
@@ -176,11 +194,12 @@ const NEIGHBORHOODS = [
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="field">
               <label class="field-label" for="email">Email *</label>
-              <input class="input" type="email" id="email" required placeholder="you@agency.com" />
+              <input class="input" type="email" id="email" name="email" required placeholder="you@agency.com" />
+              <span class="field-error" data-error-for="email"></span>
             </div>
             <div class="field">
               <label class="field-label" for="role">Your Role</label>
-              <input class="input" type="text" id="role" placeholder="Producer, Strategist, AD..." />
+              <input class="input" type="text" id="role" name="role" placeholder="Producer, Strategist, AD..." />
             </div>
           </div>
 
@@ -188,11 +207,11 @@ const NEIGHBORHOODS = [
           <div class="field">
             <label class="field-label">Services You're Exploring <span style="color: var(--muted);">(select all)</span></label>
             <div class="flex flex-wrap gap-3 mt-2">
-              <label class="chk-pill"><input type="checkbox" name="service" value="content" /><span>Content Production</span></label>
-              <label class="chk-pill"><input type="checkbox" name="service" value="staffing" /><span>Talent &amp; Staffing</span></label>
-              <label class="chk-pill"><input type="checkbox" name="service" value="consulting" /><span>Consulting &amp; Logistics</span></label>
-              <label class="chk-pill"><input type="checkbox" name="service" value="all" /><span>Full Production</span></label>
-              <label class="chk-pill"><input type="checkbox" name="service" value="other" /><span>Something else</span></label>
+              <label class="chk-pill"><input type="checkbox" name="services" value="content" /><span>Content Production</span></label>
+              <label class="chk-pill"><input type="checkbox" name="services" value="staffing" /><span>Talent &amp; Staffing</span></label>
+              <label class="chk-pill"><input type="checkbox" name="services" value="consulting" /><span>Consulting &amp; Logistics</span></label>
+              <label class="chk-pill"><input type="checkbox" name="services" value="all" /><span>Full Production</span></label>
+              <label class="chk-pill"><input type="checkbox" name="services" value="other" /><span>Something else</span></label>
             </div>
           </div>
 
@@ -200,15 +219,15 @@ const NEIGHBORHOODS = [
           <div class="field">
             <label class="field-label">Markets <span style="color: var(--muted);">(select all)</span></label>
             <div class="flex flex-wrap gap-3 mt-2">
-              <label class="chk-pill"><input type="checkbox" name="market" value="yyc" /><span>Calgary</span></label>
-              <label class="chk-pill"><input type="checkbox" name="market" value="yeg" /><span>Edmonton</span></label>
-              <label class="chk-pill"><input type="checkbox" name="market" value="yvr" /><span>Vancouver</span></label>
-              <label class="chk-pill"><input type="checkbox" name="market" value="yyj" /><span>Victoria</span></label>
-              <label class="chk-pill"><input type="checkbox" name="market" value="ylw" /><span>Kelowna</span></label>
-              <label class="chk-pill"><input type="checkbox" name="market" value="yxe" /><span>Saskatoon</span></label>
-              <label class="chk-pill"><input type="checkbox" name="market" value="yqr" /><span>Regina</span></label>
-              <label class="chk-pill"><input type="checkbox" name="market" value="ywg" /><span>Winnipeg</span></label>
-              <label class="chk-pill"><input type="checkbox" name="market" value="tbd" /><span>Still scoping</span></label>
+              <label class="chk-pill"><input type="checkbox" name="markets" value="yyc" /><span>Calgary</span></label>
+              <label class="chk-pill"><input type="checkbox" name="markets" value="yeg" /><span>Edmonton</span></label>
+              <label class="chk-pill"><input type="checkbox" name="markets" value="yvr" /><span>Vancouver</span></label>
+              <label class="chk-pill"><input type="checkbox" name="markets" value="yyj" /><span>Victoria</span></label>
+              <label class="chk-pill"><input type="checkbox" name="markets" value="ylw" /><span>Kelowna</span></label>
+              <label class="chk-pill"><input type="checkbox" name="markets" value="yxe" /><span>Saskatoon</span></label>
+              <label class="chk-pill"><input type="checkbox" name="markets" value="yqr" /><span>Regina</span></label>
+              <label class="chk-pill"><input type="checkbox" name="markets" value="ywg" /><span>Winnipeg</span></label>
+              <label class="chk-pill"><input type="checkbox" name="markets" value="tbd" /><span>Still scoping</span></label>
             </div>
           </div>
 
@@ -216,8 +235,8 @@ const NEIGHBORHOODS = [
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="field">
               <label class="field-label" for="timeline">Timeline</label>
-              <select class="select" id="timeline">
-                <option>Select a window</option>
+              <select class="select" id="timeline" name="timeline">
+                <option value="">Select a window</option>
                 <option>ASAP — within 2 weeks</option>
                 <option>This quarter</option>
                 <option>Next quarter</option>
@@ -227,8 +246,8 @@ const NEIGHBORHOODS = [
             </div>
             <div class="field">
               <label class="field-label" for="budget">Budget Range</label>
-              <select class="select" id="budget">
-                <option>Select a range</option>
+              <select class="select" id="budget" name="budget">
+                <option value="">Select a range</option>
                 <option>Under $10K</option>
                 <option>$10K – $25K</option>
                 <option>$25K – $75K</option>
@@ -242,18 +261,38 @@ const NEIGHBORHOODS = [
           <!-- Message -->
           <div class="field">
             <label class="field-label" for="message">Tell us about the activation *</label>
-            <textarea class="textarea" id="message" required placeholder="The campaign, the client, the problem we're helping solve. Links to briefs or decks welcome."></textarea>
+            <textarea class="textarea" id="message" name="message" required placeholder="The campaign, the client, the problem we're helping solve. Links to briefs or decks welcome."></textarea>
+            <span class="field-error" data-error-for="message"></span>
           </div>
 
           <!-- Submit -->
           <div class="flex flex-col md:flex-row items-start md:items-center gap-6 pt-4">
             <button type="submit" class="btn display-md inline-flex items-center justify-center gap-3 px-8 py-4 text-lg border" style="border-color: var(--cream); color: var(--cream);">
-              Send inquiry
+              <span class="btn-label">Send inquiry</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </button>
             <span class="label">We'll reply within one business day</span>
           </div>
         </form>
+
+        <!-- Success state (replaces form on successful submit) -->
+        <div id="form-thanks" hidden>
+          <h2 class="display-md text-3xl md:text-5xl mb-6">Thanks — we'll be in touch within one business day.</h2>
+          <p class="text-[15px] leading-relaxed mb-8" style="color: var(--cream-dim);">
+            Your inquiry is in. The Studio Park team will review every brief that comes through, and you'll get a real reply (not an autoresponder) within one business day. In the meantime, feel free to dig into recent work.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/" class="btn display-md inline-flex items-center gap-2 px-6 py-3 text-sm border" style="border-color: var(--cream); color: var(--cream);">
+              ← Back to home
+            </a>
+            <a href="/work" class="btn display-md inline-flex items-center gap-2 px-6 py-3 text-sm border" style="border-color: var(--cream); color: var(--cream);">
+              See recent work →
+            </a>
+          </div>
+        </div>
+
+        <!-- Screen-reader status announcements -->
+        <div id="form-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
       </div>
 
     </div>
@@ -492,12 +531,144 @@ const NEIGHBORHOODS = [
     </div>
   </footer>
 
+  <style>
+    .honeypot {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .field-error {
+      display: block;
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--cream-dim);
+      margin-top: 8px;
+      min-height: 1em;
+      letter-spacing: 0.02em;
+    }
+    .field-error[data-show="true"] {
+      color: var(--accent);
+    }
+    #form-error {
+      padding: 16px 20px;
+      border: 1px solid var(--accent);
+      color: var(--cream);
+      font-size: 14px;
+      border-radius: 4px;
+      background: rgba(213, 68, 32, 0.06);
+    }
+  </style>
+
   <script is:inline>
+    // Checkbox pill active state — preserved from earlier
     document.querySelectorAll('.chk-pill input').forEach((input) => {
       input.addEventListener('change', (e) => {
         e.target.closest('.chk-pill').classList.toggle('active', e.target.checked);
       });
     });
+
+    // Form submission — Formspree via fetch, no redirect
+    (function () {
+      const form = document.getElementById('inquiry-form');
+      if (!form) return;
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const submitLabel = submitBtn.querySelector('.btn-label');
+      const errorBox = document.getElementById('form-error');
+      const thanks = document.getElementById('form-thanks');
+      const status = document.getElementById('form-status');
+
+      const requiredFields = [
+        { name: 'name', message: 'Please enter your name.' },
+        { name: 'company', message: 'Please enter your agency or company.' },
+        { name: 'email', message: 'Please enter your email.' },
+        { name: 'message', message: 'Please tell us about the activation.' },
+      ];
+
+      function clearErrors() {
+        errorBox.hidden = true;
+        form.querySelectorAll('.field-error').forEach((el) => {
+          el.textContent = '';
+          el.removeAttribute('data-show');
+        });
+      }
+
+      function showFieldError(fieldName, message) {
+        const slot = form.querySelector('[data-error-for="' + fieldName + '"]');
+        if (slot) {
+          slot.textContent = message;
+          slot.setAttribute('data-show', 'true');
+        }
+      }
+
+      function validate() {
+        let firstInvalid = null;
+        for (const { name, message } of requiredFields) {
+          const el = form.elements[name];
+          if (!el || !el.value.trim()) {
+            showFieldError(name, message);
+            if (!firstInvalid) firstInvalid = el;
+          }
+        }
+        const email = form.elements.email;
+        if (email && email.value.trim() && !email.checkValidity()) {
+          showFieldError('email', 'That email address doesn’t look right.');
+          if (!firstInvalid) firstInvalid = email;
+        }
+        if (firstInvalid) firstInvalid.focus();
+        return !firstInvalid;
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearErrors();
+
+        if (!validate()) {
+          status.textContent = 'Please complete the highlighted fields.';
+          return;
+        }
+
+        // Sync _replyto from email so Sean can hit reply in his inbox
+        form.elements._replyto.value = form.elements.email.value.trim();
+
+        submitBtn.disabled = true;
+        submitLabel.textContent = 'Sending...';
+        status.textContent = 'Sending your inquiry.';
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            headers: { Accept: 'application/json' },
+            body: new FormData(form),
+          });
+          if (!res.ok) throw new Error('submit-failed');
+          form.hidden = true;
+          thanks.hidden = false;
+          status.textContent = 'Inquiry sent. Thanks for reaching out.';
+          thanks.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch (err) {
+          errorBox.hidden = false;
+          submitBtn.disabled = false;
+          submitLabel.textContent = 'Send inquiry';
+          status.textContent = 'Something went wrong sending your inquiry.';
+          errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    })();
   </script>
 
 </BaseLayout>

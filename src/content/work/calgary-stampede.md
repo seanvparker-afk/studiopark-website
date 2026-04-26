@@ -35,8 +35,8 @@ stats:
     label: Show run
   - value: "3 venues"
     label: Concurrent activations
-  - value: "24/7"
-    label: Coverage from load-in to load-out
+  - value: "2022—Present"
+videoId: "1186594870"
 ---
 
 We support the Stampede's biggest entertainment hubs, including Nashville North and Cowboys Music Festival, providing top-tier event staff and high-impact photo/video coverage. Whether it's capturing the magic of a headline set, managing crowd flow, or elevating brand presence on-site, we bring the same focus, flexibility, and flair to every moment.

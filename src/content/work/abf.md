@@ -17,6 +17,7 @@ order: 2
 thumbShape: tall
 heroImage: https://static.wixstatic.com/media/506540_7cc8ab1c8a0a40e1850dbd63520a2382f000.jpg/v1/fit/w_1920,h_1080,q_90,enc_avif,quality_auto/file.jpg
 heroAlt: Alberta Beer Festivals — festival floor
+videoId: "1186594809"
 thumbImage: https://static.wixstatic.com/media/81231b_81e64f0f1fd34fe6ae5d1c1a38ff4fa6~mv2.jpg/v1/fit/w_1200,h_1500,q_90,enc_avif,quality_auto/file.jpg
 gallery:
   - src: https://static.wixstatic.com/media/506540_7371bcb93ad741a8969bf9893f3c42ec~mv2.jpg/v1/fit/w_1600,h_1067,q_90,enc_avif,quality_auto/file.jpg

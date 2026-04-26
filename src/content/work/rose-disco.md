@@ -15,6 +15,7 @@ order: 4
 thumbShape: wide
 heroImage: https://static.wixstatic.com/media/506540_abd92d22b9de46cb803d212bf86ae6d6f000.jpg/v1/fit/w_1920,h_1080,q_90,enc_avif,quality_auto/file.jpg
 heroAlt: Rose Disco — Vancouver daytime takeover
+videoId: "1186594935"
 thumbImage: https://static.wixstatic.com/media/81231b_8b9a5941ab88495cbb3fc1dea318ee1d~mv2.jpg/v1/fit/w_1600,h_1067,q_90,enc_avif,quality_auto/file.jpg
 gallery:
   - src: https://static.wixstatic.com/media/81231b_8b9a5941ab88495cbb3fc1dea318ee1d~mv2.jpg/v1/fit/w_1600,h_1067,q_90,enc_avif,quality_auto/file.jpg

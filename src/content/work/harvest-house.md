@@ -15,6 +15,7 @@ order: 3
 thumbShape: tall
 heroImage: https://static.wixstatic.com/media/506540_761ec290c2f34e189ed00fddbfa1a8cdf000.jpg/v1/fit/w_1920,h_1080,q_90,enc_avif,quality_auto/file.jpg
 heroAlt: Harvest House — festival hall, Vancouver
+videoId: "1186594899"
 thumbImage: https://static.wixstatic.com/media/81231b_881d6ead66844407be897c40020f253a~mv2.jpg/v1/fit/w_1200,h_1500,q_90,enc_avif,quality_auto/file.jpg
 gallery:
   - src: https://static.wixstatic.com/media/81231b_881d6ead66844407be897c40020f253a~mv2.jpg/v1/fit/w_1200,h_1500,q_90,enc_avif,quality_auto/file.jpg

@@ -15,6 +15,7 @@ order: 5
 thumbShape: tall
 heroImage: https://static.wixstatic.com/media/506540_deec1b2519a14f7faf2383f5079ab892f000.jpg/v1/fit/w_1920,h_1080,q_90,enc_avif,quality_auto/file.jpg
 heroAlt: Scream — Halloween activation, Edmonton
+videoId: "1186594959"
 thumbImage: https://static.wixstatic.com/media/81231b_4d6aec1924194d60bac83b753d944cf3~mv2.jpg/v1/fit/w_1200,h_1500,q_90,enc_avif,quality_auto/file.jpg
 gallery:
   - src: https://static.wixstatic.com/media/81231b_4d6aec1924194d60bac83b753d944cf3~mv2.jpg/v1/fit/w_1200,h_1500,q_90,enc_avif,quality_auto/file.jpg

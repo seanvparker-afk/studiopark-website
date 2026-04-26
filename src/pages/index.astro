@@ -120,51 +120,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- ===================== REEL VIDEO SECTION ===================== -->
-  <section id="reel" class="relative overflow-hidden">
-    <div class="relative aspect-[16/10] md:aspect-[21/9] group cursor-pointer">
-      <!-- Video placeholder image -->
-      <img
-        src="https://static.wixstatic.com/media/506540_9435882fc07f409b944dff376764c76d~mv2.jpg/v1/fit/w_2000,h_1200,q_90,enc_avif,quality_auto/file.jpg"
-        alt="Studio Park 2025 Reel"
-        class="absolute inset-0 w-full h-full object-cover"
-        style="filter: saturate(0.8) brightness(0.75);"
-      />
-      <!-- Gradient overlay -->
-      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(19,17,16,0.4) 0%, rgba(19,17,16,0.25) 40%, rgba(19,17,16,0.7) 100%);"></div>
-
-      <!-- Top corner labels -->
-      <div class="absolute top-6 md:top-8 left-6 md:left-10 right-6 md:right-10 flex items-start justify-between">
-        <div class="label" style="color: var(--cream);">§ 02 — Reel / 2025</div>
-        <div class="mono text-xs" style="color: var(--cream);">REC · 01:47</div>
+  <section id="reel" class="relative">
+    <div class="px-6 md:px-10 pt-16 md:pt-24 pb-10 md:pb-14 flex items-end justify-between gap-6 flex-wrap">
+      <div>
+        <div class="label mb-4">§ 02 — Reel / 2025</div>
+        <h2 class="display text-4xl md:text-6xl mb-3">A year, in motion.</h2>
+        <p class="text-sm md:text-base max-w-md" style="color: var(--cream-dim);">
+          Fifteen activations. Four provinces. Selected moments from 2024 — captured, staffed, and produced by us.
+        </p>
       </div>
-
-      <!-- Center play button -->
-      <div class="absolute inset-0 flex items-center justify-center">
-        <div class="relative flex items-center justify-center">
-          <span class="absolute inset-0 rounded-full pulse-ring" style="background: rgba(213, 68, 32, 0.3); width: 130px; height: 130px;"></span>
-          <span class="absolute inset-0 rounded-full pulse-ring" style="background: rgba(213, 68, 32, 0.2); width: 130px; height: 130px; animation-delay: 1.2s;"></span>
-          <button
-            class="relative w-24 h-24 md:w-32 md:h-32 rounded-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110"
-            style="background: var(--accent); box-shadow: 0 20px 60px rgba(213,68,32,0.35);"
-            aria-label="Play reel"
-          >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="#F2EDE3" style="margin-left: 4px;">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Bottom copy -->
-      <div class="absolute bottom-6 md:bottom-10 left-6 md:left-10 right-6 md:right-10 flex items-end justify-between gap-6 flex-wrap">
-        <div>
-          <h2 class="display text-4xl md:text-6xl mb-2">A year, in motion.</h2>
-          <p class="text-sm md:text-base max-w-md" style="color: var(--cream-dim);">
-            Fifteen activations. Four provinces. Selected moments from 2024 — captured, staffed, and produced by us.
-          </p>
-        </div>
-        <div class="label" style="color: var(--cream);">Watch reel →</div>
-      </div>
+    </div>
+    <div class="vimeo-wrapper">
+      <iframe
+        src="https://player.vimeo.com/video/1186594762?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        title="Home Page Video"
+        loading="lazy"
+      ></iframe>
     </div>
   </section>
 
