@@ -419,19 +419,47 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- ===================== CLIENTS ===================== -->
-  <section class="px-6 md:px-10 py-20 border-t" style="border-color: var(--line);">
-    <div class="grid grid-cols-12 gap-6 items-center">
-      <div class="col-span-12 md:col-span-3">
-        <div class="label mb-3">§ 06 — Trusted By</div>
-        <p class="text-[14px]" style="color: var(--cream-dim);">
-          Agencies and brands activating across Western Canada.
-        </p>
+  <section class="py-20 border-t" style="border-color: var(--line);">
+    <div class="px-6 md:px-10 grid grid-cols-12 gap-6 mb-14 md:mb-20">
+      <div class="col-span-12 md:col-span-4">
+        <div class="label mb-4">§ 06 — Trusted By</div>
       </div>
-      <div class="col-span-12 md:col-span-9 grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-        <div class="display-md text-xl md:text-2xl" style="color: var(--cream-dim);">Mosaic</div>
-        <div class="display-md text-xl md:text-2xl" style="color: var(--cream-dim);">ABF</div>
-        <div class="display-md text-xl md:text-2xl" style="color: var(--cream-dim);">Match MG</div>
-        <div class="display-md text-xl md:text-2xl" style="color: var(--cream-dim);">Stampede Co.</div>
+      <div class="col-span-12 md:col-span-8">
+        <h2 class="display-md text-3xl md:text-5xl">
+          Breweries, agencies, festivals,<br/>
+          <span style="color: var(--cream-dim);">sports clubs, and incubators.</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="client-marquee overflow-hidden">
+      <div class="flex marquee-track marquee-track--slow whitespace-nowrap">
+        <div class="flex items-center gap-x-20 md:gap-x-28 pr-20 md:pr-28 shrink-0">
+          <img src="/clients/mosaic.png" alt="Mosaic" class="invert-cream h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/platform-calgary.png" alt="Platform Calgary" class="h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/creative-destruction-labs.png" alt="Creative Destruction Labs" class="invert-cream h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/banded-peak-brewing.png" alt="Banded Peak Brewing" class="h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/calgary-winter-club.png" alt="Calgary Winter Club" class="invert-cream h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/abf.png" alt="Alberta Beer Festivals" class="invert-cream h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/ecd.png" alt="ECD" class="h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/bearhill.png" alt="Bear Hill Brewing" class="h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/midnight-circus.png" alt="Midnight Circus" class="h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/armstrong.png" alt="Armstrong" class="h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/sdi-mktg.png" alt="SDI Marketing" class="invert-cream h-20 md:h-24 w-auto object-contain shrink-0" />
+        </div>
+        <div class="flex items-center gap-x-20 md:gap-x-28 pr-20 md:pr-28 shrink-0" aria-hidden="true">
+          <img src="/clients/mosaic.png" alt="" class="invert-cream h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/platform-calgary.png" alt="" class="h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/creative-destruction-labs.png" alt="" class="invert-cream h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/banded-peak-brewing.png" alt="" class="h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/calgary-winter-club.png" alt="" class="invert-cream h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/abf.png" alt="" class="invert-cream h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/ecd.png" alt="" class="h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/bearhill.png" alt="" class="h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/midnight-circus.png" alt="" class="h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/armstrong.png" alt="" class="h-20 md:h-24 w-auto object-contain shrink-0" />
+          <img src="/clients/sdi-mktg.png" alt="" class="invert-cream h-20 md:h-24 w-auto object-contain shrink-0" />
+        </div>
       </div>
     </div>
   </section>
@@ -512,4 +540,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </footer>
 
+
+<style>
+  .marquee-track--slow {
+    animation-duration: 70s;
+  }
+  .client-marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  .invert-cream {
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+  }
+</style>
 </BaseLayout>
