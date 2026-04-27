@@ -167,12 +167,23 @@ body::after {
   will-change: transform;
 }
 
-@media (max-width: 768px) {
+.marquee-track--slow {
+  animation-duration: 70s;
+}
+
+@media (max-width: 767.98px) {
   .marquee-track {
-    animation-duration: 33s;
+    animation-duration: 28s;
   }
   .marquee-track--slow {
-    animation-duration: 42s;
+    animation-duration: 32s;
+  }
+
+  /* Solid nav background on mobile so fixed header separates from content
+     (overrides inline gradient on per-page <nav> blocks). */
+  nav.fixed.top-0 {
+    background: var(--bg) !important;
+    backdrop-filter: none !important;
   }
 }
 
