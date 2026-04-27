@@ -10,6 +10,18 @@ const {
   title = 'Studio Park — Western Canada\'s experiential production partner',
   description = 'Calgary-based experiential production. Content, staffing, and consulting for agencies activating across Western Canada.',
 } = Astro.props;
+
+const pathname = Astro.url.pathname;
+const isActive = (path: string): boolean =>
+  pathname === path || pathname.startsWith(path + '/');
+
+const navItems = [
+  { href: '/work', label: 'Work' },
+  { href: '/content', label: 'Content' },
+  { href: '/staffing', label: 'Staffing' },
+  { href: '/consulting', label: 'Consulting' },
+  { href: '/contact', label: 'Contact' },
+];
 ---
 
 <!DOCTYPE html>
@@ -29,5 +41,103 @@ const {
   </head>
   <body class="min-h-screen">
     <slot />
+
+    <!-- Mobile menu trigger — hidden on md+ -->
+    <button
+      id="mobile-menu-toggle"
+      type="button"
+      class="md:hidden fixed top-4 right-4 z-[60] flex items-center justify-center"
+      style="width: 44px; height: 44px; color: var(--cream); background: transparent;"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg class="mobile-menu-icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="3" y1="7" x2="21" y2="7" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="17" x2="21" y2="17" />
+      </svg>
+      <svg class="mobile-menu-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="5" y1="5" x2="19" y2="19" />
+        <line x1="19" y1="5" x2="5" y2="19" />
+      </svg>
+    </button>
+
+    <!-- Mobile menu overlay -->
+    <div
+      id="mobile-menu"
+      class="md:hidden fixed inset-0 z-[55]"
+      style="background: var(--bg);"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Site navigation"
+    >
+      <nav class="h-full flex flex-col justify-center px-8 pb-12 pt-24">
+        <ul class="space-y-12">
+          {navItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={['mobile-menu-link display-md', { active: isActive(item.href) }]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div class="mt-16 pt-10 border-t" style="border-color: var(--line);">
+          <div class="flex items-center gap-3 text-xs mono mb-5" style="color: var(--cream-dim);">
+            <span class="w-1.5 h-1.5 rounded-full blink" style="background: var(--accent);"></span>
+            YYC · Open for Q2 '26
+          </div>
+          <div class="flex flex-col gap-2 text-xs mono" style="color: var(--cream-dim);">
+            <a href="mailto:hello@studiopark.ca" class="w-fit" style="color: var(--cream-dim);">hello@studiopark.ca</a>
+            <a href="tel:+14039780942" class="w-fit" style="color: var(--cream-dim);">403.978.0942</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <script is:inline>
+      (function () {
+        const toggle = document.getElementById('mobile-menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        if (!toggle || !menu) return;
+
+        const root = document.documentElement;
+        const body = document.body;
+
+        const open = () => {
+          root.dataset.menuOpen = 'true';
+          body.classList.add('menu-open');
+          toggle.setAttribute('aria-expanded', 'true');
+          toggle.setAttribute('aria-label', 'Close menu');
+          menu.setAttribute('aria-hidden', 'false');
+        };
+
+        const close = () => {
+          delete root.dataset.menuOpen;
+          body.classList.remove('menu-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open menu');
+          menu.setAttribute('aria-hidden', 'true');
+        };
+
+        toggle.addEventListener('click', () => {
+          if (root.dataset.menuOpen === 'true') close();
+          else open();
+        });
+
+        menu.querySelectorAll('a').forEach((a) => {
+          a.addEventListener('click', close);
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && root.dataset.menuOpen === 'true') close();
+        });
+      })();
+    </script>
   </body>
 </html>
