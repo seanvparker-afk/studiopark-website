@@ -173,10 +173,10 @@ body::after {
 
 @media (max-width: 767.98px) {
   .marquee-track {
-    animation-duration: 28s;
+    animation-duration: 20s;
   }
   .marquee-track--slow {
-    animation-duration: 32s;
+    animation-duration: 23s;
   }
 
   /* Solid nav background on mobile so fixed header separates from content
