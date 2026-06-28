@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CoverageMap from '../components/CoverageMap.astro';
 ---
 
 <BaseLayout
@@ -269,74 +270,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- MARKETS -->
-  <section class="px-6 md:px-10 py-24 md:py-36 border-y" style="border-color: var(--line);">
-    <div class="grid grid-cols-12 gap-6 mb-10 md:mb-14">
-      <div class="col-span-12 md:col-span-4">
-        <div class="label mb-4">§ 05 — Markets Covered</div>
-      </div>
-      <div class="col-span-12 md:col-span-8">
-        <h2 class="display-md text-4xl md:text-6xl">
-          Eight cities. One roster.
-        </h2>
-      </div>
-    </div>
-
-    <div>
-      <div class="market-row">
-        <div class="idx text-3xl">01</div>
-        <div class="display-md text-xl md:text-2xl">Calgary <span class="mono text-xs ml-2" style="color: var(--cream-dim);">YYC · HQ</span></div>
-        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Full roster · Same-day response</div>
-        <div class="mono text-xs" style="color: var(--cream-dim);">AB</div>
-      </div>
-      <div class="market-row">
-        <div class="idx text-3xl" style="color: var(--magenta);">02</div>
-        <div class="display-md text-xl md:text-2xl">Edmonton</div>
-        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Full roster · 48h response</div>
-        <div class="mono text-xs" style="color: var(--cream-dim);">AB</div>
-      </div>
-      <div class="market-row">
-        <div class="idx text-3xl">03</div>
-        <div class="display-md text-xl md:text-2xl">Vancouver</div>
-        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Full roster · 48h response</div>
-        <div class="mono text-xs" style="color: var(--cream-dim);">BC</div>
-      </div>
-      <div class="market-row">
-        <div class="idx text-3xl" style="color: var(--magenta);">04</div>
-        <div class="display-md text-xl md:text-2xl">Victoria</div>
-        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Project roster · 5-day lead</div>
-        <div class="mono text-xs" style="color: var(--cream-dim);">BC</div>
-      </div>
-      <div class="market-row">
-        <div class="idx text-3xl">05</div>
-        <div class="display-md text-xl md:text-2xl">Saskatoon</div>
-        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Project roster · 5-day lead</div>
-        <div class="mono text-xs" style="color: var(--cream-dim);">SK</div>
-      </div>
-      <div class="market-row">
-        <div class="idx text-3xl" style="color: var(--magenta);">06</div>
-        <div class="display-md text-xl md:text-2xl">Regina</div>
-        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Project roster · 5-day lead</div>
-        <div class="mono text-xs" style="color: var(--cream-dim);">SK</div>
-      </div>
-      <div class="market-row">
-        <div class="idx text-3xl">07</div>
-        <div class="display-md text-xl md:text-2xl">Winnipeg</div>
-        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Project roster · 5-day lead</div>
-        <div class="mono text-xs" style="color: var(--cream-dim);">MB</div>
-      </div>
-      <div class="market-row">
-        <div class="idx text-3xl" style="color: var(--magenta);">08</div>
-        <div class="display-md text-xl md:text-2xl">Kelowna</div>
-        <div class="coverage text-[14px]" style="color: var(--cream-dim);">Project roster · 5-day lead</div>
-        <div class="mono text-xs" style="color: var(--cream-dim);">BC</div>
-      </div>
-    </div>
-
-    <p class="text-[13px] mt-8" style="color: var(--cream-dim);">
-      Need coverage outside this list? We've staffed activations in Yellowknife, Whitehorse, and the Rockies. Ask us.
-    </p>
-  </section>
+  <!-- MARKETS / COVERAGE MAP -->
+  <div class="px-6 md:px-10 py-24 md:py-36 border-y" style="border-color: var(--line);">
+    <CoverageMap />
+  </div>
 
   <!-- CROSS-SELL -->
   <section class="px-6 md:px-10 py-16 md:py-20" style="background: var(--bg-lift);">

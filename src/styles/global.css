@@ -478,33 +478,6 @@ body::after {
   line-height: 1;
 }
 
-.market-row {
-  display: grid;
-  grid-template-columns: 60px 1fr 1fr auto;
-  gap: 20px;
-  padding: 20px 0;
-  border-top: 1px solid var(--line);
-  align-items: baseline;
-  transition: padding 0.3s ease;
-}
-
-.market-row:hover {
-  padding-left: 8px;
-}
-
-.market-row:last-child {
-  border-bottom: 1px solid var(--line);
-}
-
-@media (max-width: 768px) {
-  .market-row {
-    grid-template-columns: 40px 1fr auto;
-  }
-  .market-row .coverage {
-    display: none;
-  }
-}
-
 /* ============================================================
    Consulting page — map, capability cells, tiers, reasons
    ============================================================ */
