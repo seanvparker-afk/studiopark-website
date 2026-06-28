@@ -94,7 +94,9 @@
   .sp-relief{fill:none;stroke-linecap:round;filter:url(#sp-soft)}
   .sp-relief.band{stroke:#6B5746;stroke-width:24;opacity:.16}
   .sp-relief.crest{stroke:#86705B;stroke-width:2.5;opacity:.30}
-  .sp-node{cursor:pointer}
+  .sp-node{cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
+  .sp-node:focus{outline:none}
+  .sp-node:focus-visible .sp-dot{stroke:var(--sp-orange);stroke-width:2;paint-order:stroke}
   .sp-dot{transition:r .2s}
   .sp-label{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12px;
     letter-spacing:.07em;fill:var(--sp-cream);pointer-events:none;transition:fill .2s}
