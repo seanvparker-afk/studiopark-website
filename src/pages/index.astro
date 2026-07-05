@@ -1,5 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// §05 "Selected Work" — six real case studies in a curated editorial order.
+// Title / image / year come from each case's frontmatter; only the span + aspect
+// rhythm is authored here (portrait items stay aspect-[4/5] on mobile, landscape
+// items go wide from md: up).
+const caseData = Object.fromEntries(
+  (await getCollection('work')).map((e) => [e.id, e.data])
+);
+const featuredWork = [
+  { slug: 'calgary-stampede', span: 'md:col-span-7', aspect: 'aspect-[4/5] md:aspect-[16/11]' },
+  { slug: 'rose-disco',       span: 'md:col-span-5', aspect: 'aspect-[4/5] md:aspect-auto' },
+  { slug: 'abf',              span: 'md:col-span-4', aspect: 'aspect-[4/5]' },
+  { slug: 'harvest-house',    span: 'md:col-span-4', aspect: 'aspect-[4/5]' },
+  { slug: 'scream',           span: 'md:col-span-4', aspect: 'aspect-[4/5]' },
+  { slug: 'the-cup',          span: 'md:col-span-5', aspect: 'aspect-[4/5] md:aspect-auto' },
+].map((f) => ({ ...f, data: caseData[f.slug] }));
 
 // Reel poster: fetch the Vimeo thumbnail at build time (same oEmbed approach the
 // case-study pages use) so the reel shows a branded poster + click-to-play button
@@ -337,94 +354,38 @@ try {
           Recent activations.
         </h2>
       </div>
-      <a href="/work" class="btn inline-flex items-center gap-2 text-sm border px-6 py-3" style="border-color: var(--cream); color: var(--cream);">
-        View all work <span>→</span>
-      </a>
     </div>
 
-    <!-- Row 1: 7/5 -->
-    <div class="grid grid-cols-12 gap-4 md:gap-5 mb-4 md:mb-5">
-      <figure class="col-span-12 md:col-span-7 img-wrap aspect-[16/11]">
-        <img
-          src="https://static.wixstatic.com/media/506540_9435882fc07f409b944dff376764c76d~mv2.jpg/v1/fit/w_1400,h_960,q_90,enc_avif,quality_auto/file.jpg"
-          alt="Cowboys Tent Festival Activation"
-        />
-        <figcaption class="caption absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between">
-          <div>
-            <div class="display-md text-lg">Cowboys Tent — Festival Activation</div>
-          </div>
-          <div class="mono text-xs" style="color: var(--cream-dim);">2024</div>
-        </figcaption>
-      </figure>
-      <figure class="col-span-12 md:col-span-5 img-wrap aspect-[4/5] md:aspect-auto">
-        <img
-          src="https://static.wixstatic.com/media/81231b_881d6ead66844407be897c40020f253a~mv2.jpg/v1/fit/w_900,h_1200,q_90,enc_avif,quality_auto/file.jpg"
-          alt="Talent portrait"
-        />
-        <figcaption class="caption absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between">
-          <div>
-            <div class="display-md text-lg">On-Site Talent Direction</div>
-          </div>
-        </figcaption>
-      </figure>
-    </div>
-
-    <!-- Row 2: 4/4/4 -->
-    <div class="grid grid-cols-12 gap-4 md:gap-5 mb-4 md:mb-5">
-      <figure class="col-span-12 md:col-span-4 img-wrap aspect-[4/5]">
-        <img
-          src="https://static.wixstatic.com/media/506540_534ae00c1b6648c89122601963445564~mv2.jpg/v1/fit/w_800,h_1000,q_90,enc_avif,quality_auto/file.jpg"
-          alt="Event detail"
-        />
-        <figcaption class="caption absolute bottom-0 left-0 right-0 p-4">
-          <div class="label">Brand integration</div>
-        </figcaption>
-      </figure>
-      <figure class="col-span-12 md:col-span-4 img-wrap aspect-[4/5]">
-        <img
-          src="https://static.wixstatic.com/media/81231b_4d6aec1924194d60bac83b753d944cf3~mv2.jpg/v1/fit/w_800,h_1000,q_90,enc_avif,quality_auto/file.jpg"
-          alt="Event detail"
-        />
-        <figcaption class="caption absolute bottom-0 left-0 right-0 p-4">
-          <div class="label">On-site capture</div>
-        </figcaption>
-      </figure>
-      <figure class="col-span-12 md:col-span-4 img-wrap aspect-[4/5]">
-        <img
-          src="https://static.wixstatic.com/media/506540_f339de76671e4dd3b9183c26d007cc0d~mv2.jpg/v1/fit/w_800,h_1000,q_90,enc_avif,quality_auto/file.jpg"
-          alt="Event detail"
-        />
-        <figcaption class="caption absolute bottom-0 left-0 right-0 p-4">
-          <div class="label">Activation staffing</div>
-        </figcaption>
-      </figure>
-    </div>
-
-    <!-- Row 3: 5/7 reversed -->
+    <!-- Editorial rhythm: 7/5 · 4/4/4 · 5/7 auto-flows from the 12-col spans. -->
     <div class="grid grid-cols-12 gap-4 md:gap-5">
-      <figure class="col-span-12 md:col-span-5 img-wrap aspect-[4/5] md:aspect-auto">
-        <img
-          src="https://static.wixstatic.com/media/81231b_f938854487ab41fba46ca7431ee726e2~mv2.jpg/v1/fit/w_900,h_1200,q_90,enc_avif,quality_auto/file.jpg"
-          alt="Consulting"
-        />
-        <figcaption class="caption absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between">
-          <div>
-            <div class="display-md text-lg">Venue &amp; Permit Coordination</div>
-          </div>
-        </figcaption>
-      </figure>
-      <figure class="col-span-12 md:col-span-7 img-wrap aspect-[16/11]">
-        <img
-          src="https://static.wixstatic.com/media/506540_8f409386c79241a09b85b753d035c24e~mv2.jpg/v1/fit/w_1400,h_960,q_90,enc_avif,quality_auto/file.jpg"
-          alt="Event activation"
-        />
-        <figcaption class="caption absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between">
-          <div>
-            <div class="display-md text-lg">Brand Ambassador Program — Multi-City</div>
-          </div>
-          <div class="mono text-xs" style="color: var(--cream-dim);">2024</div>
-        </figcaption>
-      </figure>
+      {featuredWork.map((f) => (
+        <a
+          href={`/work/${f.slug}`}
+          class={`work-card group col-span-12 ${f.span} img-wrap ${f.aspect} block relative`}
+        >
+          <img src={f.data.thumbImage ?? f.data.heroImage} alt={f.data.heroAlt} />
+          <figcaption class="caption absolute bottom-0 left-0 right-0 p-5 md:p-6 flex items-end justify-between gap-4">
+            <div class="display-md text-lg md:text-xl">
+              {f.data.title} <span class="work-arrow" aria-hidden="true">→</span>
+            </div>
+            <div class="mono text-xs" style="color: var(--cream-dim);">{f.data.year}</div>
+          </figcaption>
+        </a>
+      ))}
+
+      <!-- View all work tile -->
+      <a
+        href="/work"
+        class="work-card work-tile group col-span-12 md:col-span-7 aspect-[4/5] md:aspect-[16/11] flex flex-col justify-between p-6 md:p-8 border rounded-[3px]"
+        style="border-color: var(--line); background: var(--bg-lift); color: var(--cream);"
+      >
+        <div class="display-md text-sm md:text-base" style="color: var(--cream-dim);">
+          Six activations. One western branch.
+        </div>
+        <div class="display-md text-3xl md:text-5xl">
+          View all work <span class="work-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
     </div>
   </section>
 
@@ -576,6 +537,47 @@ try {
   }
   .video-hero:hover .video-hero-scrim {
     background: linear-gradient(180deg, rgba(19,17,16,0.30) 0%, rgba(19,17,16,0.05) 35%, rgba(19,17,16,0.55) 100%);
+  }
+
+  /* §05 Selected Work cards — gentle lift + arrow reveal on hover.
+     (Image scale is inherited from the global .img-wrap:hover rule.) */
+  .work-card {
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .work-card:hover {
+    transform: translateY(-4px);
+  }
+  .work-tile {
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+                background 0.4s ease, border-color 0.4s ease;
+  }
+  .work-tile:hover {
+    background: var(--bg-soft);
+    border-color: var(--cream-dim);
+  }
+  .work-arrow {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .work-card:hover .work-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .work-card,
+    .work-tile,
+    .work-arrow {
+      transition: none;
+    }
+    .work-card:hover,
+    .work-card:hover .work-arrow {
+      transform: none;
+    }
+    .work-card:hover .work-arrow {
+      opacity: 1;
+    }
   }
 </style>
 
