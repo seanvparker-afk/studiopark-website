@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-// §05 "Selected Work" — six real case studies in a curated editorial order.
+// §06 "Selected Work" — six real case studies in a curated editorial order.
 // Title / image / year come from each case's frontmatter; only the span + aspect
 // rhythm is authored here (portrait items stay aspect-[4/5] on mobile, landscape
 // items go wide from md: up).
@@ -71,20 +71,20 @@ try {
 
     <!-- Display headline -->
     <h1 class="display text-[16vw] md:text-[11.5vw] rise" style="animation-delay: 0.3s;">
-      Your western
+      Make your brand
     </h1>
     <div class="flex items-end justify-between gap-8 mt-2 md:mt-4">
       <h1 class="display text-[16vw] md:text-[11.5vw] rise" style="animation-delay: 0.5s;">
-        branch<span class="dot-accent">.</span>
+        felt<span class="dot-accent">.</span>
       </h1>
       <p class="hidden md:block max-w-sm text-[15px] leading-relaxed pb-5 rise" style="color: var(--cream-dim); animation-delay: 0.7s;">
-        National agencies lose control the moment a campaign leaves head office. We're the boots-on-the-ground partner the brief was missing — content, staffing, and local logistics under one Calgary banner.
+        Studio Park is an experiential agency based in Calgary. We bring ideas, production, people and content together to create brand experiences worth being part of.
       </p>
     </div>
 
     <!-- Mobile description -->
     <p class="md:hidden mt-6 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
-      National agencies lose control the moment a campaign leaves head office. We're the boots-on-the-ground partner the brief was missing — content, staffing, and local logistics under one Calgary banner.
+      Studio Park is an experiential agency based in Calgary. We bring ideas, production, people and content together to create brand experiences worth being part of.
     </p>
 
     <!-- Divider -->
@@ -206,10 +206,12 @@ try {
         <div class="label mb-4">§ 03 — Capabilities</div>
       </div>
       <div class="col-span-12 md:col-span-8">
-        <h2 class="display-md text-4xl md:text-6xl">
-          Three integrated services.<br/>
-          <span style="color: var(--cream-dim);">One western branch.</span>
+        <h2 class="display-md text-4xl md:text-6xl mb-4">
+          The thinking. The people. The follow-through.
         </h2>
+        <p class="text-[15px] leading-relaxed max-w-xl" style="color: var(--cream-dim);">
+          Bring us the challenge, the brief or the idea already taking shape. We'll bring together the team and the plan to move it forward.
+        </p>
       </div>
     </div>
 
@@ -277,6 +279,23 @@ try {
     </div>
   </section>
 
+  <!-- ===================== AGENCY PARTNERS TEASER ===================== -->
+  <section class="px-6 md:px-10 py-24 md:py-32 border-y" style="border-color: var(--line); background: var(--bg-lift);">
+    <div class="max-w-2xl">
+      <div class="label mb-4">§ 04 — Agency Partners</div>
+      <h2 class="display-md text-3xl md:text-5xl mb-6">
+        Still your team out West.
+      </h2>
+      <p class="text-[15px] leading-relaxed mb-10" style="color: var(--cream-dim);">
+        Our business grew through agency partnerships, and those relationships remain central to how we work. When your activation comes west, we bring local production knowledge, field teams and content support to help you deliver.
+      </p>
+      <a href="/agency-partners" class="btn inline-flex items-center gap-3 text-lg display-md px-8 py-4 border" style="border-color: var(--cream); color: var(--cream);">
+        Work with us out West
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
   <!-- ===================== PULL QUOTE ===================== -->
   <section class="px-6 md:px-10 py-24 md:py-32 border-y" style="border-color: var(--line); background: var(--bg-lift);">
     <div class="max-w-5xl mx-auto">
@@ -301,7 +320,7 @@ try {
   <section id="process" class="px-6 md:px-10 py-24 md:py-36">
     <div class="grid grid-cols-12 gap-6 mb-14 md:mb-20">
       <div class="col-span-12 md:col-span-4">
-        <div class="label mb-4">§ 04 — How We Work</div>
+        <div class="label mb-4">§ 05 — How We Work</div>
       </div>
       <div class="col-span-12 md:col-span-8">
         <h2 class="display-md text-4xl md:text-6xl">
@@ -349,7 +368,7 @@ try {
   <section id="work" class="px-6 md:px-10 py-24 md:py-36">
     <div class="flex items-end justify-between mb-14 md:mb-20 flex-wrap gap-6">
       <div>
-        <div class="label mb-4">§ 05 — Selected Work</div>
+        <div class="label mb-4">§ 06 — Selected Work</div>
         <h2 class="display-md text-4xl md:text-6xl">
           Recent activations.
         </h2>
@@ -393,7 +412,7 @@ try {
   <section class="py-20 border-t" style="border-color: var(--line);">
     <div class="px-6 md:px-10 grid grid-cols-12 gap-6 mb-14 md:mb-20">
       <div class="col-span-12 md:col-span-4">
-        <div class="label mb-4">§ 06 — In Good Company</div>
+        <div class="label mb-4">§ 07 — In Good Company</div>
       </div>
       <div class="col-span-12 md:col-span-8">
         <h2 class="display-md text-3xl md:text-5xl">
@@ -439,7 +458,7 @@ try {
   <section id="contact" class="px-6 md:px-10 py-28 md:py-44 relative overflow-hidden">
     <div class="glow absolute inset-0"></div>
     <div class="relative">
-      <div class="label mb-6" style="color: var(--accent);">§ 07 — Start a Project</div>
+      <div class="label mb-6" style="color: var(--accent);">§ 08 — Start a Project</div>
       <h2 class="display text-[13vw] md:text-[10vw]">
         Let's talk<span class="dot-accent">.</span>
       </h2>
