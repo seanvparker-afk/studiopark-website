@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-// §06 "Selected Work" — six real case studies in a curated editorial order.
+// §07 "Selected Work" — six real case studies in a curated editorial order.
 // Title / image / year come from each case's frontmatter; only the span + aspect
 // rhythm is authored here (portrait items stay aspect-[4/5] on mobile, landscape
 // items go wide from md: up).
@@ -44,11 +44,10 @@ try {
     </a>
     <ul class="hidden md:flex items-center gap-8 text-[15px]" style="color: var(--cream);">
       <li><a href="/work" class="nav-link">Work</a></li>
-      <li><a href="/content" class="nav-link">Content</a></li>
-      <li><a href="/staffing" class="nav-link">Staffing</a></li>
-      <li><a href="/consulting" class="nav-link">Consulting</a></li>
+      <li><a href="/#capabilities" class="nav-link">Capabilities</a></li>
+      <li><a href="/#about" class="nav-link">About</a></li>
       <li><a href="/agency-partners" class="nav-link">Agency Partners</a></li>
-      <li><a href="/contact" class="nav-link">Contact</a></li>
+      <li><a href="/contact" class="nav-link">Let's talk</a></li>
     </ul>
     <div class="hidden md:flex items-center gap-3 text-xs mono" style="color: var(--cream-dim);">
       YYC
@@ -174,7 +173,7 @@ try {
   </section>
 
   <!-- ===================== SERVICES ===================== -->
-  <section id="services" class="px-6 md:px-10 py-24 md:py-36">
+  <section id="capabilities" class="px-6 md:px-10 py-24 md:py-36">
     <div class="grid grid-cols-12 gap-6 mb-14 md:mb-20">
       <div class="col-span-12 md:col-span-4">
         <div class="label mb-4">§ 03 — Capabilities</div>
@@ -290,11 +289,30 @@ try {
     </div>
   </section>
 
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" class="px-6 md:px-10 py-24 md:py-36">
+    <div class="max-w-2xl">
+      <div class="label mb-4">§ 05 — About</div>
+      <h2 class="display-md text-3xl md:text-5xl mb-8">
+        Built in Calgary. Shaped by the work.
+      </h2>
+      <p class="text-[15px] leading-relaxed mb-5" style="color: var(--cream-dim);">
+        Studio Park grew from a simple need: agencies needed a team they could count on when their campaigns came west.
+      </p>
+      <p class="text-[15px] leading-relaxed mb-5" style="color: var(--cream-dim);">
+        That experience shaped how we work. Understand the brief. Bring the right people together. Pay attention to the details. Take responsibility for delivery.
+      </p>
+      <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+        Today, we're building on that foundation to help brands create experiences from the first conversation to the final guest.
+      </p>
+    </div>
+  </section>
+
   <!-- ===================== PROCESS ===================== -->
   <section id="process" class="px-6 md:px-10 py-24 md:py-36">
     <div class="grid grid-cols-12 gap-6 mb-14 md:mb-20">
       <div class="col-span-12 md:col-span-4">
-        <div class="label mb-4">§ 05 — How We Work</div>
+        <div class="label mb-4">§ 06 — How We Work</div>
       </div>
       <div class="col-span-12 md:col-span-8">
         <h2 class="display-md text-4xl md:text-6xl">
@@ -342,7 +360,7 @@ try {
   <section id="work" class="px-6 md:px-10 py-24 md:py-36">
     <div class="flex items-end justify-between mb-14 md:mb-20 flex-wrap gap-6">
       <div>
-        <div class="label mb-4">§ 06 — Selected Work</div>
+        <div class="label mb-4">§ 07 — Selected Work</div>
         <h2 class="display-md text-4xl md:text-6xl">
           Recent activations.
         </h2>
@@ -386,7 +404,7 @@ try {
   <section class="py-20 border-t" style="border-color: var(--line);">
     <div class="px-6 md:px-10 grid grid-cols-12 gap-6 mb-14 md:mb-20">
       <div class="col-span-12 md:col-span-4">
-        <div class="label mb-4">§ 07 — In Good Company</div>
+        <div class="label mb-4">§ 08 — In Good Company</div>
       </div>
       <div class="col-span-12 md:col-span-8">
         <h2 class="display-md text-3xl md:text-5xl">
@@ -432,7 +450,7 @@ try {
   <section id="contact" class="px-6 md:px-10 py-28 md:py-44 relative overflow-hidden">
     <div class="glow absolute inset-0"></div>
     <div class="relative">
-      <div class="label mb-6" style="color: var(--accent);">§ 08 — Start a Project</div>
+      <div class="label mb-6" style="color: var(--accent);">§ 09 — Start a Project</div>
       <h2 class="display text-[13vw] md:text-[10vw]">
         Let's talk<span class="dot-accent">.</span>
       </h2>
