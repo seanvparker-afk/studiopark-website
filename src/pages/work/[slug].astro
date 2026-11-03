@@ -283,22 +283,24 @@ const aspectClass = (a: string): string => {
           <div class="label mb-3">§ 03 — Related Work</div>
           <h2 class="display-md text-3xl md:text-5xl">More from the road.</h2>
         </div>
-        <a href="/work" class="nav-link text-sm">All work →</a>
+        <a href="/work" class="label nav-link">All work →</a>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
         {related.map((r) => (
-          <a href={`/work/${r.id}`} class="group block">
-            <div class="img-wrap aspect-[4/5] mb-5">
-              <img src={r.data.thumbImage ?? r.data.heroImage} alt={r.data.heroAlt} />
-            </div>
-            <div class="flex items-baseline justify-between mb-2">
-              <span class="label">Case / {r.data.caseNumber}</span>
-              <span class="mono text-xs" style="color: var(--cream-dim);">{r.data.year}</span>
-            </div>
-            <h3 class="display-md text-xl md:text-2xl mb-2">{r.data.title}</h3>
-            <div class="label" style="color: var(--cream-dim);">
-              {r.data.locations.join(' · ')}
-            </div>
+          <a href={`/work/${r.id}`} class="group relative img-wrap aspect-[4/5] block">
+            <img src={r.data.thumbImage ?? r.data.heroImage} alt={r.data.heroAlt} />
+            <figcaption class="caption absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between gap-4">
+              <div>
+                <div class="label mb-1">Case / {r.data.caseNumber}</div>
+                <div class="display-md text-xl md:text-2xl">{r.data.title}</div>
+                <div class="label mt-2" style="color: var(--cream-dim);">
+                  {r.data.locations.join(' · ')}
+                </div>
+              </div>
+              <div class="mono text-xs" style="color: var(--cream-dim);">
+                {r.data.year}
+              </div>
+            </figcaption>
           </a>
         ))}
       </div>

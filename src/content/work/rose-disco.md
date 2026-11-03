@@ -23,7 +23,7 @@ gallery:
     aspect: 16/11
   - src: https://static.wixstatic.com/media/81231b_cbd849dd9f83413ca948657fa9bb5727~mv2.jpg/v1/fit/w_1200,h_1600,q_90,enc_avif,quality_auto/file.jpg
     alt: Rose Disco — golden hour portrait
-    aspect: 3/4
+    aspect: 16/11
   - src: https://static.wixstatic.com/media/81231b_22416be823ed4acb81d921a3c43eab27~mv2.jpg/v1/fit/w_1600,h_1067,q_90,enc_avif,quality_auto/file.jpg
     alt: Rose Disco — activation moment
     aspect: 16/11
