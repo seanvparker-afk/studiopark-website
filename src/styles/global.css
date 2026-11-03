@@ -729,3 +729,31 @@ body.menu-open {
 .mobile-menu-link:active {
   color: var(--cream-dim);
 }
+
+/* ============================================================
+   Reduced motion
+   Standard near-zero-duration override: every animation/transition
+   still resolves to its correct end state (so "both"-fill entrances
+   like .rise/.widen land fully visible instead of stuck at their
+   from-state) but effectively instantly. Infinite loops (marquee,
+   blink, pulse-ring, nudge, city-pulse) run one imperceptible cycle
+   and stop rather than looping forever.
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Explicit stop for the Trusted By marquee — belt-and-suspenders
+     alongside the universal rule above, since pausing in place reads
+     more cleanly than a fast single pass through the loop. */
+  .marquee-track {
+    animation-play-state: paused !important;
+  }
+}
