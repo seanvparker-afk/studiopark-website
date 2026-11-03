@@ -60,8 +60,8 @@ const NEIGHBORHOODS = [
 ---
 
 <BaseLayout
-  title="Contact — Studio Park"
-  description="Send us the brief. Typical reply within one business day. Calgary, Alberta."
+  title="Start a Project | Studio Park"
+  description="Planning a brand experience, activation or campaign out West? Contact Studio Park to discuss production, staffing, content and the next step for your project."
 >
 
   <!-- NAV -->
@@ -94,16 +94,16 @@ const NEIGHBORHOODS = [
       </div>
     </div>
 
-    <h1 class="display text-[18vw] md:text-[13vw] rise" style="animation-delay: 0.3s;">Tell us</h1>
+    <h1 class="display text-[18vw] md:text-[13vw] rise" style="animation-delay: 0.3s;">What are you</h1>
     <div class="flex items-end justify-between gap-8 mt-2 md:mt-3">
-      <h1 class="display text-[18vw] md:text-[13vw] rise" style="animation-delay: 0.5s;">the brief<span class="dot-accent">.</span></h1>
+      <h1 class="display text-[18vw] md:text-[13vw] rise" style="animation-delay: 0.5s;">planning<span class="dot-accent">?</span></h1>
       <p class="hidden md:block max-w-sm text-[15px] leading-relaxed pb-5 rise" style="color: var(--cream-dim); animation-delay: 0.7s;">
-        Send us the activation, the markets, the dates, and the problem you're trying to solve. We'll come back within one business day with questions, a quick scope, or a calendar invite.
+        A first idea, a developed brief or an activation that needs a team on the ground: we'd like to hear about it. Tell us what you want to achieve, where it needs to happen and the timing you're working toward. We'll help work through the next step.
       </p>
     </div>
 
     <p class="md:hidden mt-6 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
-      Send us the activation, the markets, the dates, and the problem you're trying to solve. We'll come back within one business day.
+      A first idea, a developed brief or an activation that needs a team on the ground: we'd like to hear about it. Tell us what you want to achieve, where it needs to happen and the timing you're working toward. We'll help work through the next step.
     </p>
 
     <div class="h-px widen mt-14 md:mt-20" style="background: var(--line); animation-delay: 0.9s;"></div>
@@ -115,7 +115,7 @@ const NEIGHBORHOODS = [
 
       <!-- LEFT: Contact info -->
       <div class="col-span-12 md:col-span-4">
-        <div class="label mb-6">§ 01 — Direct Lines</div>
+        <div class="label mb-6">§ 01 — Get in Touch</div>
 
         <div class="contact-card">
           <div class="label mb-2" style="color: var(--cream);">Email</div>
@@ -148,6 +148,13 @@ const NEIGHBORHOODS = [
       <div class="col-span-12 md:col-span-8">
         <div class="label mb-6">§ 02 — Project Inquiry</div>
 
+        <div class="mb-10">
+          <h2 class="display-md text-2xl md:text-3xl mb-3">Tell us a little about the project</h2>
+          <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+            Required: your name, company, email and what you are planning. Optional: location, timing, budget range and services you are considering.
+          </p>
+        </div>
+
         <form
           id="inquiry-form"
           class="space-y-10"
@@ -163,7 +170,7 @@ const NEIGHBORHOODS = [
 
           <!-- Error message (hidden by default) -->
           <div id="form-error" hidden role="alert">
-            Something went wrong. Email us directly at <a href="mailto:hello@studiopark.ca" class="nav-link" style="color: var(--cream);">hello@studiopark.ca</a>.
+            Your inquiry couldn't be sent. Please try again or email <a href="mailto:hello@studiopark.ca" class="nav-link" style="color: var(--cream);">hello@studiopark.ca</a>.
           </div>
 
           <!-- Row: Name + Company -->
@@ -252,6 +259,7 @@ const NEIGHBORHOODS = [
           <div class="field">
             <label class="field-label" for="message">Tell us about the activation *</label>
             <textarea class="textarea" id="message" name="message" required placeholder="The campaign, the client, the problem we're helping solve. Links to briefs or decks welcome."></textarea>
+            <p class="text-[13px] mt-2" style="color: var(--cream-dim);">What do you want people to experience, and what support would be useful?</p>
             <span class="field-error" data-error-for="message"></span>
           </div>
 
@@ -267,7 +275,7 @@ const NEIGHBORHOODS = [
 
         <!-- Success state (replaces form on successful submit) -->
         <div id="form-thanks" hidden>
-          <h2 class="display-md text-3xl md:text-5xl mb-6">Thanks — we'll be in touch within one business day.</h2>
+          <h2 class="display-md text-3xl md:text-5xl mb-6">Thanks — your inquiry has been sent. We'll review the details and be in touch.</h2>
           <p class="text-[15px] leading-relaxed mb-8" style="color: var(--cream-dim);">
             Your inquiry is in. The Studio Park team will review every brief that comes through, and you'll get a real reply (not an autoresponder) within one business day. In the meantime, feel free to dig into recent work.
           </p>
@@ -440,39 +448,21 @@ const NEIGHBORHOODS = [
 
     <div>
       <div class="faq-item grid grid-cols-1 md:grid-cols-12 gap-6">
-        <div class="md:col-span-4"><h4 class="display-md text-lg">How quickly do you reply?</h4></div>
+        <div class="md:col-span-4"><h4 class="display-md text-lg">Do I need a finished brief?</h4></div>
         <div class="md:col-span-8 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
-          Within one business day for all inquiries.
+          No. Share what you know and the decisions you're still working through.
         </div>
       </div>
       <div class="faq-item grid grid-cols-1 md:grid-cols-12 gap-6">
-        <div class="md:col-span-4"><h4 class="display-md text-lg">Do you work outside Western Canada?</h4></div>
+        <div class="md:col-span-4"><h4 class="display-md text-lg">Can you help with a tight timeline?</h4></div>
         <div class="md:col-span-8 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
-          Our focus is AB, BC, SK, MB, YT, and NT. We'll consider activations outside that footprint when they're extensions of existing western campaigns — ask us.
+          Include the event date and any immediate deadlines. We'll assess availability and what can realistically be delivered.
         </div>
       </div>
       <div class="faq-item grid grid-cols-1 md:grid-cols-12 gap-6">
-        <div class="md:col-span-4"><h4 class="display-md text-lg">What's your minimum engagement?</h4></div>
+        <div class="md:col-span-4"><h4 class="display-md text-lg">What if the project is confidential?</h4></div>
         <div class="md:col-span-8 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
-          No hard floor. We've done single-day sampling activations and six-month campaign retainers. If there's a real brief, there's a way to scope it.
-        </div>
-      </div>
-      <div class="faq-item grid grid-cols-1 md:grid-cols-12 gap-6">
-        <div class="md:col-span-4"><h4 class="display-md text-lg">Can you handle rush timelines?</h4></div>
-        <div class="md:col-span-8 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
-          Often, yes. We keep a standing roster and vendor list precisely so agencies don't have to start from zero. Send the brief — we'll tell you honestly if we can deliver.
-        </div>
-      </div>
-      <div class="faq-item grid grid-cols-1 md:grid-cols-12 gap-6">
-        <div class="md:col-span-4"><h4 class="display-md text-lg">Do you sign NDAs?</h4></div>
-        <div class="md:col-span-8 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
-          Yes. Mutual NDAs are standard practice for us. If you have a client template, send it over — we'll review and sign within a day.
-        </div>
-      </div>
-      <div class="faq-item grid grid-cols-1 md:grid-cols-12 gap-6">
-        <div class="md:col-span-4"><h4 class="display-md text-lg">Are you vendor-approved with major agencies?</h4></div>
-        <div class="md:col-span-8 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
-          We regularly complete vendor onboarding for agency networks and brand teams. Send over your paperwork and we'll get it done.
+          Let us know before sharing sensitive information so we can discuss any NDA requirements.
         </div>
       </div>
     </div>

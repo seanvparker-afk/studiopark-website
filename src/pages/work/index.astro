@@ -24,8 +24,8 @@ const layoutFor = (i: number): Layout => {
 ---
 
 <BaseLayout
-  title="Work — Studio Park"
-  description="Selected activations and productions from Studio Park across Western Canada."
+  title="Experiential Work & Brand Activations | Studio Park"
+  description="Explore selected Studio Park projects across live experiences, production, staffing and content, with a clear view of our role in bringing each one to life."
 >
   <!-- ===================== NAV ===================== -->
   <nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-10 py-3 flex items-center justify-between"
@@ -49,7 +49,7 @@ const layoutFor = (i: number): Layout => {
   <section class="relative px-6 md:px-10 pt-36 md:pt-48 pb-14 md:pb-20">
     <div class="flex items-start justify-between mb-14 md:mb-20">
       <div class="rise" style="animation-delay: 0.1s;">
-        <div class="label mb-2">§ — Selected Work</div>
+        <div class="label mb-2">§ 01 — Selected Work</div>
         <div class="label" style="color: var(--cream);">Vol. IX / 2026</div>
       </div>
       <div class="text-right rise" style="animation-delay: 0.2s;">
@@ -59,13 +59,13 @@ const layoutFor = (i: number): Layout => {
     </div>
 
     <h1 class="display text-[14vw] md:text-[10vw] rise" style="animation-delay: 0.3s;">
-      Recent activations<span class="dot-accent">.</span>
+      The work, out in the world<span class="dot-accent">.</span>
     </h1>
 
     <div class="grid grid-cols-12 gap-6 mt-10 md:mt-14">
       <div class="col-span-12 md:col-span-5">
         <p class="text-[15px] md:text-base leading-relaxed rise" style="color: var(--cream-dim); animation-delay: 0.6s;">
-          Festivals, daytime takeovers, and brand moments from Calgary to Vancouver. Each one staffed, captured, and produced by the same western team — the people who actually show up.
+          A selection of the experiences we've helped bring to life. Explore the settings, the people and the practical work behind each project, from live production and field teams to the content that carries the story forward.
         </p>
       </div>
       <div class="col-span-12 md:col-span-7 flex md:justify-end items-end">
@@ -81,6 +81,7 @@ const layoutFor = (i: number): Layout => {
 
   <!-- ===================== PORTFOLIO GRID ===================== -->
   <section class="px-6 md:px-10 pb-24 md:pb-36">
+    <div class="label mb-10 md:mb-14">§ 02 — Explore the Projects</div>
     <div class="grid grid-cols-12 gap-4 md:gap-5">
       {entries.map((entry, i) => {
         const { span, aspect } = layoutFor(i);
@@ -113,21 +114,20 @@ const layoutFor = (i: number): Layout => {
   <section class="px-6 md:px-10 py-28 md:py-40 relative overflow-hidden border-t" style="border-color: var(--line);">
     <div class="glow absolute inset-0"></div>
     <div class="relative">
-      <div class="label mb-6" style="color: var(--accent);">§ — Start a Project</div>
+      <div class="label mb-6" style="color: var(--accent);">§ 03 — Start a Project</div>
       <h2 class="display text-[13vw] md:text-[10vw]">
-        Your brief,<br/>our grounds<span class="dot-accent">.</span>
+        Looking for a particular<br/>kind of experience<span class="dot-accent">?</span>
       </h2>
       <p class="mt-10 max-w-xl text-[15px] leading-relaxed" style="color: var(--cream-dim);">
-        Planning an activation in Calgary, Edmonton, Vancouver, or anywhere in between? Send the brief — we'll reply within one business day with scope, dates, and a local crew.
+        Tell us what you're planning. We can point you toward relevant work and discuss how that experience could inform your project.
       </p>
       <div class="mt-12 flex flex-col md:flex-row items-start md:items-center gap-6">
         <a href="/contact" class="btn inline-flex items-center gap-3 text-lg display-md px-8 py-4 border" style="border-color: var(--cream); color: var(--cream);">
-          Send us the brief
+          Talk about your project
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M5 12h14M13 5l7 7-7 7"/>
           </svg>
         </a>
-        <span class="label">or email hello@studiopark.ca</span>
       </div>
     </div>
   </section>
