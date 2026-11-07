@@ -6,6 +6,21 @@ const entries = (await getCollection('work')).sort(
   (a, b) => a.data.order - b.data.order
 );
 
+// Reel poster: fetch the Vimeo thumbnail at build time (same oEmbed approach the
+// case-study pages use) so the reel shows a branded poster + click-to-play button
+// instead of an always-loaded player with native mobile chrome.
+const REEL_VIDEO_ID = '1186594762';
+let reelThumbnail: string | null = null;
+try {
+  const res = await fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${REEL_VIDEO_ID}&width=1920`);
+  if (res.ok) {
+    const json = (await res.json()) as { thumbnail_url?: string };
+    reelThumbnail = json.thumbnail_url ?? null;
+  }
+} catch {
+  reelThumbnail = null;
+}
+
 // Positional layout tuned for the homepage "Selected Work" rhythm.
 // With 6 items we paint a 7/5, 4/4/4, then full-width panoramic cadence.
 // Any extras after position 5 fall through to a uniform 4-col grid.
@@ -78,9 +93,57 @@ const layoutFor = (i: number): Layout => {
     <div class="h-px widen mt-14 md:mt-20" style="background: var(--line); animation-delay: 0.9s;"></div>
   </section>
 
+  <!-- ===================== REEL VIDEO SECTION ===================== -->
+  <section class="relative">
+    <div class="px-6 md:px-10 pt-16 md:pt-24 pb-10 md:pb-14 flex items-end justify-between gap-6 flex-wrap">
+      <div>
+        <div class="label mb-4">§ 02 — Reel / 2025</div>
+        <h2 class="display text-4xl md:text-6xl mb-3">A year, in motion.</h2>
+        <p class="text-sm md:text-base max-w-md" style="color: var(--cream-dim);">
+          Fifteen activations. Four provinces. Selected moments from 2024 — captured, staffed, and produced by us.
+        </p>
+      </div>
+    </div>
+    <div
+      class="video-hero relative aspect-[16/9] overflow-hidden"
+      data-video-id={REEL_VIDEO_ID}
+      data-video-title="Studio Park — 2024 reel"
+    >
+      <div class="video-hero-still absolute inset-0">
+        {reelThumbnail && (
+          <img
+            src={reelThumbnail}
+            alt="Studio Park 2024 reel — selected moments"
+            class="absolute inset-0 w-full h-full object-cover"
+            style="filter: saturate(0.92) contrast(1.02);"
+          />
+        )}
+        <div class="video-hero-scrim absolute inset-0" style="background: linear-gradient(180deg, rgba(19,17,16,0.45) 0%, rgba(19,17,16,0.10) 35%, rgba(19,17,16,0.65) 100%);"></div>
+
+        <!-- Center play button -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="relative flex items-center justify-center">
+            <span class="absolute inset-0 rounded-full pulse-ring" style="background: rgba(213, 68, 32, 0.3); width: 130px; height: 130px;"></span>
+            <span class="absolute inset-0 rounded-full pulse-ring" style="background: rgba(213, 68, 32, 0.2); width: 130px; height: 130px; animation-delay: 1.2s;"></span>
+            <button
+              type="button"
+              class="video-hero-play relative w-20 h-20 md:w-28 md:h-28 rounded-full flex items-center justify-center pointer-events-auto"
+              style="background: var(--accent); box-shadow: 0 20px 60px rgba(213,68,32,0.35);"
+              aria-label="Play Studio Park 2024 reel"
+            >
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="#F2EDE3" style="margin-left: 4px;">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== PORTFOLIO GRID ===================== -->
   <section class="px-6 md:px-10 pb-24 md:pb-36">
-    <div class="label mb-10 md:mb-14">§ 02 — Explore the Projects</div>
+    <div class="label mb-10 md:mb-14">§ 03 — Explore the Projects</div>
     <div class="grid grid-cols-12 gap-4 md:gap-5">
       {entries.map((entry, i) => {
         const { span, aspect } = layoutFor(i);
@@ -113,7 +176,7 @@ const layoutFor = (i: number): Layout => {
   <section class="px-6 md:px-10 py-28 md:py-40 relative overflow-hidden border-t" style="border-color: var(--line);">
     <div class="glow absolute inset-0"></div>
     <div class="relative">
-      <div class="label mb-6" style="color: var(--accent);">§ 03 — Start a Project</div>
+      <div class="label mb-6" style="color: var(--accent);">§ 04 — Start a Project</div>
       <h2 class="display text-[13vw] md:text-[10vw]">
         Looking for a particular<br/>kind of experience<span class="dot-accent">?</span>
       </h2>
@@ -172,4 +235,63 @@ const layoutFor = (i: number): Layout => {
       </div>
     </div>
   </footer>
+
+<style>
+  /* Reel click-to-play poster (same pattern as the homepage/case-study hero) */
+  .video-hero {
+    cursor: pointer;
+  }
+  .video-hero-still {
+    transition: opacity 0.3s ease;
+  }
+  .video-hero-play,
+  .video-hero-scrim {
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                background 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .video-hero:hover .video-hero-play {
+    transform: scale(1.05);
+  }
+  .video-hero:hover .video-hero-scrim {
+    background: linear-gradient(180deg, rgba(19,17,16,0.30) 0%, rgba(19,17,16,0.05) 35%, rgba(19,17,16,0.55) 100%);
+  }
+</style>
+
+<script is:inline>
+  document.querySelectorAll('.video-hero[data-video-id]').forEach((hero) => {
+    const videoId = hero.getAttribute('data-video-id');
+    const videoTitle = hero.getAttribute('data-video-title') || 'Studio Park reel';
+    const still = hero.querySelector('.video-hero-still');
+    if (!videoId || !still) return;
+
+    let played = false;
+    const play = (e) => {
+      if (e && e.target.closest('a')) return;
+      if (played) return;
+      played = true;
+
+      // JS-created elements don't get Astro's scoped cid attributes, so style the
+      // iframe inline rather than via a class rule.
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://player.vimeo.com/video/' + videoId + '?autoplay=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479';
+      iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
+      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      iframe.setAttribute('title', videoTitle);
+      iframe.setAttribute('frameborder', '0');
+      iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
+
+      hero.insertBefore(iframe, still);
+
+      still.style.opacity = '0';
+      still.style.pointerEvents = 'none';
+      hero.style.cursor = 'default';
+
+      setTimeout(() => {
+        still.style.visibility = 'hidden';
+      }, 300);
+    };
+
+    hero.addEventListener('click', play);
+  });
+</script>
 </BaseLayout>
