@@ -39,12 +39,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h1 class="display text-[15vw] md:text-[10vw] rise" style="animation-delay: 0.3s;">Content that</h1>
     <div class="flex items-end justify-between gap-8 mt-2 md:mt-3">
       <h1 class="display text-[15vw] md:text-[10vw] rise" style="animation-delay: 0.7s;">keeps working<span class="dot-accent">.</span></h1>
-      <p class="hidden md:block max-w-sm text-[15px] leading-relaxed pb-5 rise" style="color: var(--cream-dim); animation-delay: 0.9s;">
+      <p class="hidden md:block max-w-sm text-[15px] leading-relaxed pb-5 fade-in-up" style="color: var(--cream-dim);">
         The event ends. The story keeps moving. We create photography, film and social content that takes your experience beyond the people who were there. From the shot list to the final edit, we plan around the brand, the audience and where the content needs to go.
       </p>
     </div>
 
-    <p class="md:hidden mt-6 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+    <p class="md:hidden mt-6 text-[15px] leading-relaxed fade-in-up" style="color: var(--cream-dim);">
       The event ends. The story keeps moving. We create photography, film and social content that takes your experience beyond the people who were there. From the shot list to the final edit, we plan around the brand, the audience and where the content needs to go.
     </p>
 
@@ -75,28 +75,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- WHAT WE DO -->
   <section class="px-6 md:px-10 py-20 md:py-28 border-y" style="border-color: var(--line);">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-      <div>
+      <div class="fade-in-up fade-delay-1">
         <span class="idx text-5xl">01</span>
         <h3 class="display-md text-xl mt-4 mb-3">Capture the experience</h3>
         <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
           Event photography, highlights, interviews and behind-the-scenes coverage. We build a shot plan around the moments, people and details that matter.
         </p>
       </div>
-      <div>
+      <div class="fade-in-up fade-delay-2">
         <span class="idx text-5xl" style="color: var(--magenta);">02</span>
         <h3 class="display-md text-xl mt-4 mb-3">Make it ready to use</h3>
         <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
           Hero films, social edits and project recaps, shaped for their intended channels. Formats, deliverables and review stages are agreed before the shoot.
         </p>
       </div>
-      <div>
+      <div class="fade-in-up fade-delay-3">
         <span class="idx text-5xl">03</span>
         <h3 class="display-md text-xl mt-4 mb-3">Keep the brand in view</h3>
         <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
           We work through brand guidelines, key messages and approval requirements early, so the content feels connected to the wider campaign.
         </p>
       </div>
-      <div>
+      <div class="fade-in-up fade-delay-4">
         <span class="idx text-5xl" style="color: var(--magenta);">04</span>
         <h3 class="display-md text-xl mt-4 mb-3">Need content while the event is live?</h3>
         <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
@@ -113,7 +113,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="label mb-4">§ 02 — Deliverables</div>
       </div>
       <div class="col-span-12 md:col-span-8">
-        <h2 class="display-md text-4xl md:text-6xl">
+        <h2 class="display-md text-4xl md:text-6xl fade-in-up">
           What you leave with.<br/>
           <span style="color: var(--cream-dim);">Every format the brief needs.</span>
         </h2>
@@ -194,7 +194,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="px-6 md:px-10 flex items-end justify-between mb-10 md:mb-14 flex-wrap gap-4">
       <div>
         <div class="label mb-4">§ 03 — Selected Captures</div>
-        <h2 class="display-md text-3xl md:text-5xl">
+        <h2 class="display-md text-3xl md:text-5xl fade-in-up">
           Recent work, in strip.
         </h2>
       </div>
@@ -227,7 +227,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="label mb-4">§ 04 — Operational Specs</div>
       </div>
       <div class="col-span-12 md:col-span-8">
-        <h2 class="display-md text-4xl md:text-6xl">
+        <h2 class="display-md text-4xl md:text-6xl fade-in-up">
           Fine print that actually matters.
         </h2>
       </div>

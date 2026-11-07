@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-// §07 "Selected Work" — six real case studies in a curated editorial order.
+// §08 "Selected Work" — six real case studies in a curated editorial order.
 // Title / image / year come from each case's frontmatter; only the span + aspect
 // rhythm is authored here (portrait items stay aspect-[4/5] on mobile, landscape
 // items go wide from md: up).
@@ -75,13 +75,13 @@ try {
       <h1 class="display text-[16vw] md:text-[11.5vw] rise" style="animation-delay: 0.5s;">
         felt<span class="dot-accent">.</span>
       </h1>
-      <p class="hidden md:block max-w-sm text-[15px] leading-relaxed pb-5 rise" style="color: var(--cream-dim); animation-delay: 0.7s;">
+      <p class="hidden md:block max-w-sm text-[15px] leading-relaxed pb-5 fade-in-up" style="color: var(--cream-dim);">
         Studio Park is an experiential agency based in Calgary. We bring ideas, production, people and content together to create brand experiences worth being part of.
       </p>
     </div>
 
     <!-- Mobile description -->
-    <p class="md:hidden mt-6 text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+    <p class="md:hidden mt-6 text-[15px] leading-relaxed fade-in-up" style="color: var(--cream-dim);">
       Studio Park is an experiential agency based in Calgary. We bring ideas, production, people and content together to create brand experiences worth being part of.
     </p>
 
@@ -128,8 +128,8 @@ try {
     <div class="px-6 md:px-10 pt-16 md:pt-24 pb-10 md:pb-14 flex items-end justify-between gap-6 flex-wrap">
       <div>
         <div class="label mb-4">§ 02 — Reel / 2024</div>
-        <h2 class="display text-4xl md:text-6xl mb-3">A year, in motion.</h2>
-        <p class="text-sm md:text-base max-w-md" style="color: var(--cream-dim);">
+        <h2 class="display text-4xl md:text-6xl mb-3 fade-in-up">A year, in motion.</h2>
+        <p class="text-sm md:text-base max-w-md fade-in-up" style="color: var(--cream-dim);">
           Fifteen activations. Four provinces. Selected moments from 2024 — captured, staffed, and produced by us.
         </p>
       </div>
@@ -178,10 +178,10 @@ try {
         <div class="label mb-4">§ 03 — Capabilities</div>
       </div>
       <div class="col-span-12 md:col-span-8">
-        <h2 class="display-md text-4xl md:text-6xl mb-4">
+        <h2 class="display-md text-4xl md:text-6xl mb-4 fade-in-up">
           The thinking. The people. The follow-through.
         </h2>
-        <p class="text-[15px] leading-relaxed max-w-xl" style="color: var(--cream-dim);">
+        <p class="text-[15px] leading-relaxed max-w-xl fade-in-up" style="color: var(--cream-dim);">
           Bring us the challenge, the brief or the idea already taking shape. We'll bring together the team and the plan to move it forward.
         </p>
       </div>
@@ -189,7 +189,7 @@ try {
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-5">
 
-      <article class="group">
+      <article class="group fade-in-up fade-delay-1">
         <div class="img-wrap aspect-[4/5] mb-6">
           <img
             src="https://static.wixstatic.com/media/506540_f6e16f054d944fc89c561bd789c3749c~mv2.jpg/v1/fit/w_900,h_1125,q_90,enc_avif,quality_auto/file.jpg"
@@ -209,7 +209,7 @@ try {
         </a>
       </article>
 
-      <article class="group md:mt-16">
+      <article class="group md:mt-16 fade-in-up fade-delay-2">
         <div class="img-wrap aspect-[4/5] mb-6">
           <img
             src="https://static.wixstatic.com/media/506540_8f409386c79241a09b85b753d035c24e~mv2.jpg/v1/fit/w_900,h_1125,q_90,enc_avif,quality_auto/file.jpg"
@@ -229,7 +229,7 @@ try {
         </a>
       </article>
 
-      <article class="group md:mt-8">
+      <article class="group md:mt-8 fade-in-up fade-delay-3">
         <div class="img-wrap aspect-[4/5] mb-6">
           <img
             src="https://static.wixstatic.com/media/81231b_f938854487ab41fba46ca7431ee726e2~mv2.jpg/v1/fit/w_900,h_1125,q_90,enc_avif,quality_auto/file.jpg"
@@ -255,10 +255,10 @@ try {
   <section class="px-6 md:px-10 py-24 md:py-32 border-y" style="border-color: var(--line); background: var(--bg-lift);">
     <div class="max-w-2xl">
       <div class="label mb-4">§ 04 — Agency Partners</div>
-      <h2 class="display-md text-3xl md:text-5xl mb-6">
+      <h2 class="display-md text-3xl md:text-5xl mb-6 fade-in-up">
         Still your team out West.
       </h2>
-      <p class="text-[15px] leading-relaxed mb-10" style="color: var(--cream-dim);">
+      <p class="text-[15px] leading-relaxed mb-10 fade-in-up" style="color: var(--cream-dim);">
         Our business grew through agency partnerships, and those relationships remain central to how we work. When your activation comes west, we bring local production knowledge, field teams and content support to help you deliver.
       </p>
       <a href="/agency-partners" class="btn inline-flex items-center gap-3 text-lg display-md px-8 py-4 border" style="border-color: var(--cream); color: var(--cream);">
@@ -275,7 +275,7 @@ try {
         <span class="dot-accent text-2xl">❝</span>
         <span class="label">Client testimony</span>
       </div>
-      <p class="pullquote text-3xl md:text-5xl">
+      <p class="pullquote text-3xl md:text-5xl fade-in-up">
         "It was amazing working with the Studio Park team. I'd recommend them to elevate any activation."
       </p>
       <div class="mt-12 flex items-baseline gap-6">
@@ -292,18 +292,61 @@ try {
   <section id="about" class="px-6 md:px-10 py-24 md:py-36">
     <div class="max-w-2xl">
       <div class="label mb-4">§ 05 — About</div>
-      <h2 class="display-md text-3xl md:text-5xl mb-8">
+      <h2 class="display-md text-3xl md:text-5xl mb-8 fade-in-up">
         Built in Calgary. Shaped by the work.
       </h2>
-      <p class="text-[15px] leading-relaxed mb-5" style="color: var(--cream-dim);">
+      <p class="text-[15px] leading-relaxed mb-5 fade-in-up" style="color: var(--cream-dim);">
         Studio Park grew from a simple need: agencies needed a team they could count on when their campaigns came west.
       </p>
-      <p class="text-[15px] leading-relaxed mb-5" style="color: var(--cream-dim);">
+      <p class="text-[15px] leading-relaxed mb-5 fade-in-up" style="color: var(--cream-dim);">
         That experience shaped how we work. Understand the brief. Bring the right people together. Pay attention to the details. Take responsibility for delivery.
       </p>
-      <p class="text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+      <p class="text-[15px] leading-relaxed fade-in-up" style="color: var(--cream-dim);">
         Today, we're building on that foundation to help brands create experiences from the first conversation to the final guest.
       </p>
+    </div>
+  </section>
+
+  <!-- ===================== MANIFESTO ===================== -->
+  <section class="px-6 md:px-10 py-24 md:py-36 overflow-hidden">
+    <div class="label mb-8 md:mb-12 fade-in-up">§ 06 — The Work</div>
+    <h2
+      class="display uppercase text-[clamp(36px,11vw,64px)] md:text-[clamp(80px,14vw,240px)] leading-[0.9] tracking-[-0.03em] fade-in-up"
+      style="color: var(--cream-dim); font-weight: 800;"
+    >
+      Experiences that<br/>make brands felt.
+    </h2>
+
+    <div class="grid grid-cols-12 gap-6 md:gap-10 mt-14 md:mt-20">
+      <div class="col-span-12 md:col-span-8 md:col-start-5">
+        <div class="label mb-6 fade-in-up">What We Bring</div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-6">
+          <div class="fade-in-up fade-delay-1">
+            <div class="label mb-4" style="color: var(--cream);">Ideas</div>
+            <ul class="space-y-2 text-base md:text-lg">
+              <li>Brand strategy</li>
+              <li>Audience planning</li>
+              <li>Experience design</li>
+            </ul>
+          </div>
+          <div class="fade-in-up fade-delay-2">
+            <div class="label mb-4" style="color: var(--cream);">Production</div>
+            <ul class="space-y-2 text-base md:text-lg">
+              <li>Venues &amp; permits</li>
+              <li>Suppliers &amp; logistics</li>
+              <li>Live delivery</li>
+            </ul>
+          </div>
+          <div class="fade-in-up fade-delay-3">
+            <div class="label mb-4" style="color: var(--cream);">People &amp; Content</div>
+            <ul class="space-y-2 text-base md:text-lg">
+              <li>Field teams</li>
+              <li>Photography &amp; film</li>
+              <li>Social content</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -311,10 +354,10 @@ try {
   <section id="process" class="px-6 md:px-10 py-24 md:py-36">
     <div class="grid grid-cols-12 gap-6 mb-14 md:mb-20">
       <div class="col-span-12 md:col-span-4">
-        <div class="label mb-4">§ 06 — How We Work</div>
+        <div class="label mb-4">§ 07 — How We Work</div>
       </div>
       <div class="col-span-12 md:col-span-8">
-        <h2 class="display-md text-4xl md:text-6xl">
+        <h2 class="display-md text-4xl md:text-6xl fade-in-up">
           From brief to load-out,<br/>
           <span style="color: var(--cream-dim);">without surprises.</span>
         </h2>
@@ -359,8 +402,8 @@ try {
   <section id="work" class="px-6 md:px-10 py-24 md:py-36">
     <div class="flex items-end justify-between mb-14 md:mb-20 flex-wrap gap-6">
       <div>
-        <div class="label mb-4">§ 07 — Selected Work</div>
-        <h2 class="display-md text-4xl md:text-6xl">
+        <div class="label mb-4">§ 08 — Selected Work</div>
+        <h2 class="display-md text-4xl md:text-6xl fade-in-up">
           Recent activations.
         </h2>
       </div>
@@ -368,10 +411,10 @@ try {
 
     <!-- Editorial rhythm: 7/5 · 4/4/4 · 5/7 auto-flows from the 12-col spans. -->
     <div class="grid grid-cols-12 gap-4 md:gap-5">
-      {featuredWork.map((f) => (
+      {featuredWork.map((f, i) => (
         <a
           href={`/work/${f.slug}`}
-          class={`work-card group col-span-12 ${f.span} img-wrap ${f.aspect} block relative`}
+          class={`work-card group col-span-12 ${f.span} img-wrap ${f.aspect} block relative fade-in-up fade-delay-${(i % 6) + 1}`}
         >
           <img src={f.data.thumbImage ?? f.data.heroImage} alt={f.data.heroAlt} />
           <figcaption class="caption absolute bottom-0 left-0 right-0 p-5 md:p-6 flex items-end justify-between gap-4">
@@ -386,7 +429,7 @@ try {
       <!-- View all work tile -->
       <a
         href="/work"
-        class="work-card work-tile group col-span-12 md:col-span-7 aspect-[4/5] md:aspect-[16/11] flex flex-col justify-between p-6 md:p-8 border rounded-[3px]"
+        class="work-card work-tile group col-span-12 md:col-span-7 aspect-[4/5] md:aspect-[16/11] flex flex-col justify-between p-6 md:p-8 border rounded-[3px] fade-in-up fade-delay-6"
         style="border-color: var(--line); background: var(--bg-lift); color: var(--cream);"
       >
         <div class="display-md text-sm md:text-base" style="color: var(--cream-dim);">
@@ -403,10 +446,10 @@ try {
   <section class="py-20 border-t" style="border-color: var(--line);">
     <div class="px-6 md:px-10 grid grid-cols-12 gap-6 mb-14 md:mb-20">
       <div class="col-span-12 md:col-span-4">
-        <div class="label mb-4">§ 08 — In Good Company</div>
+        <div class="label mb-4">§ 09 — In Good Company</div>
       </div>
       <div class="col-span-12 md:col-span-8">
-        <h2 class="display-md text-3xl md:text-5xl">
+        <h2 class="display-md text-3xl md:text-5xl fade-in-up">
           The teams who trust us<br/>
           <span style="color: var(--cream-dim);">on the ground.</span>
         </h2>
@@ -446,18 +489,18 @@ try {
   </section>
 
   <!-- ===================== CTA ===================== -->
-  <section id="contact" class="px-6 md:px-10 py-28 md:py-44 relative overflow-hidden">
+  <section id="contact" class="px-6 md:px-10 py-20 min-h-[80vh] flex flex-col justify-center relative overflow-hidden">
     <div class="glow absolute inset-0"></div>
-    <div class="relative">
-      <div class="label mb-6" style="color: var(--accent);">§ 09 — Start a Project</div>
-      <h2 class="display text-[13vw] md:text-[10vw]">
+    <div class="relative text-center">
+      <div class="label mb-6" style="color: var(--accent);">§ 10 — Start a Project</div>
+      <h2 class="display text-[clamp(64px,16vw,140px)] md:text-[clamp(120px,20vw,320px)] leading-[0.9] tracking-[-0.04em]">
         Let's talk<span class="dot-accent">.</span>
       </h2>
-      <p class="mt-10 max-w-xl text-[15px] leading-relaxed" style="color: var(--cream-dim);">
+      <p class="mt-10 max-w-xl mx-auto text-[15px] leading-relaxed" style="color: var(--cream-dim);">
         Looking for a trusted partner on the ground in Western Canada? Send us the brief, a rough date, and the problem you're trying to solve.
       </p>
 
-      <div class="mt-12 flex flex-col md:flex-row items-start md:items-center gap-6">
+      <div class="mt-12 flex flex-col md:flex-row items-center justify-center gap-6">
         <a href="mailto:hello@studiopark.ca"
            class="btn inline-flex items-center gap-3 text-lg display-md px-8 py-4 border"
            style="border-color: var(--cream); color: var(--cream);">

@@ -63,7 +63,7 @@ const layoutFor = (i: number): Layout => {
 
     <div class="grid grid-cols-12 gap-6 mt-10 md:mt-14">
       <div class="col-span-12 md:col-span-5">
-        <p class="text-[15px] md:text-base leading-relaxed rise" style="color: var(--cream-dim); animation-delay: 0.6s;">
+        <p class="text-[15px] md:text-base leading-relaxed fade-in-up" style="color: var(--cream-dim);">
           A selection of the experiences we've helped bring to life. Explore the settings, the people and the practical work behind each project, from live production and field teams to the content that carries the story forward.
         </p>
       </div>
@@ -88,7 +88,7 @@ const layoutFor = (i: number): Layout => {
         return (
           <a
             href={`/work/${entry.id}`}
-            class={`col-span-12 ${span} group relative img-wrap ${aspect} block`}
+            class={`col-span-12 ${span} group relative img-wrap ${aspect} block fade-in-up fade-delay-${(i % 6) + 1}`}
           >
             <img src={img} alt={entry.data.heroAlt} />
             <figcaption class="caption absolute bottom-0 left-0 right-0 p-5 md:p-6 flex items-end justify-between gap-4">
