@@ -1,6 +1,6 @@
 ---
 title: The Cup
-client: The Cup
+client: Canadian Lifestyle Brand
 locations:
   - Vancouver
 year: 2024
@@ -29,8 +29,6 @@ gallery:
     aspect: 16/11
 ---
 
-Set against the historic backdrop of Hastings Racetrack, The Cup is where high fashion, high stakes, and high-energy vibes collide. It's a one-day, daytime event that blends elegance with entertainment — and Studio Park is there to bring it all together.
+Set against the historic backdrop of Hastings Racetrack, The Cup blends high fashion, high stakes, and high-energy vibes into a one-day daytime event — and Studio Park supported a Canadian lifestyle brand's activation throughout it. Our scope covered production coordination and on-site staffing, from guest experience to the stylish photo and video capture that highlighted the best looks, moments, and brand activations.
 
-From polished event staff managing guest experience to stylish photo and video capture that highlights the best looks, moments, and brand activations, we ensure every detail runs smoothly and looks stunning.
-
-It's an elevated celebration of style, sport, and social connection — with Studio Park working quietly behind the scenes to make the magic happen.
+It's an elevated celebration of style, sport, and social connection, delivered down to every detail.

@@ -1,6 +1,6 @@
 ---
 title: Harvest House
-client: Harvest House
+client: Global Beverage Brand
 locations:
   - Vancouver
 year: 2024
@@ -29,6 +29,6 @@ gallery:
     aspect: 16/11
 ---
 
-Studio Park provides event staffing and photo/video coverage that captures the energy of this uniquely immersive festival. From costumed hosts and crowd engagement to real-time content creation, our team supports key brand activations with polish, professionalism, and presence.
+Harvest House brings Bavarian tradition to Vancouver with a uniquely immersive festival experience — and Studio Park supported a global beverage brand's on-site activation inside it. Our team provided event staffing, from costumed hosts to crowd engagement, alongside real-time photo and video capture of every brand touchpoint.
 
-Working behind the scenes with international partners, we help ensure each brand moment is delivered flawlessly — without ever stealing the spotlight.
+The result: a brand activation delivered with polish, professionalism, and presence, inside one of the city's most immersive festival environments.

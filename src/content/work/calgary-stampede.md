@@ -1,6 +1,6 @@
 ---
 title: Calgary Stampede
-client: Various brands
+client: National and Regional Brands
 locations:
   - Calgary
 year: 2024
@@ -12,7 +12,7 @@ subEvents:
   - Nashville North
   - Cowboys Music Festival
   - Badlands
-tagline: The greatest outdoor show on Earth. The kind of work we were built for.
+tagline: The kind of work we were built for.
 brief: Every July, Calgary becomes the epicenter of energy, music, and celebration — and Studio Park is right in the heart of it.
 caseNumber: "001"
 order: 1
@@ -35,10 +35,9 @@ stats:
     label: Show run
   - value: "3 venues"
     label: Concurrent activations
-  - value: "2022—Present"
 videoId: "1186594870"
 ---
 
-We support the Stampede's biggest entertainment hubs, including Nashville North and Cowboys Music Festival, providing top-tier event staff and high-impact photo/video coverage. Whether it's capturing the magic of a headline set, managing crowd flow, or elevating brand presence on-site, we bring the same focus, flexibility, and flair to every moment.
+Every July, Nashville North and Cowboys Music Festival become two of the Stampede's busiest entertainment hubs — and national and regional brands activate inside them to reach the crowds. Studio Park supported those brand activations with staffing across multiple concurrent venues: event ambassadors, crowd flow management, and on-site photo/video coverage captured in real time.
 
-From sunrise sound checks to midnight encores, our team is there — representing the brands, managing the vibe, and making sure every activation hits its mark.
+From sunrise sound checks to midnight encores, our crews coordinated across every hub at once — representing each brand on-site and making sure every activation hit its mark.

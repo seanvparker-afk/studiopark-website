@@ -1,6 +1,6 @@
 ---
 title: Rose Disco
-client: Rose Disco
+client: National Beverage Brand
 locations:
   - Vancouver
 year: 2024
@@ -29,6 +29,6 @@ gallery:
     aspect: 16/11
 ---
 
-Studio Park supports the experience from start to finish with expert event staff and on-site photo/video production that captures the magic as it unfolds. From welcoming guests at golden hour to managing activations on the dance floor, our team blends style with structure to keep the energy high and the execution seamless.
+Rose Disco brought a sun-soaked, full-throttle day party to Vancouver — and Studio Park supported a national beverage brand's activation inside it, start to finish. Our scope covered event staffing, on-site production, and photo/video capture, from welcoming guests at golden hour to running the dance floor through the final set.
 
 It's everything a day party should be — bold, beautiful, and built to impress.

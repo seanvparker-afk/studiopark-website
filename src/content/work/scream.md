@@ -1,6 +1,6 @@
 ---
 title: Scream
-client: Scream
+client: National Spirits Brand
 locations:
   - Edmonton
 year: 2024
@@ -29,6 +29,6 @@ gallery:
     aspect: 16/11
 ---
 
-Studio Park provides event staff and photo/video support to help elevate the experience and ensure the chaos stays beautifully controlled. From capturing costumes and crowd moments to managing key brand touchpoints, our team helps bring structure to the spectacle.
+Scream is Edmonton's biggest Halloween party — and Studio Park supported a national spirits brand's on-site presence throughout the night. Our crew handled event staffing and crowd management, with real-time photo and video capture of every brand touchpoint across the venue.
 
-Behind every eerie detail and fog-filled room, there's a Studio Park presence making sure the night hits all the right notes. Because even the wildest parties deserve flawless execution.
+Behind every eerie detail and fog-filled room, our team kept the brand experience running smoothly — because even the wildest parties deserve flawless execution.

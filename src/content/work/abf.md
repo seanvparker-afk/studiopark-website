@@ -1,6 +1,6 @@
 ---
 title: Alberta Beer Festivals
-client: ABF
+client: Alberta Beer Festivals & Partner Brands
 locations:
   - Calgary
   - Edmonton
@@ -32,12 +32,8 @@ gallery:
 stats:
   - value: "3 cities"
     label: Calgary · Edmonton · Banff
-  - value: "Dozens"
-    label: Breweries supported
 ---
 
-Studio Park is proud to support Alberta Beer Festivals across Calgary, Edmonton, and Banff — three unique events that celebrate craft culture, community, and connection. From high-energy city venues to mountain-backdropped tastings, we provide event support that brings these festivals to life.
+Alberta Beer Festivals brings craft culture to Calgary, Edmonton, and Banff — and Studio Park supported the festival across all three cities. For ABF, our team delivered ambassador staffing and on-site logistics coordination that kept each stop running smoothly; for the craft beverage brands pouring at each event, we provided dedicated staffing and real-time photo and video capture of their activations.
 
-Our role includes brand ambassador staffing, photo and video capture, and custom-built activations that amplify the attendee experience. With thousands of guests, dozens of breweries, and countless moving parts, Alberta Beer Festivals trusts Studio Park.
-
-It's local execution at its best — with an eye on every detail and a camera ready for every toast.
+From high-energy city venues to mountain-backdropped tastings, our crews kept the festival experience consistent city to city — with an eye on every detail and a camera ready for every toast.
